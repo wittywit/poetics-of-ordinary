@@ -1,0 +1,406 @@
+/* ═══════════════════════════════════════════════════════════════
+   POETICS OF ORDINARY — Shared Stylesheet
+   Pranshu Chaudhary & Monalisa Thakur
+═══════════════════════════════════════════════════════════════ */
+
+/* ─── TOKENS ─────────────────────────────────────────────────── */
+:root {
+  --bg:         #FFFFFF;
+  --fg:         #000000;
+  --accent:     #4A6FA5;
+  --accent-dim: #3A5A88;
+  --orange:     var(--accent);     /* alias — keeps existing code working */
+  --orange-dim: var(--accent-dim); /* alias */
+  --mid:        #555555;
+  --faint:      #888888;
+  --grid:       #F2F5F9;
+  --border:     #B0C4DC;
+  --ink:        #000000;
+  --ink-mid:    #333333;
+  --ink-faint:  #777777;
+  --cream:      #F2F5F9;
+  --dark:       #000000;
+  --dark-hover: #111111;
+  --rule:       1px solid #B0C4DC;
+  --rule-light: 1px solid #D8E4EE;
+
+  --display: Helvetica Neue, Helvetica, Arial, sans-serif;
+  --sans:    Helvetica Neue, Helvetica, Arial, sans-serif;
+  --mono:    Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+/* ─── RESET ──────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── SCROLLBAR ──────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--orange); }
+
+/* ─── SELECTION ──────────────────────────────────────────────── */
+::selection { background: var(--orange); color: #FFFFFF; }
+
+/* ═══════════════════════════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════════════════════════ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  background: var(--bg);
+  border-bottom: var(--rule);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  height: 56px;
+}
+
+.nav-brand {
+  font-family: var(--sans);
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--orange);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.nav-brand:hover {
+  color: var(--fg);
+}
+
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: var(--sans);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--mid);
+  text-decoration: none;
+  transition: color 0.15s;
+  font-weight: 700;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--orange);
+}
+
+.nav-date {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--faint);
+  font-weight: 400;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════════════════════ */
+footer {
+  border-top: var(--rule);
+}
+
+.footer-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 24px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-left {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-faint);
+  font-weight: 400;
+}
+
+.footer-right {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-faint);
+  font-weight: 400;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PAGE BODY & LAYOUT
+═══════════════════════════════════════════════════════════════ */
+.page-body {
+  padding-top: 56px;
+}
+
+.section-wrap {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* ─── SECTION HEADER ─────────────────────────────────────────── */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 22px 0;
+  border-bottom: var(--rule);
+}
+
+.section-label {
+  font-family: var(--sans);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--orange);
+  font-weight: 700;
+}
+
+.section-meta {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-faint);
+  font-weight: 400;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CARD GRID
+═══════════════════════════════════════════════════════════════ */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-left: var(--rule);
+  border-top: var(--rule);
+}
+
+.card {
+  border-right: var(--rule);
+  border-bottom: var(--rule);
+  padding: 28px 28px 56px;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+  transition: background 0.15s;
+  background: var(--bg);
+}
+
+.card:hover {
+  background: var(--grid);
+}
+
+.card--wide {
+  grid-column: span 2;
+}
+
+.card--tall {
+  grid-row: span 2;
+}
+
+.card-tag {
+  display: block;
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 18px;
+  font-weight: 700;
+}
+
+.card-title {
+  font-family: var(--sans);
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 16px;
+  color: var(--fg);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+
+.card-title em {
+  font-style: normal;
+  font-weight: 400;
+  color: var(--orange);
+}
+
+.card-body {
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--mid);
+  font-weight: 400;
+}
+
+.card-index {
+  font-family: var(--sans);
+  font-size: 72px;
+  font-weight: 700;
+  color: #E0E0E0;
+  position: absolute;
+  bottom: 10px;
+  right: 18px;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ─── DARK CARD ──────────────────────────────────────────────── */
+.card--dark {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+.card--dark:hover {
+  background: var(--dark-hover);
+}
+
+.card--dark .card-tag {
+  color: var(--orange);
+}
+
+.card--dark .card-title {
+  font-family: var(--sans);
+  color: var(--bg);
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.card--dark .card-body {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.card--dark .card-index {
+  color: rgba(255, 255, 255, 0.08);
+}
+
+/* ─── FINDING CARD ───────────────────────────────────────────── */
+.card--finding {
+  background: var(--grid);
+}
+
+.card--finding:hover {
+  background: #E0E0E0;
+}
+
+.card--finding .card-title {
+  font-style: normal;
+  font-weight: 700;
+  color: var(--orange);
+}
+
+/* ─── CARD HOVER ARROW ───────────────────────────────────────── */
+.card-read-link {
+  position: absolute;
+  bottom: 20px;
+  right: 24px;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--orange);
+  opacity: 0;
+  transition: opacity 0.15s;
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.card:hover .card-read-link {
+  opacity: 1;
+}
+
+/* ─── CARD FOOTER ────────────────────────────────────────────── */
+.card-footer {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-faint);
+  margin-top: 20px;
+  font-weight: 400;
+}
+
+/* ─── CLICKABLE CARD ─────────────────────────────────────────── */
+a.card--link {
+  display: block;
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.05s; }
+.reveal-delay-2 { transition-delay: 0.1s; }
+.reveal-delay-3 { transition-delay: 0.15s; }
+.reveal-delay-4 { transition-delay: 0.2s; }
+.reveal-delay-5 { transition-delay: 0.25s; }
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  nav {
+    padding: 0 20px;
+  }
+
+  .nav-date {
+    display: none;
+  }
+
+  .section-wrap {
+    padding: 0 20px;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card--wide {
+    grid-column: span 1;
+  }
+
+  .card--tall {
+    grid-row: span 1;
+  }
+
+  .footer-inner {
+    padding: 22px 20px;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+}

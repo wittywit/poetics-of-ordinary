@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Enquiries — Poetics of Ordinary</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ═══════════════════════════════════════════
+       PAGE HEADER
+    ═══════════════════════════════════════════ */
+    .page-header-wrap {
+      padding: 80px 40px 0;
+      border-bottom: var(--rule);
+    }
+
+    .page-header {
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    .page-eyebrow {
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--ink-faint);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .page-eyebrow::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--ink-faint);
+      flex-shrink: 0;
+    }
+
+    .page-title {
+      font-family: var(--sans);
+      font-size: clamp(48px, 7vw, 72px);
+      font-weight: 700;
+      line-height: 1.0;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .page-subtitle {
+      font-family: var(--sans);
+      font-size: 14px;
+      color: var(--ink-faint);
+      margin-bottom: 40px;
+      line-height: 1.7;
+      font-weight: 400;
+    }
+
+    /* ═══════════════════════════════════════════
+       FILTER BAR
+    ═══════════════════════════════════════════ */
+    .filter-bar-wrap {
+      border-bottom: var(--rule);
+    }
+
+    .filter-bar {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: flex;
+      gap: 0;
+    }
+
+    .filter-tab {
+      font-family: var(--sans);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 16px 24px 14px;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      color: var(--ink-faint);
+      text-decoration: none;
+      list-style: none;
+      transition: color 0.2s, border-color 0.2s;
+      background: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      font-weight: 700;
+    }
+
+    .filter-tab:hover {
+      color: var(--ink);
+    }
+
+    .filter-tab.active {
+      color: var(--ink);
+      border-bottom-color: var(--ink);
+    }
+
+    /* ═══════════════════════════════════════════
+       POSTS GRID
+    ═══════════════════════════════════════════ */
+    .posts-grid-wrap {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-left: var(--rule);
+      border-top: var(--rule);
+    }
+
+    /* Cards in posts-grid inherit base .card styles */
+    .posts-grid .card {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    /* Filter hiding */
+    .card-hidden {
+      display: none !important;
+    }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════════ */
+    @media (max-width: 900px) {
+      .page-header-wrap {
+        padding: 60px 20px 0;
+      }
+
+      .filter-bar {
+        padding: 0 20px;
+        overflow-x: auto;
+      }
+
+      .posts-grid-wrap {
+        padding: 0 20px;
+      }
+
+      .posts-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .posts-grid .card--wide {
+        grid-column: span 1;
+      }
+    }
+  </style>
+</head>
+<body class="page-body">
+
+  <!-- ═══ NAV ═══ -->
+  <nav>
+    <a class="nav-brand" href="index.html">Poetics of Ordinary</a>
+    <ul class="nav-links">
+      <li><a href="enquiries.html" class="active">Enquiries</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <span class="nav-date" id="nav-date"></span>
+  </nav>
+
+  <!-- ═══ PAGE HEADER ═══ -->
+  <div class="page-header-wrap">
+    <div class="page-header">
+      <div class="page-eyebrow">Volume I — 2026</div>
+      <h1 class="page-title">All Enquiries</h1>
+      <p class="page-subtitle">Documented observations, ongoing investigations, field notes</p>
+    </div>
+  </div>
+
+  <!-- ═══ FILTER BAR ═══ -->
+  <div class="filter-bar-wrap">
+    <div class="filter-bar">
+      <button class="filter-tab active" data-filter="all">All</button>
+      <button class="filter-tab" data-filter="enquiry">Enquiries</button>
+      <button class="filter-tab" data-filter="finding">Findings</button>
+    </div>
+  </div>
+
+  <!-- ═══ POSTS GRID ═══ -->
+  <div class="posts-grid-wrap">
+    <div class="posts-grid" id="posts-grid">
+
+      <!-- Card 1: Enquiry — dark, wide -->
+      <a href="post.html" class="card card--dark card--wide card--link reveal" data-type="enquiry">
+        <span class="card-tag">Enquiry No. 001 — On Thresholds</span>
+        <h2 class="card-title">On the ritual of crossing a threshold — <em>and what is left behind each time</em></h2>
+        <p class="card-body">A door is a machine for forgetting. The moment you cross it, the brain resets its context — what you were thinking, what you intended, where you were going. This is not failure. This is the threshold doing its work. We spent seven days paying deliberate attention to the moment of crossing.</p>
+        <span class="card-index">01</span>
+        <span class="card-footer">Pranshu Chaudhary · March 2026</span>
+        <span class="card-read-link">→ Read</span>
+      </a>
+
+      <!-- Card 2: Enquiry — regular -->
+      <a href="post.html" class="card card--link reveal reveal-delay-1" data-type="enquiry">
+        <span class="card-tag">Enquiry No. 004 — On Time</span>
+        <h2 class="card-title">On the phenomenology of waiting</h2>
+        <p class="card-body">What is the texture of a minute when it has no end in sight? Waiting is one of the few experiences in which time becomes visible to itself.</p>
+        <span class="card-index">04</span>
+        <span class="card-footer">Monalisa Thakur · February 2026</span>
+        <span class="card-read-link">→ Read</span>
+      </a>
+
+      <!-- Card 3: Finding -->
+      <a href="post.html" class="card card--finding card--link reveal reveal-delay-2" data-type="finding">
+        <span class="card-tag">Finding No. 001 — Walls</span>
+        <h2 class="card-title"><em>The crack in the wall follows the path of least resistance — and so do we</em></h2>
+        <p class="card-body">After observing a hairline crack across four sessions over two months, we noted it extended exactly 3mm — always at the same rate, always toward the window corner.</p>
+        <span class="card-footer">Both · January 2026</span>
+        <span class="card-read-link">→ Read</span>
+      </a>
+
+      <!-- Card 4: Enquiry -->
+      <a href="post.html" class="card card--link reveal" data-type="enquiry">
+        <span class="card-tag">Enquiry No. 002 — On Habit</span>
+        <h2 class="card-title">On hands — the tools we have forgotten we are using</h2>
+        <p class="card-body">At what point did your hands become invisible to you? The brain excises the familiar. The hand, held in front of your face, becomes wallpaper.</p>
+        <span class="card-index">02</span>
+        <span class="card-footer">Pranshu Chaudhary · January 2026</span>
+        <span class="card-read-link">→ Read</span>
+      </a>
+
+      <!-- Card 5: Finding -->
+      <a href="post.html" class="card card--finding card--link reveal reveal-delay-1" data-type="finding">
+        <span class="card-tag">Finding No. 002 — Keys</span>
+        <h2 class="card-title"><em>A key turning in a lock has three distinct phases</em></h2>
+        <p class="card-body">The resistance, the give, the click. We had used this lock for three years without once registering the tripartite nature of the act. Documentation produced the encounter.</p>
+        <span class="card-footer">Monalisa Thakur · January 2026</span>
+        <span class="card-read-link">→ Read</span>
+      </a>
+
+      <!-- Card 6: Enquiry -->
+      <a href="post.html" class="card card--link reveal reveal-delay-2" data-type="enquiry">
+        <span class="card-tag">Enquiry No. 005 — On Sound</span>
+        <h2 class="card-title">On domestic sounds at night</h2>
+        <p class="card-body">The building breathes. Pipes settle, floors contract. These sounds, present every night, are usually absorbed into the silence we call silence. They are not silence at all.</p>
+        <span class="card-index">05</span>
+        <span class="card-footer">Both · February 2026</span>
+        <span class="card-read-link">→ Read</span>
+      </a>
+
+      <!-- Card 7: Finding -->
+      <a href="post.html" class="card card--finding card--link reveal" data-type="finding">
+        <span class="card-tag">Finding No. 003 — Rain</span>
+        <h2 class="card-title"><em>Rain on glass makes decisions</em></h2>
+        <p class="card-body">A raindrop does not fall straight. It hesitates, merges, redirects. The path it carves is determined by what was already there. We observed seventeen drops over forty minutes.</p>
+        <span class="card-footer">Pranshu Chaudhary · March 2026</span>
+        <span class="card-read-link">→ Read</span>
+      </a>
+
+      <!-- Card 8: Enquiry — wide -->
+      <a href="post.html" class="card card--wide card--link reveal reveal-delay-1" data-type="enquiry">
+        <span class="card-tag">Enquiry No. 006 — On Script</span>
+        <h2 class="card-title">On handwriting and what is familiar in a stranger's script</h2>
+        <p class="card-body">When you read a handwritten note from someone you know well, you are reading two things simultaneously: the words, and the person. The loops, the pressure, the way certain letters lean — these are a second text, illegible to anyone who does not love the hand that made it. We asked: what makes handwriting feel like a person?</p>
+        <span class="card-index">06</span>
+        <span class="card-footer">Monalisa Thakur · March 2026</span>
+        <span class="card-read-link">→ Read</span>
+      </a>
+
+      <!-- Card 9: Finding -->
+      <a href="post.html" class="card card--finding card--link reveal reveal-delay-2" data-type="finding">
+        <span class="card-tag">Finding No. 004 — Grip</span>
+        <h2 class="card-title"><em>We hold pens differently when we think no one is watching</em></h2>
+        <p class="card-body">The "correct" grip returns when observed. The private grip — thumb overlapping, barrel nearly horizontal — is faster, looser, more fluent. The body knows something the lesson forgot.</p>
+        <span class="card-footer">Both · March 2026</span>
+        <span class="card-read-link">→ Read</span>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer style="margin-top: 80px;">
+    <div class="footer-inner">
+      <span class="footer-left">© 2026 Poetics of Ordinary — Pranshu Chaudhary & Monalisa Thakur</span>
+      <span class="footer-right">Field notes from the attention practice</span>
+    </div>
+  </footer>
+
+  <script>
+    /* ─── LIVE DATE ─────────────────────────────── */
+    (function () {
+      var el = document.getElementById('nav-date');
+      if (!el) return;
+      var now = new Date();
+      var opts = { year: 'numeric', month: 'long', day: 'numeric' };
+      el.textContent = now.toLocaleDateString('en-GB', opts);
+    })();
+
+    /* ─── SCROLL REVEAL ─────────────────────────── */
+    (function () {
+      var items = document.querySelectorAll('.reveal');
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      items.forEach(function (el) { io.observe(el); });
+    })();
+
+    /* ─── FILTER TABS ───────────────────────────── */
+    (function () {
+      var tabs = document.querySelectorAll('.filter-tab');
+      var cards = document.querySelectorAll('#posts-grid [data-type]');
+
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          var filter = tab.getAttribute('data-filter');
+
+          // Update active tab
+          tabs.forEach(function (t) { t.classList.remove('active'); });
+          tab.classList.add('active');
+
+          // Show/hide cards
+          cards.forEach(function (card) {
+            if (filter === 'all' || card.getAttribute('data-type') === filter) {
+              card.classList.remove('card-hidden');
+              // Ensure visible if already been revealed
+              card.classList.add('visible');
+            } else {
+              card.classList.add('card-hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

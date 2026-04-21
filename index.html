@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Poetics of Ordinary</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+
+    /* ═══════════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════════ */
+    .hero {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 80px 40px 0;
+      border-bottom: var(--rule);
+    }
+
+    .hero-meta-bar {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border: var(--rule);
+      border-bottom: none;
+    }
+
+    .hero-meta-cell {
+      padding: 12px 18px;
+      font-family: var(--sans);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      border-right: var(--rule);
+      font-weight: 700;
+    }
+
+    .hero-meta-cell:last-child {
+      border-right: none;
+    }
+
+    .hero-meta-cell span {
+      color: var(--orange);
+    }
+
+    .hero-title-block {
+      border: var(--rule);
+      padding: 52px 40px 44px;
+      position: relative;
+    }
+
+    .hero-label {
+      font-family: var(--sans);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--orange);
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 700;
+    }
+
+    .hero-label::after {
+      content: '';
+      flex: 1;
+      height: 2px;
+      background: var(--fg);
+    }
+
+    h1.hero-title {
+      font-family: var(--sans);
+      font-weight: 700;
+      line-height: 0.92;
+      margin-bottom: 0;
+    }
+
+    .hero-title-main {
+      display: block;
+      font-size: clamp(56px, 10vw, 120px);
+      letter-spacing: -0.03em;
+      color: var(--fg);
+      text-transform: uppercase;
+    }
+
+    .hero-title-sub {
+      display: block;
+      font-size: clamp(26px, 4.5vw, 58px);
+      font-style: normal;
+      font-weight: 700;
+      color: var(--orange);
+      margin-left: clamp(20px, 3vw, 56px);
+      margin-top: 14px;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-corner-tag {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      font-family: var(--sans);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      color: var(--faint);
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .hero-bottom-grid {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      border: var(--rule);
+      border-top: none;
+    }
+
+    .hero-statement-cell {
+      padding: 36px 40px;
+      border-right: var(--rule);
+    }
+
+    .hero-statement {
+      font-family: var(--sans);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.9;
+      color: var(--mid);
+    }
+
+    .hero-statement em {
+      font-style: normal;
+      font-weight: 700;
+      color: var(--fg);
+    }
+
+    .hero-axioms-cell {
+      padding: 36px 32px;
+    }
+
+    .hero-axioms-label {
+      font-family: var(--sans);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--orange);
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    .hero-axiom {
+      display: flex;
+      gap: 14px;
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--ink-mid);
+      padding: 9px 0;
+      border-bottom: var(--rule-light);
+      font-weight: 400;
+    }
+
+    .hero-axiom:last-child {
+      border-bottom: none;
+    }
+
+    .hero-axiom-num {
+      color: var(--orange);
+      flex-shrink: 0;
+      font-weight: 700;
+    }
+
+    /* ═══════════════════════════════════════════
+       POSTS MANIFEST
+    ═══════════════════════════════════════════ */
+    .manifest-section {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .manifest-header {
+      display: grid;
+      grid-template-columns: 60px 90px 1fr 200px;
+      padding: 14px 0;
+      border-bottom: 3px solid var(--orange);
+      margin-top: 56px;
+      gap: 28px;
+    }
+
+    .manifest-col-label {
+      font-family: var(--sans);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--orange);
+      font-weight: 700;
+    }
+
+    a.post-row {
+      display: grid;
+      grid-template-columns: 60px 90px 1fr 200px;
+      gap: 28px;
+      padding: 40px 0;
+      border-bottom: var(--rule);
+      text-decoration: none;
+      color: inherit;
+      align-items: start;
+      transition: background 0.15s;
+    }
+
+    a.post-row:hover {
+      background: var(--grid);
+      padding-left: 20px;
+      padding-right: 20px;
+      margin: 0 -20px;
+    }
+
+    .post-row-num {
+      font-family: var(--sans);
+      font-size: 24px;
+      color: var(--orange);
+      font-weight: 700;
+      padding-top: 4px;
+    }
+
+    .post-row-category {
+      font-family: var(--sans);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      padding-top: 8px;
+      line-height: 1.65;
+      font-weight: 700;
+    }
+
+    .post-row-title {
+      font-family: var(--sans);
+      font-size: clamp(17px, 2vw, 23px);
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--fg);
+      margin-bottom: 16px;
+      transition: color 0.15s;
+    }
+
+    a.post-row:hover .post-row-title {
+      color: var(--orange);
+    }
+
+    .post-row-excerpt {
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.85;
+      color: var(--mid);
+    }
+
+    .post-row-meta {
+      padding-top: 6px;
+    }
+
+    .post-row-author {
+      font-family: var(--sans);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-faint);
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .post-row-read {
+      display: inline-block;
+      font-family: var(--sans);
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--orange);
+      border: 2px solid var(--orange);
+      padding: 8px 16px;
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+      font-weight: 700;
+    }
+
+    a.post-row:hover .post-row-read {
+      background: var(--orange);
+      color: white;
+    }
+
+    .manifest-write-link {
+      display: inline-block;
+      margin-top: 40px;
+      margin-bottom: 56px;
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 2px solid var(--fg);
+      padding-bottom: 2px;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .manifest-write-link:hover {
+      color: var(--orange);
+      border-color: var(--orange);
+    }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE — INDEX SPECIFIC
+    ═══════════════════════════════════════════ */
+    @media (max-width: 900px) {
+      .hero {
+        padding: 72px 20px 0;
+      }
+
+      .hero-meta-bar {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-meta-cell {
+        border-right: none;
+        border-bottom: var(--rule);
+      }
+
+      .hero-meta-cell:last-child {
+        border-bottom: none;
+      }
+
+      .hero-title-block {
+        padding: 36px 20px 32px;
+      }
+
+      .hero-bottom-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-statement-cell {
+        border-right: none;
+        border-bottom: var(--rule);
+        padding: 28px 20px;
+      }
+
+      .hero-axioms-cell {
+        padding: 28px 20px;
+      }
+
+      .manifest-section {
+        padding: 0 20px;
+      }
+
+      .manifest-header {
+        display: none;
+      }
+
+      a.post-row {
+        grid-template-columns: 44px 1fr;
+        grid-template-rows: auto auto auto;
+        gap: 0 18px;
+      }
+
+      a.post-row:hover {
+        padding-left: 0;
+        padding-right: 0;
+        margin: 0;
+      }
+
+      .post-row-num {
+        grid-row: 1;
+        font-size: 20px;
+      }
+
+      .post-row-category {
+        grid-column: 2;
+        grid-row: 1;
+      }
+
+      .post-row-content {
+        grid-column: 1 / -1;
+        margin-top: 14px;
+      }
+
+      .post-row-meta {
+        grid-column: 1 / -1;
+        margin-top: 14px;
+      }
+    }
+  </style>
+</head>
+<body class="page-body">
+
+  <!-- ═══ NAV ═══ -->
+  <nav>
+    <a class="nav-brand" href="index.html">Poetics of Ordinary</a>
+    <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <span class="nav-date" id="nav-date"></span>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero reveal">
+
+    <div class="hero-meta-bar">
+      <div class="hero-meta-cell">Project / <span>Field Practice</span></div>
+      <div class="hero-meta-cell">Status / <span>Active</span></div>
+      <div class="hero-meta-cell">Authors / <span>Chaudhary + Thakur</span></div>
+    </div>
+
+    <div class="hero-title-block">
+      <div class="hero-label">A field practice in attention</div>
+      <h1 class="hero-title">
+        <span class="hero-title-main">POETICS</span>
+        <span class="hero-title-sub">of ordinary</span>
+      </h1>
+      <span class="hero-corner-tag">Vol. I — 2026</span>
+    </div>
+
+    <div class="hero-bottom-grid">
+      <div class="hero-statement-cell">
+        <p class="hero-statement">
+          Familiarity is not the same as attention. The things we live with
+          every day — a room's particular light, a surface you pass a hundred
+          times — stop being seen somewhere along the way. This is a record of
+          looking again. <em>Not to find something hidden.</em> Just to notice
+          <em>what is actually there.</em>
+        </p>
+      </div>
+      <div class="hero-axioms-cell">
+        <div class="hero-axioms-label">Working notes</div>
+        <div class="hero-axiom"><span class="hero-axiom-num">01</span><span>Attention before judgment</span></div>
+        <div class="hero-axiom"><span class="hero-axiom-num">02</span><span>Documentation before interpretation</span></div>
+        <div class="hero-axiom"><span class="hero-axiom-num">03</span><span>The specific over the general</span></div>
+        <div class="hero-axiom"><span class="hero-axiom-num">04</span><span>Curiosity without conclusion</span></div>
+        <div class="hero-axiom"><span class="hero-axiom-num">05</span><span>Return to what is already there</span></div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ═══ POSTS MANIFEST ═══ -->
+  <section id="posts">
+    <div class="manifest-section">
+
+      <div class="manifest-header">
+        <div class="manifest-col-label">No.</div>
+        <div class="manifest-col-label">Category</div>
+        <div class="manifest-col-label">Entry</div>
+        <div class="manifest-col-label">Meta</div>
+      </div>
+
+      <!-- POSTS:START -->
+
+      <a class="post-row reveal" href="post-ostranenie.html">
+        <div class="post-row-num">01</div>
+        <div class="post-row-category">On<br>Perception</div>
+        <div class="post-row-content">
+          <h2 class="post-row-title">On Not-Knowing: Ostranenie, Exformation, and what different cultures figured out about the familiar</h2>
+          <p class="post-row-excerpt">There's a Russian word — ostranenie — that I keep coming back to. Viktor Shklovsky coined it in 1917. The idea is that art's only real job is to knock you out of the automatic. Turns out every culture has found their way to this same problem.</p>
+        </div>
+        <div class="post-row-meta">
+          <div class="post-row-author">Pranshu Chaudhary</div>
+          <span class="post-row-read">Read →</span>
+        </div>
+      </a>
+
+      <a class="post-row reveal" href="post-time.html">
+        <div class="post-row-num">02</div>
+        <div class="post-row-category">On<br>Time</div>
+        <div class="post-row-content">
+          <h2 class="post-row-title">Archaeology of Time</h2>
+          <p class="post-row-excerpt">The time you are living in right now — this divided, always-running-out, perfectly measurable time — is about 250 years old. It was invented. Before that, time was a different material entirely.</p>
+        </div>
+        <div class="post-row-meta">
+          <div class="post-row-author">Monalisa Thakur</div>
+          <span class="post-row-read">Read →</span>
+        </div>
+      </a>
+
+      <a class="post-row reveal" href="post-sunlight.html">
+        <div class="post-row-num">03</div>
+        <div class="post-row-category">On<br>Light</div>
+        <div class="post-row-content">
+          <h2 class="post-row-title">On the Simple Act of Trying to Catch the Sunlight in Our Palms</h2>
+          <p class="post-row-excerpt">A shaft of light comes through a gap — a curtain not quite closed, a keyhole, a crack in a shutter — and without thinking, you put your hand in it. You know you can't catch it. And you do it anyway.</p>
+        </div>
+        <div class="post-row-meta">
+          <div class="post-row-author">Pranshu Chaudhary</div>
+          <span class="post-row-read">Read →</span>
+        </div>
+      </a>
+
+      <a class="post-row reveal" href="post-alternative-time.html">
+        <div class="post-row-num">04</div>
+        <div class="post-row-category">On<br>Time</div>
+        <div class="post-row-content">
+          <h2 class="post-row-title">Alternative Time</h2>
+          <p class="post-row-excerpt">You walk into a room. On the wall is a grid of 900 LEDs. Your image appears in it — but not immediately, and not completely. It builds. It takes seven visits for the image to fully resolve. Each visit needs to be long enough. Showing up doesn't count. You have to stay.</p>
+        </div>
+        <div class="post-row-meta">
+          <div class="post-row-author">Pranshu Chaudhary</div>
+          <span class="post-row-read">Read →</span>
+        </div>
+      </a>
+
+      <!-- POSTS:END -->
+
+      <a class="manifest-write-link" href="write-post.html">Write new post →</a>
+
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-left">© 2026 Poetics of Ordinary — Pranshu Chaudhary & Monalisa Thakur</span>
+      <span class="footer-right">Field notes from the attention practice</span>
+    </div>
+  </footer>
+
+  <script>
+    /* ─── LIVE DATE ─────────────────────────────── */
+    (function () {
+      var el = document.getElementById('nav-date');
+      if (!el) return;
+      var now = new Date();
+      var opts = { year: 'numeric', month: 'long', day: 'numeric' };
+      el.textContent = now.toLocaleDateString('en-GB', opts);
+    })();
+
+    /* ─── ACTIVE NAV LINK ───────────────────────── */
+    (function () {
+      var page = location.pathname.split('/').pop() || 'index.html';
+      document.querySelectorAll('.nav-links a').forEach(function (a) {
+        if (a.getAttribute('href') === page) a.classList.add('active');
+      });
+    })();
+
+    /* ─── SCROLL REVEAL ─────────────────────────── */
+    (function () {
+      var items = document.querySelectorAll('.reveal');
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      items.forEach(function (el) { io.observe(el); });
+    })();
+
+    /* ─── HERO ON LOAD ──────────────────────────── */
+    (function () {
+      document.addEventListener('DOMContentLoaded', function () {
+        var heroEls = document.querySelectorAll('.hero.reveal');
+        heroEls.forEach(function (el) { el.classList.add('visible'); });
+      });
+    })();
+  </script>
+</body>
+</html>

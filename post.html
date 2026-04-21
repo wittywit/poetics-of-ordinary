@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>On the texture of a doorknob — Poetics of Ordinary</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ═══════════════════════════════════════════
+       POST HEADER
+    ═══════════════════════════════════════════ */
+    .post-header-wrap {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 80px 40px 0;
+    }
+
+    .post-back { display: inline-block; font-size: 14px; font-weight: 700; color: var(--ink-faint); text-decoration: none; letter-spacing: 0.04em; margin-bottom: 36px; transition: color 0.2s; }
+    .post-back:hover { color: var(--ink); }
+    .post-tag { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-faint); margin-bottom: 20px; font-weight: 700; }
+    h1.post-title { font-size: clamp(36px, 5.5vw, 60px); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; max-width: 860px; margin-bottom: 32px; }
+    .post-meta { display: flex; flex-wrap: wrap; gap: 28px; font-size: 14px; color: var(--ink-faint); padding-bottom: 40px; border-bottom: var(--rule); font-weight: 400; }
+    .post-meta-divider { color: var(--faint); }
+
+    /* ═══════════════════════════════════════════
+       ARTICLE LAYOUT
+    ═══════════════════════════════════════════ */
+    .article-wrap {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 60px 40px 0;
+    }
+
+    .article-grid {
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    /* ─── POST CONTENT ─────────────────────────── */
+    .post-content p.lead { font-size: 22px; font-weight: 700; line-height: 1.55; color: var(--ink); margin-bottom: 40px; }
+    h2.post-section { font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-faint); font-weight: 700; padding-top: 48px; padding-bottom: 16px; border-top: var(--rule); margin-top: 8px; }
+    .post-content p { font-size: 18px; font-weight: 400; line-height: 1.8; color: var(--ink); margin-bottom: 28px; }
+    .pull-quote { border-left: 4px solid var(--orange); padding: 16px 28px; margin: 44px 0; }
+    .pull-quote p { font-size: 22px; font-weight: 700; line-height: 1.4; color: var(--ink); margin: 0; }
+    .field-note { background: var(--cream); border: 2px solid #DDDDDD; padding: 22px 26px; margin: 36px 0; }
+    .field-note-label { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--orange); margin-bottom: 10px; font-weight: 700; }
+    .field-note p { font-size: 15px; line-height: 1.8; color: var(--ink-mid); margin: 0; font-weight: 400; }
+    .post-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 52px; padding-top: 28px; border-top: var(--rule); }
+    .post-tag-item { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; border: var(--rule); padding: 7px 16px; color: var(--fg); font-weight: 700; text-decoration: none; }
+
+    /* ─── ANNOTATIONS ──────────────────────────── */
+    .post-annotations { position: sticky; top: 80px; }
+    .annotation { border-top: var(--rule); padding-top: 16px; margin-bottom: 36px; }
+
+    .annotation-marker {
+      display: block;
+      font-family: var(--mono);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-faint);
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .annotation p {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--ink-mid);
+      font-weight: 400;
+    }
+
+    /* ═══════════════════════════════════════════
+       POST NAVIGATION
+    ═══════════════════════════════════════════ */
+    .post-nav-wrap {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 40px 40px;
+      border-top: var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-top: 80px;
+      gap: 40px;
+    }
+
+    .post-nav-prev,
+    .post-nav-next {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .post-nav-label { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-faint); margin-bottom: 8px; font-weight: 700; }
+    .post-nav-title { display: block; font-size: 20px; font-weight: 700; color: var(--ink); line-height: 1.3; max-width: 320px; transition: color 0.2s; }
+    .post-nav-prev:hover .post-nav-title, .post-nav-next:hover .post-nav-title { color: var(--orange); }
+
+    .post-nav-next {
+      text-align: right;
+    }
+
+    .post-nav-next .post-nav-title {
+      margin-left: auto;
+    }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════════ */
+    @media (max-width: 900px) {
+      .post-header-wrap {
+        padding: 60px 20px 0;
+      }
+
+      .article-wrap {
+        padding: 40px 20px 0;
+      }
+
+      .article-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .post-annotations {
+        position: static;
+        border-top: var(--rule);
+        padding-top: 40px;
+        margin-top: 40px;
+      }
+
+      .post-nav-wrap {
+        padding: 40px 20px;
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .post-nav-next {
+        text-align: left;
+      }
+
+      .post-nav-next .post-nav-title {
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+<body class="page-body">
+
+  <!-- ═══ NAV ═══ -->
+  <nav>
+    <a class="nav-brand" href="index.html">Poetics of Ordinary</a>
+    <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <span class="nav-date" id="nav-date"></span>
+  </nav>
+
+  <!-- ═══ POST HEADER ═══ -->
+  <div class="post-header-wrap">
+    <a href="enquiries.html" class="post-back">← All Enquiries</a>
+
+    <span class="post-tag">Enquiry No. 001 — On Thresholds</span>
+
+    <h1 class="post-title">On the texture of a doorknob after a thousand touches</h1>
+
+    <div class="post-meta">
+      <span>Pranshu Chaudhary</span>
+      <span class="post-meta-divider">·</span>
+      <span>March 2026</span>
+      <span class="post-meta-divider">·</span>
+      <span>~5 min read</span>
+      <span class="post-meta-divider">·</span>
+      <span>Doorknobs &middot; Touch &middot; Habit</span>
+    </div>
+  </div>
+
+  <!-- ═══ ARTICLE BODY ═══ -->
+  <div class="article-wrap">
+    <div class="article-grid">
+
+      <!-- ─── MAIN CONTENT ─── -->
+      <article class="post-content">
+
+        <p class="lead">
+          We grip it without thinking. The hand knows the weight before the mind does — a smooth brass globe at the end of a lever, unchanged in thirty years, worn at the equator where a thousand palms have rested. When was the last time you actually felt it?
+        </p>
+
+        <h2 class="post-section">The Method</h2>
+
+        <p>
+          For seven days I tried to touch the front door handle of my apartment as if for the first time. This is harder than it sounds. The brain does not cooperate. Familiarity is not merely a feeling — it is an active suppression. The nervous system, trained on efficiency, refuses the signal. The hand reaches, turns, the door opens, and you are already somewhere else in your thoughts before the metal has left your palm.
+        </p>
+
+        <p>
+          The practice required what I can only call deliberate friction — a manufactured pause, inserted before every contact, during which I would consciously acknowledge what was about to happen. Not anticipate. Acknowledge. The distinction matters.
+        </p>
+
+        <div class="pull-quote">
+          <p>The familiar is not a quality of the object. It is a quality of attention — or rather, of its absence.</p>
+        </div>
+
+        <p>
+          Over the first three days, the exercise felt theatrical. I stood in my own doorway, hand extended, trying to feel something that was already in my hand. The brass was neither warm nor cold; it was whatever temperature the room had made it. It fit my grip exactly, because my grip had formed around it over years of daily contact. The object had been shaped by my use of it. And yet I could not feel it at all.
+        </p>
+
+        <h2 class="post-section">Field Notes</h2>
+
+        <div class="field-note">
+          <span class="field-note-label">Session 1 — Day 1, 6:47am</span>
+          <p>Temperature noticeably cooler than expected — the metal has not yet taken the morning's warmth. The resistance before the latch releases is not uniform; there is a micro-pause, a catch, before the mechanism fully gives. I had never noticed the pause. It has presumably been there every single time.</p>
+        </div>
+
+        <div class="field-note">
+          <span class="field-note-label">Session 3 — Day 3, 11:30pm</span>
+          <p>After three days of deliberate attention, the handle has begun to feel strange again. This is the target condition — what the Russian Formalists called ostranenie, defamiliarisation. The goal was not to make the doorknob interesting. The goal was to restore its actual thingness, which had been overwritten by habit.</p>
+        </div>
+
+        <div class="field-note">
+          <span class="field-note-label">Session 7 — Day 7, 3:12pm</span>
+          <p>The worn equator is visible if you look: a band of slightly lighter brass where the lacquer has been completely removed by palms. The top and bottom of the knob retain a faint finish. Only the contact zone has been taken back to bare metal. This is a record of touching. A geological layer made of use.</p>
+        </div>
+
+        <p>
+          By the end of the week I had begun to notice other doorknobs — in shops, in the offices of friends, on public buildings. The variation in weight alone was startling. A knob in a government building so heavy it required the wrist, not just the fingers. A café door so light it offered no resistance at all, no sense of a mechanism behind it. A knob in a friend's old flat that turned but required a second, firmer push — a small negotiation the body had presumably learned and performed automatically each time.
+        </p>
+
+        <h2 class="post-section">What Remains Unknown</h2>
+
+        <p>
+          The most interesting question this enquiry raised is one I cannot yet answer: at what point does familiarity become loss? There is something necessary about the brain's capacity to automate. If we felt the full weight of every surface we touched, every sound we heard, every visual field we moved through, the experience of daily life would be unnavigable. Defamiliarisation is not a return to a better state — it is a temporary intervention, a diagnostic procedure. You open the instrument briefly to see what is inside, then close it again.
+        </p>
+
+        <p>
+          What remains unknown is whether repeated defamiliarisation changes the baseline — whether, after enough deliberate attention, the hand retains something of what it has noticed, even in ordinary use. I suspect it does. I suspect that seven days of deliberate touching has permanently altered, in some small way, how I reach for that door. But this is not something that can be measured. It can only be attended to.
+        </p>
+
+        <div class="post-tags">
+          <span class="post-tag-item">Doorknobs</span>
+          <span class="post-tag-item">Touch</span>
+          <span class="post-tag-item">Habit</span>
+          <span class="post-tag-item">Threshold</span>
+          <span class="post-tag-item">Attention</span>
+          <span class="post-tag-item">Defamiliarisation</span>
+        </div>
+
+      </article>
+
+      <!-- ─── ANNOTATIONS ─── -->
+      <aside class="post-annotations">
+
+        <div class="annotation">
+          <span class="annotation-marker">Note A</span>
+          <p>The Russian Formalist concept of ostranenie — "making strange" — was introduced by Viktor Shklovsky in 1917. Art exists, he argued, to restore the sensation of life; to make the stone feel stony.</p>
+        </div>
+
+        <div class="annotation">
+          <span class="annotation-marker">Note B</span>
+          <p>The worn equator of a brass doorknob is a form of indexical sign — it points to the action that produced it. Like a footpath worn across grass: proof of the desire line.</p>
+        </div>
+
+        <div class="annotation">
+          <span class="annotation-marker">Note C</span>
+          <p>Maurice Merleau-Ponty: "The body is our general medium for having a world." The enquiry into objects is always, simultaneously, an enquiry into the body that uses them.</p>
+        </div>
+
+        <div class="annotation">
+          <span class="annotation-marker">On Method</span>
+          <p>Sessions were conducted at varying times of day to account for thermal variation in the object and in the hands of the observer. Notes taken immediately after contact, not during.</p>
+        </div>
+
+      </aside>
+
+    </div>
+  </div>
+
+  <!-- ═══ POST NAVIGATION ═══ -->
+  <div class="post-nav-wrap">
+    <a href="post.html" class="post-nav-prev">
+      <span class="post-nav-label">← Previous</span>
+      <span class="post-nav-title">On the phenomenology of waiting</span>
+    </a>
+    <a href="post.html" class="post-nav-next">
+      <span class="post-nav-label">Next →</span>
+      <span class="post-nav-title">The archaeology of a worn staircase</span>
+    </a>
+  </div>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-left">© 2026 Poetics of Ordinary — Pranshu Chaudhary & Monalisa Thakur</span>
+      <span class="footer-right">Field notes from the attention practice</span>
+    </div>
+  </footer>
+
+  <script>
+    /* ─── LIVE DATE ─────────────────────────────── */
+    (function () {
+      var el = document.getElementById('nav-date');
+      if (!el) return;
+      var now = new Date();
+      var opts = { year: 'numeric', month: 'long', day: 'numeric' };
+      el.textContent = now.toLocaleDateString('en-GB', opts);
+    })();
+
+    /* ─── SCROLL REVEAL ─────────────────────────── */
+    (function () {
+      var items = document.querySelectorAll('.reveal');
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      items.forEach(function (el) { io.observe(el); });
+    })();
+  </script>
+
+  <script type="application/json" id="post-meta">{"number":"001","title":"On the texture of a doorknob after a thousand touches","excerpt":"We grip it without thinking. The hand knows the weight before the mind does \u2014 a smooth brass globe at the end of a lever, unchanged in thirty years, worn at the equator where a thousand palms have rested.","category":"On Thresholds","author":"Pranshu Chaudhary","date":"March 2026","file":"post.html"}</script>
+</body>
+</html>
