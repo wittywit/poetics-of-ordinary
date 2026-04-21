@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alternative Time — Poetics of Ordinary</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .post-header-wrap {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 80px 40px 0;
+    }
+    .post-back {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--ink-faint);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      margin-bottom: 36px;
+      transition: color 0.2s;
+    }
+    .post-back:hover { color: var(--orange); }
+    .post-tag {
+      display: block;
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--ink-faint);
+      margin-bottom: 20px;
+    }
+    h1.post-title {
+      font-family: var(--mono);
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      max-width: 860px;
+      margin-bottom: 32px;
+      color: var(--fg);
+    }
+    .post-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--ink-faint);
+      padding-bottom: 40px;
+      border-bottom: var(--rule);
+    }
+    .article-wrap {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 60px 40px 0;
+    }
+    .article-grid {
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .post-content p.lead {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.65;
+      color: var(--ink);
+      margin-bottom: 40px;
+    }
+    h2.post-section {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--orange);
+      font-weight: 700;
+      padding-top: 48px;
+      padding-bottom: 16px;
+      border-top: var(--rule);
+      margin-top: 8px;
+    }
+    .post-content p {
+      font-family: var(--mono);
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.85;
+      color: var(--ink);
+      margin-bottom: 28px;
+    }
+    .pull-quote {
+      border-left: 3px solid var(--orange);
+      padding: 20px 28px;
+      margin: 44px 0;
+      background: var(--grid);
+    }
+    .pull-quote p {
+      font-family: var(--mono);
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.55;
+      color: var(--fg);
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+    .field-note {
+      background: var(--cream);
+      border: var(--rule);
+      border-left: 3px solid var(--border);
+      padding: 22px 26px;
+      margin: 36px 0;
+    }
+    .field-note-label {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--orange);
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    .field-note p {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--ink-mid);
+      margin: 0;
+      font-weight: 400;
+    }
+    .post-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 52px;
+      padding-top: 28px;
+      border-top: var(--rule);
+    }
+    .post-tag-item {
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border: var(--rule);
+      padding: 7px 16px;
+      color: var(--ink-faint);
+    }
+    .post-annotations {
+      position: sticky;
+      top: 80px;
+    }
+    .annotation {
+      border-top: var(--rule);
+      padding-top: 16px;
+      margin-bottom: 36px;
+    }
+    .annotation-marker {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-faint);
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    .annotation p {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--ink-mid);
+      font-weight: 400;
+    }
+    .post-nav-wrap {
+      max-width: 1240px;
+      margin: 80px auto 0;
+      padding: 40px;
+      border-top: var(--rule);
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+    }
+    .post-nav-prev, .post-nav-next { text-decoration: none; color: inherit; }
+    .post-nav-label {
+      display: block;
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--ink-faint);
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    .post-nav-title {
+      display: block;
+      font-family: var(--mono);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.3;
+      max-width: 320px;
+      transition: color 0.15s;
+      text-transform: uppercase;
+    }
+    .post-nav-prev:hover .post-nav-title,
+    .post-nav-next:hover .post-nav-title { color: var(--orange); }
+    .post-nav-next { text-align: right; }
+    .post-nav-next .post-nav-title { margin-left: auto; }
+    @media (max-width: 900px) {
+      .post-header-wrap { padding: 60px 20px 0; }
+      .article-wrap { padding: 40px 20px 0; }
+      .article-grid { grid-template-columns: 1fr; gap: 0; }
+      .post-annotations { position: static; border-top: var(--rule); padding-top: 40px; margin-top: 40px; }
+      .post-nav-wrap { padding: 40px 20px; flex-direction: column; gap: 32px; }
+      .post-nav-next { text-align: left; }
+    }
+  </style>
+</head>
+<body class="page-body">
+
+  <nav>
+    <a class="nav-brand" href="index.html">Poetics of Ordinary</a>
+    <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <span class="nav-date" id="nav-date"></span>
+  </nav>
+
+  <div class="post-header-wrap">
+    <a class="post-back" href="index.html">← All Posts</a>
+    <span class="post-tag">On Time — Installation</span>
+    <h1 class="post-title">Alternative Time</h1>
+    <div class="post-meta">
+      <span>Pranshu Chaudhary</span>
+      <span>April 2026</span>
+    </div>
+  </div>
+
+  <div class="article-wrap">
+    <div class="article-grid">
+
+      <div class="post-content">
+
+        <p class="lead">You walk into a room. On the wall is a grid of LEDs — 25 across, 36 down, 900 points of light. Your image appears in it. But not immediately, and not completely. It builds. It takes seven visits for the image to fully resolve. Each visit needs to be long enough. Showing up doesn't count. You have to stay.</p>
+
+        <p>This is Alternative Time — an installation built around a simple distinction: the time we follow is shared, but the time we live is produced through encounters. The work tries to make that difference visible.</p>
+
+        <h2 class="post-section">Two kinds of time</h2>
+
+        <p>There is the time on your phone right now. UTC, adjusted for your timezone, divided into hours and minutes and seconds, identical for everyone in your region. India has a single timezone — IST, UTC+5:30 — that spans a country wide enough that the sun rises almost two hours earlier on its eastern edge than its western one. The time is the same. The light is not. What is shared is not always what is experienced.</p>
+
+        <p>And then there is the other kind. The time of a conversation that changes something. Of returning to a place often enough that it starts to know you. Of presence accumulated over days until it becomes something. This time doesn't tick. It doesn't divide evenly. It builds through events — through the quality and repetition of encounters, not through the passage of intervals.</p>
+
+        <p>These two temporalities usually run alongside each other without meeting. The installation puts them into a single system.</p>
+
+        <h2 class="post-section">What the grid actually does</h2>
+
+        <p>The LED grid captures a live image of whoever stands before it. But the image doesn't snap into existence. It emerges incrementally — fragments intensifying from a dim state toward clarity while others remain suspended at partial visibility. The image is always there in some form. It is never fully there all at once.</p>
+
+        <p>An encounter is not triggered by detection. The system is not a motion sensor. It registers duration — you have to remain within its field long enough for it to actually register you. Brief appearances don't accumulate. Presence that doesn't hold doesn't count.</p>
+
+        <div class="pull-quote">
+          <p>It takes seven encounters for the grid to reach full visibility. But the seventh encounter is not a reward. It is a threshold.</p>
+        </div>
+
+        <p>At the seventh encounter, the grid fully resolves and the discs — a parallel mechanical system running alongside — briefly align. The system reaches its moment of maximum coherence. And then, almost immediately, it begins to drift again. Completion is not a stable state. The system doesn't let time settle into a fixed or finished form.</p>
+
+        <div class="field-note">
+          <span class="field-note-label">On the seven</span>
+          <p>Seven is not arbitrary, but it isn't mystical either. It's the number of encounters required to build enough accumulated presence for the image to stabilise. The system was calibrated so that seven visits of sufficient duration — spread across days, not all at once — produces coherence. Quick visits don't satisfy it. You can't accelerate it by visiting more frequently. The image resolves on its own terms.</p>
+        </div>
+
+        <h2 class="post-section">The discs</h2>
+
+        <p>Running alongside the LED grid is a system of rotating discs. These are the temporal engine of the installation — the part that represents shared, standardized time. They rotate continuously, always attempting to synchronize, aligning into a coherent pattern only at specific moments: on the first encounter and again on the seventh.</p>
+
+        <p>At all other times, they remain slightly out of phase. Rotating in near alignment but never fully converging. The misalignment is persistent and deliberate.</p>
+
+        <p>The state of the discs directly affects the grid. When alignment is distant, the image appears diffused and unstable — resisting clarity. As the discs approach synchrony, portions of the grid momentarily sharpen, allowing fragments to resolve. When full alignment is reached, the system briefly stabilizes before drifting again.</p>
+
+        <p>This is meant to reflect something real about standardized time: it aspires to uniformity, but it remains offset from the variable texture of actual lived experience. Synchronization is not a background condition. It is a fleeting event.</p>
+
+        <h2 class="post-section">Memory and return</h2>
+
+        <p>The installation retains traces. During each encounter, it extracts and stores the color palette of the participant's presence — the specific distribution of hues in how they appeared that day. Over time, these palettes accumulate. They become a record of previous states.</p>
+
+        <p>When the same person returns after a full cycle of seven days, their live image is re-rendered through this stored palette. Present input is merged with past traces. The image becomes composite — part immediate, part remembered — and the two layers don't fully separate. What you looked like last week is in what you look like now.</p>
+
+        <div class="field-note">
+          <span class="field-note-label">On recognition</span>
+          <p>The system uses facial identification to track continuity across visits. This raised questions I haven't resolved. Recognition is a form of freezing — to be recognised is to be held as what you were before. The installation uses recognition not to freeze but to layer: each identification is the occasion for the past image to become part of the present one. Whether that's better, I'm not sure. It might just be a different kind of constraint.</p>
+        </div>
+
+        <h2 class="post-section">What it is asking</h2>
+
+        <p>The installation doesn't present time as something you can read at a glance. You can't see where you are in the cycle by looking at it. You have to remember how many times you've been here. You have to notice whether your image is clearer than it was before.</p>
+
+        <p>This is the point, I think. Shared time — the clock on the wall, the timezone, the uniform interval — is always operating in the background. It keeps the system running. But it tells you nothing about where you are in the accumulation. The image building in the grid is indexed to a different kind of record: how often you came, how long you stayed, whether you returned.</p>
+
+        <p>What it is asking for is the thing standardized time was never designed to measure. Not punctuality. Not efficiency. Just sustained presence, over time, in a specific place — until something resolves.</p>
+
+        <p>And then, when it resolves, it starts to drift again. The work doesn't end in completion. It ends in the recognition that completion is temporary, and that what you'd have to do to maintain it is simply keep returning.</p>
+
+        <div class="post-tags">
+          <span class="post-tag-item">Installation</span>
+          <span class="post-tag-item">Time</span>
+          <span class="post-tag-item">LED Grid</span>
+          <span class="post-tag-item">Presence</span>
+          <span class="post-tag-item">Event Time</span>
+        </div>
+
+      </div>
+
+      <aside class="post-annotations">
+        <div class="annotation">
+          <span class="annotation-marker">The grid</span>
+          <p>25×36 LED matrix. 900 individual points. Each mapped to a pixel in the live camera feed. Brightness per pixel is not binary — it has a state between 0 and 1 that accumulates across encounters and decays slightly when not reinforced.</p>
+        </div>
+        <div class="annotation">
+          <span class="annotation-marker">IST</span>
+          <p>India Standard Time is UTC+5:30 — the 30-minute offset is itself a political compromise, splitting the difference between earlier proposals. The entire subcontinent runs on a single zone despite spanning roughly 30 degrees of longitude.</p>
+        </div>
+        <div class="annotation">
+          <span class="annotation-marker">On the discs</span>
+          <p>28BYJ-48 stepper motors. The synchronization pattern was designed so that full alignment takes exactly as long as a single complete encounter — then immediately begins to desynchronize. The audience can't predict when alignment will occur. It just happens, briefly, and passes.</p>
+        </div>
+        <div class="annotation">
+          <span class="annotation-marker">Still open</span>
+          <p>I keep wondering whether the installation is optimistic or not. On one reading, it says: if you return enough times, something resolves. On another, it says: resolution is always temporary, and what you've built will drift no matter what. I think both are true, but I haven't decided which one the work believes.</p>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+
+  <div class="post-nav-wrap">
+    <a class="post-nav-prev" href="post-sunlight.html">
+      <span class="post-nav-label">← Previous</span>
+      <span class="post-nav-title">On Trying to Catch the Sunlight</span>
+    </a>
+    <a class="post-nav-next" href="post-ostranenie.html">
+      <span class="post-nav-label">Next →</span>
+      <span class="post-nav-title">On Not-Knowing: Ostranenie and Exformation</span>
+    </a>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-left">© 2026 Poetics of Ordinary — Pranshu Chaudhary & Monalisa Thakur</span>
+      <span class="footer-right">Field notes from the attention practice</span>
+    </div>
+  </footer>
+
+  <script type="application/json" id="post-meta">{"number":"04","title":"Alternative Time","excerpt":"You walk into a room. On the wall is a grid of 900 LEDs. Your image appears in it \u2014 but not immediately, and not completely. It builds. It takes seven visits for the image to fully resolve. Each visit needs to be long enough. Showing up doesn\u2019t count. You have to stay.","category":"On Time","author":"Pranshu Chaudhary","date":"April 2026","file":"post-alternative-time.html"}</script>
+
+  <script>
+    (function () {
+      var el = document.getElementById('nav-date');
+      if (el) el.textContent = new Date().toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' });
+    })();
+  </script>
+</body>
+</html>
