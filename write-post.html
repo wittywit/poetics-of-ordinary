@@ -1,0 +1,1591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Write Post — Poetics of Ordinary</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;700&family=Noto+Serif+Devanagari:wght@400;700&family=Tiro+Devanagari&display=swap" rel="stylesheet">
+  <style>
+    /* ── Editor layout ── */
+    .editor-page {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 80px 40px 160px;
+    }
+
+    .editor-page-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--orange);
+      margin-bottom: 56px;
+      padding-bottom: 16px;
+      border-bottom: var(--rule);
+    }
+
+    /* ── Section headings ── */
+    .editor-section {
+      margin-bottom: 52px;
+    }
+
+    .editor-section-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .editor-section-label::after {
+      content: '';
+      flex: 1;
+      height: 2px;
+      background: var(--fg);
+    }
+
+    /* ── Metadata grid ── */
+    .meta-grid {
+      display: grid;
+      grid-template-columns: 80px 1fr 1fr 1fr;
+      border: var(--rule);
+    }
+
+    .meta-field {
+      border-right: var(--rule);
+    }
+
+    .meta-field:last-child {
+      border-right: none;
+    }
+
+    .meta-field label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-faint);
+      padding: 10px 14px 0;
+    }
+
+    .meta-field input {
+      display: block;
+      width: 100%;
+      border: none;
+      background: none;
+      font-family: var(--sans);
+      font-size: 15px;
+      font-weight: 700;
+      padding: 6px 14px 12px;
+      outline: none;
+      color: var(--fg);
+    }
+
+    .meta-field input::placeholder {
+      color: #CCCCCC;
+      font-weight: 400;
+    }
+
+    /* ── Title input ── */
+    .title-input {
+      width: 100%;
+      border: none;
+      border-bottom: var(--rule);
+      background: none;
+      font-family: var(--sans);
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--fg);
+      padding: 16px 0;
+      outline: none;
+    }
+
+    .title-input::placeholder {
+      color: #DDDDDD;
+    }
+
+    /* ── Excerpt ── */
+    .excerpt-input {
+      width: 100%;
+      border: none;
+      border-bottom: var(--rule);
+      background: none;
+      font-family: var(--sans);
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 1.7;
+      color: var(--fg);
+      padding: 12px 0;
+      outline: none;
+      resize: none;
+    }
+
+    .excerpt-input::placeholder {
+      color: #CCCCCC;
+    }
+
+    /* ── Block list ── */
+    .blocks-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .block-item {
+      display: grid;
+      grid-template-columns: 60px 1fr 28px;
+      gap: 0;
+      align-items: start;
+      border: var(--rule);
+    }
+
+    .block-type-col {
+      border-right: var(--rule);
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      background: var(--grid);
+    }
+
+    .block-type-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-faint);
+      padding: 10px 8px 6px;
+      text-align: center;
+    }
+
+    .block-type-label.type-lead          { color: var(--fg); }
+    .block-type-label.type-section       { color: var(--orange); }
+    .block-type-label.type-pullquote     { color: var(--orange); }
+    .block-type-label.type-fieldnote     { color: var(--fg); }
+    .block-type-label.type-image         { color: var(--fg); }
+    .block-type-label.type-video         { color: var(--fg); }
+    .block-type-label.type-video-vertical { color: var(--fg); }
+    .block-type-label.type-audio         { color: var(--orange); }
+    .block-type-label.type-media-grid    { color: var(--orange); }
+
+    .block-move-btns {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .block-move-btn {
+      background: none;
+      border: none;
+      border-top: 1px solid #DDDDDD;
+      cursor: pointer;
+      color: #CCCCCC;
+      font-size: 13px;
+      padding: 5px;
+      text-align: center;
+      line-height: 1;
+      transition: color 0.1s, background 0.1s;
+    }
+
+    .block-move-btn:hover {
+      color: var(--fg);
+      background: #EEEEEE;
+    }
+
+    .block-content-col {
+      padding: 0;
+    }
+
+    .block-remove-col {
+      border-left: var(--rule);
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .block-remove-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #CCCCCC;
+      font-size: 18px;
+      font-weight: 700;
+      padding: 8px 6px;
+      line-height: 1;
+      transition: color 0.1s;
+      width: 100%;
+      text-align: center;
+    }
+
+    .block-remove-btn:hover {
+      color: var(--orange);
+    }
+
+    /* ── Block input styles ── */
+    .block-textarea {
+      width: 100%;
+      border: none;
+      font-family: var(--sans);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.7;
+      color: var(--fg);
+      padding: 14px 16px;
+      resize: vertical;
+      outline: none;
+      background: white;
+      min-height: 180px;
+    }
+
+    .block-textarea:focus {
+      background: #FFFDF5;
+    }
+
+    .block-textarea.type-lead {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .block-textarea.type-section {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      min-height: 54px;
+    }
+
+    .block-textarea.type-pullquote {
+      font-size: 20px;
+      font-weight: 700;
+      border-left: 4px solid var(--orange);
+      margin-left: 0;
+      min-height: 120px;
+    }
+
+    /* ── Rich text toolbar ── */
+    .rich-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      padding: 6px 10px;
+      background: var(--grid);
+      border: var(--rule);
+      border-bottom: none;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 56px;
+      z-index: 10;
+    }
+
+    .rtb-btn {
+      background: none;
+      border: 1px solid transparent;
+      cursor: pointer;
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 5px 10px;
+      color: var(--fg);
+      transition: background 0.1s, border-color 0.1s;
+      min-width: 32px;
+      text-align: center;
+      line-height: 1;
+    }
+
+    .rtb-btn:hover {
+      background: white;
+      border-color: #CCCCCC;
+    }
+
+    .rtb-divider {
+      width: 1px;
+      height: 18px;
+      background: #CCCCCC;
+      margin: 0 6px;
+      flex-shrink: 0;
+    }
+
+    .rtb-font-select {
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 700;
+      border: 1px solid #CCCCCC;
+      background: white;
+      padding: 4px 8px;
+      outline: none;
+      cursor: pointer;
+      color: var(--fg);
+      max-width: 200px;
+    }
+
+    .rtb-font-select:focus {
+      border-color: var(--orange);
+    }
+
+    .rtb-hint {
+      font-size: 11px;
+      color: var(--ink-faint);
+      font-weight: 400;
+      margin-left: auto;
+      white-space: nowrap;
+    }
+
+    /* ── Contenteditable rich input ── */
+    .block-rich-input {
+      width: 100%;
+      border: none;
+      font-family: var(--sans);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.7;
+      color: var(--fg);
+      padding: 14px 16px;
+      outline: none;
+      background: white;
+      min-height: 180px;
+      overflow: auto;
+      resize: vertical;
+    }
+
+    .block-rich-input:focus {
+      background: #FFFDF5;
+    }
+
+    .block-rich-input:empty:not(:focus)::before {
+      content: attr(data-placeholder);
+      color: #CCCCCC;
+      pointer-events: none;
+    }
+
+    .block-rich-input.type-lead {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .block-rich-input.type-pullquote {
+      font-size: 20px;
+      font-weight: 700;
+      border-left: 4px solid var(--orange);
+      min-height: 120px;
+    }
+
+    /* ── Field note block ── */
+    .fieldnote-wrap {
+      width: 100%;
+    }
+
+    .fieldnote-label-input {
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid #EEEEEE;
+      padding: 10px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--orange);
+      background: var(--grid);
+      outline: none;
+      font-family: var(--sans);
+    }
+
+    .fieldnote-content-input {
+      width: 100%;
+      border: none;
+      padding: 12px 16px;
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.7;
+      resize: vertical;
+      min-height: 140px;
+      outline: none;
+      font-family: var(--sans);
+      background: white;
+    }
+
+    .fieldnote-content-input:focus {
+      background: #FFFDF5;
+    }
+
+    /* ── Image block ── */
+    .image-block-area {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .image-drop-zone {
+      border: 2px dashed #CCCCCC;
+      padding: 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.15s;
+      background: var(--grid);
+    }
+
+    .image-drop-zone:hover {
+      border-color: var(--orange);
+    }
+
+    .image-drop-zone-text {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-faint);
+    }
+
+    .image-preview {
+      max-width: 100%;
+      max-height: 300px;
+      object-fit: contain;
+      margin-top: 8px;
+      display: block;
+    }
+
+    .image-url-input,
+    .image-alt-input,
+    .image-caption-input {
+      width: 100%;
+      border: 1px solid #EEEEEE;
+      padding: 8px 12px;
+      font-size: 14px;
+      font-family: var(--sans);
+      outline: none;
+      background: white;
+    }
+
+    .image-url-input:focus,
+    .image-alt-input:focus,
+    .image-caption-input:focus {
+      border-color: var(--orange);
+    }
+
+    .image-input-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-faint);
+      margin-bottom: 4px;
+    }
+
+    /* ── Add block buttons ── */
+    .add-block-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .add-block-btn {
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: none;
+      border: var(--rule);
+      padding: 8px 16px;
+      cursor: pointer;
+      color: var(--fg);
+      transition: background 0.12s, color 0.12s;
+    }
+
+    .add-block-btn:hover {
+      background: var(--fg);
+      color: var(--bg);
+    }
+
+    .add-block-btn.accent {
+      border-color: var(--orange);
+      color: var(--orange);
+    }
+
+    .add-block-btn.accent:hover {
+      background: var(--orange);
+      color: white;
+    }
+
+    /* ── Annotations ── */
+    .annotations-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .annotation-item {
+      display: grid;
+      grid-template-columns: 1fr 28px;
+      border: var(--rule);
+    }
+
+    .annotation-fields {
+      border-left: 4px solid var(--fg);
+    }
+
+    .annotation-marker-input {
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid #EEEEEE;
+      padding: 9px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-faint);
+      background: var(--grid);
+      outline: none;
+      font-family: var(--sans);
+    }
+
+    .annotation-content-input {
+      width: 100%;
+      border: none;
+      padding: 10px 14px;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.7;
+      resize: vertical;
+      min-height: 60px;
+      outline: none;
+      font-family: var(--sans);
+      background: white;
+    }
+
+    .annotation-content-input:focus {
+      background: #FFFDF5;
+    }
+
+    .annotation-remove-col {
+      border-left: var(--rule);
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .annotation-remove-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #CCCCCC;
+      font-size: 18px;
+      font-weight: 700;
+      padding: 8px 6px;
+      line-height: 1;
+      transition: color 0.1s;
+      width: 100%;
+      text-align: center;
+    }
+
+    .annotation-remove-btn:hover {
+      color: var(--orange);
+    }
+
+    /* ── Post nav inputs ── */
+    .post-nav-editor {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: var(--rule);
+    }
+
+    .post-nav-editor-field {
+      padding: 0;
+      border-right: var(--rule);
+    }
+
+    .post-nav-editor-field:last-child,
+    .post-nav-editor-field:nth-child(2) {
+      border-right: none;
+    }
+
+    .post-nav-editor-field:nth-child(3),
+    .post-nav-editor-field:nth-child(4) {
+      border-top: var(--rule);
+    }
+
+    .post-nav-editor-field label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-faint);
+      padding: 10px 14px 0;
+    }
+
+    .post-nav-editor-field input {
+      width: 100%;
+      border: none;
+      background: none;
+      font-family: var(--sans);
+      font-size: 15px;
+      font-weight: 400;
+      padding: 6px 14px 12px;
+      outline: none;
+      color: var(--fg);
+    }
+
+    /* ── Tags input ── */
+    .tags-input {
+      width: 100%;
+      border: none;
+      border-bottom: var(--rule);
+      background: none;
+      font-family: var(--sans);
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--fg);
+      padding: 10px 0;
+      outline: none;
+    }
+
+    .tags-input::placeholder {
+      color: #CCCCCC;
+    }
+
+    /* ── Fixed publish bar ── */
+    .publish-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      border-top: var(--rule);
+      padding: 14px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+    }
+
+    .publish-status {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--ink-faint);
+    }
+
+    .publish-btn {
+      background: var(--orange);
+      color: white;
+      border: none;
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 14px 40px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .publish-btn:hover {
+      background: var(--orange-dim);
+    }
+
+    .publish-btn:active {
+      transform: scale(0.98);
+    }
+
+    /* ── Helper note ── */
+    .helper-note {
+      font-size: 13px;
+      color: var(--ink-faint);
+      font-weight: 400;
+      margin-top: 8px;
+      line-height: 1.6;
+    }
+
+    /* ── Media path block (video / audio) ── */
+    .media-path-block {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .media-path-hint {
+      font-size: 11px;
+      color: var(--ink-faint);
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
+    .media-path-hint code {
+      font-family: monospace;
+      background: #EEEEEE;
+      padding: 1px 4px;
+    }
+
+    /* ── Media grid editor ── */
+    .media-grid-editor {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .media-grid-items {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .media-grid-item {
+      display: grid;
+      grid-template-columns: 60px 1fr 28px;
+      border: 1px solid #EEEEEE;
+    }
+
+    .media-grid-item-type {
+      border: none;
+      border-right: 1px solid #EEEEEE;
+      font-size: 11px;
+      font-weight: 700;
+      font-family: var(--sans);
+      background: var(--grid);
+      padding: 6px 4px;
+      outline: none;
+      cursor: pointer;
+      color: var(--fg);
+    }
+
+    .media-grid-item-src {
+      border: none;
+      padding: 7px 10px;
+      font-size: 13px;
+      font-family: var(--sans);
+      outline: none;
+      background: white;
+      color: var(--fg);
+    }
+
+    .media-grid-item-src:focus {
+      background: #FFFDF5;
+    }
+
+    .media-grid-item-remove {
+      border: none;
+      border-left: 1px solid #EEEEEE;
+      background: none;
+      cursor: pointer;
+      color: #CCCCCC;
+      font-size: 16px;
+      font-weight: 700;
+      text-align: center;
+      line-height: 1;
+      transition: color 0.1s;
+    }
+
+    .media-grid-item-remove:hover {
+      color: var(--orange);
+    }
+
+    .add-grid-item-btn {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: none;
+      border: 1px dashed #CCCCCC;
+      padding: 6px 12px;
+      cursor: pointer;
+      color: var(--ink-faint);
+      transition: border-color 0.12s, color 0.12s;
+      align-self: flex-start;
+    }
+
+    .add-grid-item-btn:hover {
+      border-color: var(--orange);
+      color: var(--orange);
+    }
+
+    @media (max-width: 700px) {
+      .editor-page { padding: 72px 20px 160px; }
+      .meta-grid { grid-template-columns: 1fr 1fr; }
+      .meta-field:nth-child(2) { border-right: none; }
+      .meta-field:nth-child(3),
+      .meta-field:nth-child(4) { border-top: var(--rule); }
+      .post-nav-editor { grid-template-columns: 1fr; }
+      .post-nav-editor-field { border-right: none !important; }
+      .post-nav-editor-field:nth-child(2),
+      .post-nav-editor-field:nth-child(3) { border-top: var(--rule); }
+      .publish-bar { padding: 12px 20px; }
+    }
+  </style>
+</head>
+<body class="page-body">
+
+  <!-- ═══ NAV ═══ -->
+  <nav>
+    <a class="nav-brand" href="index.html">Poetics of Ordinary</a>
+    <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="write-post.html" class="active">Write</a></li>
+      <li><a href="manage-posts.html">Registry</a></li>
+    </ul>
+    <span class="nav-date" id="nav-date"></span>
+  </nav>
+
+  <div class="editor-page">
+    <p class="editor-page-title">Write Post</p>
+
+    <!-- ── METADATA ── -->
+    <div class="editor-section">
+      <p class="editor-section-label">Metadata</p>
+      <div class="meta-grid">
+        <div class="meta-field">
+          <label>No.</label>
+          <input id="f-number" type="text" placeholder="05">
+        </div>
+        <div class="meta-field">
+          <label>Category</label>
+          <input id="f-category" type="text" placeholder="On Perception">
+        </div>
+        <div class="meta-field">
+          <label>Author</label>
+          <input id="f-author" type="text" placeholder="Pranshu Chaudhary">
+        </div>
+        <div class="meta-field">
+          <label>Date</label>
+          <input id="f-date" type="text" placeholder="April 2026">
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TITLE ── -->
+    <div class="editor-section">
+      <p class="editor-section-label">Title</p>
+      <input class="title-input" id="f-title" type="text" placeholder="Post Title" oninput="updateStatus()">
+    </div>
+
+    <!-- ── EXCERPT ── -->
+    <div class="editor-section">
+      <p class="editor-section-label">Excerpt <span style="font-weight:400;text-transform:none;letter-spacing:0">(shown on homepage)</span></p>
+      <textarea class="excerpt-input" id="f-excerpt" rows="3" placeholder="Short description displayed in the posts list on the homepage..." oninput="updateStatus()"></textarea>
+    </div>
+
+    <!-- ── CONTENT BLOCKS ── -->
+    <div class="editor-section">
+      <p class="editor-section-label">Content</p>
+      <div class="rich-toolbar" id="rich-toolbar">
+        <button class="rtb-btn" onmousedown="fmtBtn(event,'bold')" title="Bold (⌘B)"><b>B</b></button>
+        <button class="rtb-btn" onmousedown="fmtBtn(event,'italic')" title="Italic (⌘I)"><i>I</i></button>
+        <button class="rtb-btn" onmousedown="fmtBtn(event,'underline')" title="Underline (⌘U)"><u>U</u></button>
+        <button class="rtb-btn" onmousedown="fmtBtn(event,'strikeThrough')" title="Strikethrough"><s>S</s></button>
+        <span class="rtb-divider"></span>
+        <select class="rtb-font-select" id="rtb-font" onchange="setFont(this.value)" title="Font family">
+          <option value="">Default (Helvetica)</option>
+          <option value="Georgia, serif">Georgia (Serif)</option>
+          <option value="'Noto Sans Devanagari', sans-serif">Noto Sans Devanagari</option>
+          <option value="'Noto Serif Devanagari', serif">Noto Serif Devanagari</option>
+          <option value="'Tiro Devanagari', serif">Tiro Devanagari</option>
+        </select>
+        <button class="rtb-btn" onmousedown="fmtBtn(event,'removeFormat')" title="Clear formatting" style="margin-left:4px">Clear ×</button>
+        <span class="rtb-hint">Select text, then format · ⌘B / ⌘I / ⌘U</span>
+      </div>
+      <ul class="blocks-list" id="blocks-list"></ul>
+      <div class="add-block-row">
+        <button class="add-block-btn" onclick="addBlock('paragraph')">+ Paragraph</button>
+        <button class="add-block-btn" onclick="addBlock('lead')">+ Lead</button>
+        <button class="add-block-btn" onclick="addBlock('section')">+ Section H2</button>
+        <button class="add-block-btn accent" onclick="addBlock('pullquote')">+ Pull Quote</button>
+        <button class="add-block-btn" onclick="addBlock('fieldnote')">+ Field Note</button>
+        <button class="add-block-btn" onclick="addBlock('image')">+ Image</button>
+        <button class="add-block-btn" onclick="addBlock('video')">+ Video</button>
+        <button class="add-block-btn" onclick="addBlock('video-vertical')">+ Vertical Video</button>
+        <button class="add-block-btn accent" onclick="addBlock('audio')">+ Audio</button>
+        <button class="add-block-btn accent" onclick="addBlock('media-grid')">+ Media Grid</button>
+      </div>
+    </div>
+
+    <!-- ── ANNOTATIONS ── -->
+    <div class="editor-section">
+      <p class="editor-section-label">Annotations <span style="font-weight:400;text-transform:none;letter-spacing:0">(sidebar)</span></p>
+      <div class="annotations-list" id="annotations-list"></div>
+      <div class="add-block-row" style="margin-top: 12px;">
+        <button class="add-block-btn" onclick="addAnnotation()">+ Add Annotation</button>
+      </div>
+    </div>
+
+    <!-- ── TAGS ── -->
+    <div class="editor-section">
+      <p class="editor-section-label">Tags <span style="font-weight:400;text-transform:none;letter-spacing:0">(comma separated)</span></p>
+      <input class="tags-input" id="f-tags" type="text" placeholder="Perception, Attention, Ordinary">
+    </div>
+
+    <!-- ── POST NAVIGATION ── -->
+    <div class="editor-section">
+      <p class="editor-section-label">Post Navigation</p>
+      <div class="post-nav-editor">
+        <div class="post-nav-editor-field">
+          <label>← Previous Post Title</label>
+          <input id="f-prev-title" type="text" placeholder="Title of previous post">
+        </div>
+        <div class="post-nav-editor-field">
+          <label>Previous Post File</label>
+          <input id="f-prev-file" type="text" placeholder="post-slug.html">
+        </div>
+        <div class="post-nav-editor-field">
+          <label>Next Post Title →</label>
+          <input id="f-next-title" type="text" placeholder="Title of next post">
+        </div>
+        <div class="post-nav-editor-field">
+          <label>Next Post File</label>
+          <input id="f-next-file" type="text" placeholder="post-slug.html">
+        </div>
+      </div>
+    </div>
+
+    <!-- ── INSTRUCTIONS ── -->
+    <div class="editor-section">
+      <p class="editor-section-label">How to publish</p>
+      <p class="helper-note">
+        1. Fill in all fields above and click <strong>Publish Post</strong>.<br>
+        2. Two files download automatically: the post HTML and an updated <code>index.html</code>.<br>
+        3. Move <strong>both files</strong> into this website folder (replacing the existing <code>index.html</code>).<br>
+        4. Done. The new post appears in the homepage list immediately.<br>
+        5. Images uploaded via the + Image button are embedded as base64 — no separate image files needed.
+      </p>
+    </div>
+
+    <div style="height: 40px;"></div>
+  </div>
+
+  <!-- ═══ PUBLISH BAR ═══ -->
+  <div class="publish-bar">
+    <span class="publish-status" id="publish-status">0 blocks · 0 words</span>
+    <button class="publish-btn" onclick="publish()">Publish Post →</button>
+  </div>
+
+  <script>
+    /* ─── STATE ─────────────────────────────────── */
+    var blocks      = [];
+    var annotations = [];
+    var blockSeq    = 0;
+    var annSeq      = 0;
+
+    /* ─── UTILITIES ─────────────────────────────── */
+    function esc(s) {
+      if (!s) return '';
+      return String(s)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+    }
+
+    function escAttr(s) {
+      if (!s) return '';
+      return String(s).replace(/"/g, '&quot;');
+    }
+
+    function toSlug(s) {
+      return s.toLowerCase()
+        .replace(/[^\w\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-')
+        .trim()
+        .substring(0, 60);
+    }
+
+    function updateStatus() {
+      var wordCount = blocks.reduce(function(acc, b) {
+        var text = (b.content || '').replace(/<[^>]+>/g, ' ');
+        return acc + text.split(/\s+/).filter(Boolean).length;
+      }, 0);
+      document.getElementById('publish-status').textContent =
+        blocks.length + ' block' + (blocks.length !== 1 ? 's' : '') + ' · ' + wordCount + ' words';
+    }
+
+    /* ─── RICH TEXT FORMATTING ─────────────────── */
+    function fmtBtn(e, cmd) {
+      /* Prevent button click from stealing focus away from the editable */
+      e.preventDefault();
+      document.execCommand(cmd, false, null);
+    }
+
+    function setFont(family) {
+      /* Reset select after applying so it doesn't show selection */
+      if (family) document.execCommand('fontName', false, family);
+      setTimeout(function() { document.getElementById('rtb-font').value = ''; }, 0);
+    }
+
+    function cleanContent(html) {
+      /* execCommand('fontName') in many browsers inserts <font face="..."> —
+         convert those to inline spans so the generated post HTML is clean */
+      return html.replace(/<font face="([^"]+)">([\s\S]*?)<\/font>/gi, function(m, face, inner) {
+        return '<span style="font-family:' + face + '">' + inner + '</span>';
+      });
+    }
+
+    /* ─── KEYBOARD SHORTCUTS ────────────────────── */
+    document.addEventListener('keydown', function(e) {
+      if ((e.metaKey || e.ctrlKey) && !e.shiftKey && !e.altKey) {
+        if (e.key === 'b') { e.preventDefault(); document.execCommand('bold', false, null); }
+        if (e.key === 'i') { e.preventDefault(); document.execCommand('italic', false, null); }
+        if (e.key === 'u') { e.preventDefault(); document.execCommand('underline', false, null); }
+      }
+    });
+
+    /* ─── BLOCKS ────────────────────────────────── */
+    var TYPE_LABELS = {
+      paragraph: 'Para',
+      lead:      'Lead',
+      section:   'H2',
+      pullquote: 'Quote',
+      fieldnote: 'Note',
+      image:          'Image',
+      video:          'Video',
+      'video-vertical': 'Vert.',
+      audio:          'Audio',
+      'media-grid':   'Grid'
+    };
+
+    function addBlock(type) {
+      var id = 'b' + (++blockSeq);
+      var block = { id: id, type: type, content: '', label: 'Note', src: '', alt: '', caption: '', items: [] };
+      blocks.push(block);
+      renderBlockToDOM(block);
+      updateStatus();
+    }
+
+    function renderBlockToDOM(block) {
+      var list = document.getElementById('blocks-list');
+      var li = document.createElement('li');
+      li.className = 'block-item';
+      li.dataset.id = block.id;
+      li.innerHTML = buildBlockHTML(block);
+      list.appendChild(li);
+      /* Restore innerHTML for rich (contenteditable) blocks */
+      var richEl = li.querySelector('.block-rich-input[data-block-id="' + block.id + '"]');
+      if (richEl && block.content) richEl.innerHTML = block.content;
+      attachBlockListeners(block.id);
+    }
+
+    function buildBlockHTML(block) {
+      var typeClass = block.type;
+      var label = TYPE_LABELS[block.type] || block.type;
+
+      var contentCol = '';
+      if (block.type === 'fieldnote') {
+        contentCol = '<div class="fieldnote-wrap">' +
+          '<input class="fieldnote-label-input" placeholder="Label (e.g. A note)" value="' + escAttr(block.label) + '" oninput="setField(\'' + block.id + '\', \'label\', this.value)">' +
+          '<textarea class="fieldnote-content-input" placeholder="Field note content..." oninput="setField(\'' + block.id + '\', \'content\', this.value)">' + esc(block.content) + '</textarea>' +
+          '</div>';
+      } else if (block.type === 'image') {
+        contentCol = '<div class="image-block-area">' +
+          '<div class="image-drop-zone" onclick="document.getElementById(\'img-' + block.id + '\').click()">' +
+          '<input type="file" id="img-' + block.id + '" accept="image/*" style="display:none" onchange="handleImage(\'' + block.id + '\', this)">' +
+          '<p class="image-drop-zone-text">' + (block.src ? '✓ Image loaded — click to change' : 'Click to upload image') + '</p>' +
+          (block.src && block.src.length < 500 ? '' : block.src ? '<img src="' + block.src + '" class="image-preview">' : '') +
+          '</div>' +
+          '<p class="image-input-label">Or enter image URL / filename</p>' +
+          '<input class="image-url-input" placeholder="image.jpg or https://..." value="' + escAttr(block.src && block.src.length < 500 ? block.src : '') + '" oninput="setField(\'' + block.id + '\', \'src\', this.value)">' +
+          '<p class="image-input-label" style="margin-top:8px">Alt text</p>' +
+          '<input class="image-alt-input" placeholder="Describe the image" value="' + escAttr(block.alt) + '" oninput="setField(\'' + block.id + '\', \'alt\', this.value)">' +
+          '<p class="image-input-label" style="margin-top:8px">Caption (optional)</p>' +
+          '<input class="image-caption-input" placeholder="Caption shown below image" value="' + escAttr(block.caption) + '" oninput="setField(\'' + block.id + '\', \'caption\', this.value)">' +
+          '</div>';
+      } else if (block.type === 'video' || block.type === 'video-vertical') {
+        var isVert = block.type === 'video-vertical';
+        contentCol = '<div class="media-path-block">' +
+          '<p class="image-input-label">' + (isVert ? 'Vertical video path (9:16 aspect)' : 'Video path') + '</p>' +
+          '<input class="image-url-input" placeholder="media/post-name/video.mp4" value="' + escAttr(block.src) + '" oninput="setField(\'' + block.id + '\', \'src\', this.value)">' +
+          '<p class="image-input-label" style="margin-top:8px">Caption (optional)</p>' +
+          '<input class="image-caption-input" placeholder="Caption shown below video" value="' + escAttr(block.caption) + '" oninput="setField(\'' + block.id + '\', \'caption\', this.value)">' +
+          '<p class="media-path-hint">Reference files from the media/ folder — e.g. <code>media/post-flame/install-video.mp4</code></p>' +
+          '</div>';
+      } else if (block.type === 'audio') {
+        contentCol = '<div class="media-path-block">' +
+          '<p class="image-input-label">Audio path</p>' +
+          '<input class="image-url-input" placeholder="media/post-name/recording.mp3" value="' + escAttr(block.src) + '" oninput="setField(\'' + block.id + '\', \'src\', this.value)">' +
+          '<p class="image-input-label" style="margin-top:8px">Caption (optional)</p>' +
+          '<input class="image-caption-input" placeholder="Caption shown below audio" value="' + escAttr(block.caption) + '" oninput="setField(\'' + block.id + '\', \'caption\', this.value)">' +
+          '<p class="media-path-hint">Example: <code>media/post-flame/ambient-audio.mp3</code></p>' +
+          '</div>';
+      } else if (block.type === 'media-grid') {
+        var gridItemsHtml = (block.items || []).map(function(it, idx) {
+          return '<div class="media-grid-item">' +
+            '<select class="media-grid-item-type" onchange="setGridItemField(\'' + block.id + '\', ' + idx + ', \'type\', this.value)">' +
+            '<option value="image"' + (it.type !== 'video' ? ' selected' : '') + '>Image</option>' +
+            '<option value="video"' + (it.type === 'video' ? ' selected' : '') + '>Video</option>' +
+            '</select>' +
+            '<input class="media-grid-item-src" placeholder="media/post-name/file.jpg" value="' + escAttr(it.src) + '" oninput="setGridItemField(\'' + block.id + '\', ' + idx + ', \'src\', this.value)">' +
+            '<button class="media-grid-item-remove" onclick="removeGridItem(\'' + block.id + '\', ' + idx + ')">×</button>' +
+            '</div>';
+        }).join('');
+        contentCol = '<div class="media-grid-editor">' +
+          '<p class="image-input-label">Media Grid — items open in lightbox on click</p>' +
+          '<div class="media-grid-items" id="grid-items-' + block.id + '">' + gridItemsHtml + '</div>' +
+          '<button class="add-grid-item-btn" onclick="addGridItem(\'' + block.id + '\')">+ Add item</button>' +
+          '<p class="media-path-hint">Mix images and videos. Recommended 4+ items for a full row.</p>' +
+          '</div>';
+      } else {
+        var placeholders = {
+          paragraph: 'Write your paragraph here...',
+          lead:      'Opening paragraph — bold and direct...',
+          section:   'Section heading',
+          pullquote: '"The pull quote text..."'
+        };
+        if (block.type === 'section') {
+          contentCol = '<textarea class="block-textarea type-section" placeholder="Section heading" oninput="setField(\'' + block.id + '\', \'content\', this.value)">' + esc(block.content) + '</textarea>';
+        } else {
+          contentCol = '<div contenteditable="true" class="block-rich-input type-' + block.type + '" data-block-id="' + block.id + '" data-placeholder="' + escAttr(placeholders[block.type] || '') + '"></div>';
+        }
+      }
+
+      return '<div class="block-type-col">' +
+        '<span class="block-type-label type-' + typeClass + '">' + label + '</span>' +
+        '<div class="block-move-btns">' +
+        '<button class="block-move-btn" onclick="moveBlock(\'' + block.id + '\', -1)" title="Move up">↑</button>' +
+        '<button class="block-move-btn" onclick="moveBlock(\'' + block.id + '\', 1)" title="Move down">↓</button>' +
+        '</div></div>' +
+        '<div class="block-content-col">' + contentCol + '</div>' +
+        '<div class="block-remove-col"><button class="block-remove-btn" onclick="removeBlock(\'' + block.id + '\')" title="Remove">×</button></div>';
+    }
+
+    function attachBlockListeners(id) {
+      var richEl = document.querySelector('.block-rich-input[data-block-id="' + id + '"]');
+      if (richEl) {
+        richEl.addEventListener('input', function() {
+          var block = blocks.find(function(b) { return b.id === id; });
+          if (block) block.content = richEl.innerHTML;
+          updateStatus();
+        });
+      }
+    }
+
+    function setField(id, field, value) {
+      var block = blocks.find(function(b) { return b.id === id; });
+      if (block) block[field] = value;
+      updateStatus();
+    }
+
+    function removeBlock(id) {
+      blocks = blocks.filter(function(b) { return b.id !== id; });
+      var li = document.querySelector('.block-item[data-id="' + id + '"]');
+      if (li) li.parentNode.removeChild(li);
+      updateStatus();
+    }
+
+    function moveBlock(id, dir) {
+      var idx = blocks.findIndex(function(b) { return b.id === id; });
+      var newIdx = idx + dir;
+      if (newIdx < 0 || newIdx >= blocks.length) return;
+      var tmp = blocks[idx];
+      blocks[idx] = blocks[newIdx];
+      blocks[newIdx] = tmp;
+      // Re-render list
+      var list = document.getElementById('blocks-list');
+      list.innerHTML = '';
+      blocks.forEach(function(b) { renderBlockToDOM(b); });
+      updateStatus();
+    }
+
+    function handleImage(blockId, input) {
+      if (!input.files[0]) return;
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        var block = blocks.find(function(b) { return b.id === blockId; });
+        if (block) {
+          block.src = e.target.result;
+          // Re-render just this block
+          var li = document.querySelector('.block-item[data-id="' + blockId + '"]');
+          if (li) {
+            li.innerHTML = buildBlockHTML(block);
+          }
+        }
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+
+    /* ─── MEDIA GRID HELPERS ───────────────────── */
+    function addGridItem(blockId) {
+      var block = blocks.find(function(b) { return b.id === blockId; });
+      if (!block) return;
+      if (!block.items) block.items = [];
+      block.items.push({ type: 'image', src: '' });
+      var li = document.querySelector('.block-item[data-id="' + blockId + '"]');
+      if (li) li.innerHTML = buildBlockHTML(block);
+    }
+
+    function removeGridItem(blockId, idx) {
+      var block = blocks.find(function(b) { return b.id === blockId; });
+      if (!block || !block.items) return;
+      block.items.splice(idx, 1);
+      var li = document.querySelector('.block-item[data-id="' + blockId + '"]');
+      if (li) li.innerHTML = buildBlockHTML(block);
+    }
+
+    function setGridItemField(blockId, idx, field, value) {
+      var block = blocks.find(function(b) { return b.id === blockId; });
+      if (!block || !block.items || !block.items[idx]) return;
+      block.items[idx][field] = value;
+    }
+
+    /* ─── ANNOTATIONS ───────────────────────────── */
+    function addAnnotation() {
+      var id = 'a' + (++annSeq);
+      var ann = { id: id, marker: '', content: '' };
+      annotations.push(ann);
+      renderAnnotationToDOM(ann);
+    }
+
+    function renderAnnotationToDOM(ann) {
+      var list = document.getElementById('annotations-list');
+      var div = document.createElement('div');
+      div.className = 'annotation-item';
+      div.dataset.id = ann.id;
+      div.innerHTML =
+        '<div class="annotation-fields">' +
+        '<input class="annotation-marker-input" placeholder="Marker (e.g. Shklovsky, 1917)" value="' + escAttr(ann.marker) + '" oninput="setAnn(\'' + ann.id + '\', \'marker\', this.value)">' +
+        '<textarea class="annotation-content-input" placeholder="Annotation text..." oninput="setAnn(\'' + ann.id + '\', \'content\', this.value)">' + esc(ann.content) + '</textarea>' +
+        '</div>' +
+        '<div class="annotation-remove-col"><button class="annotation-remove-btn" onclick="removeAnnotation(\'' + ann.id + '\')" title="Remove">×</button></div>';
+      list.appendChild(div);
+    }
+
+    function setAnn(id, field, value) {
+      var ann = annotations.find(function(a) { return a.id === id; });
+      if (ann) ann[field] = value;
+    }
+
+    function removeAnnotation(id) {
+      annotations = annotations.filter(function(a) { return a.id !== id; });
+      var div = document.querySelector('.annotation-item[data-id="' + id + '"]');
+      if (div) div.parentNode.removeChild(div);
+    }
+
+    /* ─── GENERATE POST HTML ────────────────────── */
+    function generatePost() {
+      var number   = document.getElementById('f-number').value.trim() || '00';
+      var category = document.getElementById('f-category').value.trim() || 'Uncategorised';
+      var author   = document.getElementById('f-author').value.trim() || '';
+      var date     = document.getElementById('f-date').value.trim() || '';
+      var title    = document.getElementById('f-title').value.trim() || 'Untitled';
+      var excerpt  = document.getElementById('f-excerpt').value.trim() || '';
+      var tagsRaw  = document.getElementById('f-tags').value.trim();
+      var tags     = tagsRaw ? tagsRaw.split(',').map(function(t) { return t.trim(); }).filter(Boolean) : [];
+      var prevTitle = document.getElementById('f-prev-title').value.trim();
+      var prevFile  = document.getElementById('f-prev-file').value.trim();
+      var nextTitle = document.getElementById('f-next-title').value.trim();
+      var nextFile  = document.getElementById('f-next-file').value.trim();
+
+      var slug     = toSlug(title);
+      var filename = 'post-' + (slug || 'untitled') + '.html';
+
+      /* Detect if any Devanagari font was used (for generated post <head>) */
+      var usesDevanagari = blocks.some(function(b) {
+        return (b.content || '').indexOf('Devanagari') > -1 || (b.content || '').indexOf('Tiro Devanagari') > -1;
+      });
+      var devanagariLink = usesDevanagari
+        ? '  <link rel="preconnect" href="https://fonts.googleapis.com">\n  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;700&family=Noto+Serif+Devanagari:wght@400;700&family=Tiro+Devanagari&display=swap" rel="stylesheet">\n'
+        : '';
+
+      /* Content blocks */
+      var contentParts = blocks.map(function(block) {
+        var c = cleanContent(block.content || '');
+        switch (block.type) {
+          case 'lead':
+            return '        <p class="lead">' + c + '</p>';
+          case 'paragraph':
+            return '        <p>' + c + '</p>';
+          case 'section':
+            return '        <h2 class="post-section">' + c + '</h2>';
+          case 'pullquote':
+            return '        <div class="pull-quote">\n          <p>' + c + '</p>\n        </div>';
+          case 'fieldnote':
+            return '        <div class="field-note">\n          <span class="field-note-label">' + (block.label || 'Note') + '</span>\n          <p>' + c + '</p>\n        </div>';
+          case 'image':
+            var src = block.src || '';
+            var alt = block.alt || '';
+            var cap = block.caption || '';
+            return '        <figure class="post-figure">\n          <img src="' + src + '" alt="' + alt + '" style="max-width:100%;height:auto;display:block;">\n' +
+              (cap ? '          <figcaption class="post-figure-caption" style="font-size:13px;font-weight:400;color:#777;margin-top:8px;">' + cap + '</figcaption>\n' : '') +
+              '        </figure>';
+          case 'video':
+            var src = block.src || '';
+            var cap = block.caption || '';
+            return '        <figure class="post-figure post-video-wrap">\n' +
+              '          <video src="' + src + '" controls style="max-width:100%;display:block;"></video>\n' +
+              (cap ? '          <figcaption style="font-size:13px;font-weight:400;color:#777;margin-top:8px;">' + cap + '</figcaption>\n' : '') +
+              '        </figure>';
+          case 'video-vertical':
+            var src = block.src || '';
+            var cap = block.caption || '';
+            return '        <div class="post-video-vertical">\n' +
+              '          <video src="' + src + '" controls playsinline style="width:100%;aspect-ratio:9/16;object-fit:cover;display:block;"></video>\n' +
+              (cap ? '          <p style="font-size:13px;font-weight:400;color:#777;margin-top:8px;text-align:center;">' + cap + '</p>\n' : '') +
+              '        </div>';
+          case 'audio':
+            var src = block.src || '';
+            var cap = block.caption || '';
+            return '        <figure class="post-figure post-audio-wrap">\n' +
+              '          <audio src="' + src + '" controls style="width:100%;display:block;"></audio>\n' +
+              (cap ? '          <figcaption style="font-size:13px;font-weight:400;color:#777;margin-top:8px;">' + cap + '</figcaption>\n' : '') +
+              '        </figure>';
+          case 'media-grid':
+            var gid = 'grid-' + block.id;
+            var itemsHtml = (block.items || []).map(function(it, idx) {
+              if (it.type === 'video') {
+                return '          <div class="media-item" data-lb="' + gid + '" data-src="' + escAttr(it.src) + '" data-type="video" data-idx="' + idx + '">\n' +
+                  '            <img src="" alt="" style="width:100%;height:100%;object-fit:cover;background:#222;">\n' +
+                  '            <span class="media-item-video-badge">&#9654;</span>\n' +
+                  '          </div>';
+              } else {
+                return '          <div class="media-item" data-lb="' + gid + '" data-src="' + escAttr(it.src) + '" data-type="image" data-idx="' + idx + '">\n' +
+                  '            <img src="' + escAttr(it.src) + '" alt="" loading="lazy">\n' +
+                  '          </div>';
+              }
+            }).join('\n');
+            return '        <div class="post-media-album">\n' +
+              '          <div class="post-media-grid" id="' + gid + '">\n' + itemsHtml + '\n          </div>\n        </div>';
+          default:
+            return '        <p>' + c + '</p>';
+        }
+      });
+
+      /* Tags */
+      var tagsHtml = tags.length ? '\n        <div class="post-tags">\n          ' +
+        tags.map(function(t) { return '<span class="post-tag-item">' + t + '</span>'; }).join('\n          ') +
+        '\n        </div>' : '';
+
+      /* Annotations */
+      var annHtml = annotations.filter(function(a) { return a.marker || a.content; }).map(function(ann) {
+        return '        <div class="annotation">\n          <span class="annotation-marker">' + (ann.marker || '') + '</span>\n          <p>' + (ann.content || '') + '</p>\n        </div>';
+      }).join('\n');
+
+      /* Post nav */
+      var prevNav = prevTitle
+        ? '    <a class="post-nav-prev" href="' + (prevFile || '#') + '">\n      <span class="post-nav-label">← Previous</span>\n      <span class="post-nav-title">' + prevTitle + '</span>\n    </a>'
+        : '    <span></span>';
+      var nextNav = nextTitle
+        ? '    <a class="post-nav-next" href="' + (nextFile || '#') + '">\n      <span class="post-nav-label">Next →</span>\n      <span class="post-nav-title">' + nextTitle + '</span>\n    </a>'
+        : '    <span></span>';
+
+      /* Meta JSON for rebuild.js */
+      var metaObj = { number: number, title: title, excerpt: excerpt, category: category, author: author, date: date, file: filename };
+      var metaJson = JSON.stringify(metaObj);
+
+      var html = '<!DOCTYPE html>\n<html lang="en">\n<head>\n  <meta charset="UTF-8">\n  <meta name="viewport" content="width=device-width, initial-scale=1.0">\n  <title>' + title + ' \u2014 Poetics of Ordinary</title>\n  <link rel="stylesheet" href="styles.css">\n' + devanagariLink + '  <style>\n    .post-header-wrap { max-width: 1240px; margin: 0 auto; padding: 80px 40px 0; }\n    .post-back { display: inline-block; font-size: 14px; font-weight: 700; color: var(--ink-faint); text-decoration: none; letter-spacing: 0.04em; margin-bottom: 36px; transition: color 0.2s; }\n    .post-back:hover { color: var(--ink); }\n    .post-tag { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-faint); margin-bottom: 20px; font-weight: 700; }\n    h1.post-title { font-size: clamp(36px, 5.5vw, 60px); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; max-width: 860px; margin-bottom: 32px; }\n    .post-meta { display: flex; flex-wrap: wrap; gap: 28px; font-size: 14px; color: var(--ink-faint); padding-bottom: 40px; border-bottom: var(--rule); font-weight: 400; }\n    .article-wrap { max-width: 1240px; margin: 0 auto; padding: 60px 40px 0; }\n    .article-grid { display: grid; grid-template-columns: 3fr 1fr; gap: 64px; align-items: start; }\n    .post-content p.lead { font-size: 22px; font-weight: 700; line-height: 1.55; color: var(--ink); margin-bottom: 40px; }\n    h2.post-section { font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-faint); font-weight: 700; padding-top: 48px; padding-bottom: 16px; border-top: var(--rule); margin-top: 8px; }\n    .post-content p { font-size: 18px; font-weight: 400; line-height: 1.8; color: var(--ink); margin-bottom: 28px; }\n    .pull-quote { border-left: 4px solid var(--orange); padding: 16px 28px; margin: 44px 0; }\n    .pull-quote p { font-size: 22px; font-weight: 700; line-height: 1.4; color: var(--ink); margin: 0; }\n    .field-note { background: var(--cream); border: 2px solid #DDDDDD; padding: 22px 26px; margin: 36px 0; }\n    .field-note-label { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--orange); margin-bottom: 10px; font-weight: 700; }\n    .field-note p { font-size: 15px; line-height: 1.8; color: var(--ink-mid); margin: 0; font-weight: 400; }\n    .post-figure { margin: 36px 0; }\n    .post-video-wrap { margin: 36px 0; }\n    .post-video-wrap video { max-width: 100%; display: block; }\n    .post-video-vertical { margin: 36px auto; max-width: 360px; }\n    .post-video-vertical video { width: 100%; aspect-ratio: 9/16; object-fit: cover; display: block; }\n    .post-audio-wrap { margin: 36px 0; }\n    .post-audio-wrap audio { width: 100%; display: block; }\n    .post-media-album { margin: 52px 0; }\n    .post-media-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }\n    .media-item { aspect-ratio: 1; overflow: hidden; cursor: pointer; position: relative; background: #111; }\n    .media-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity 0.2s; }\n    .media-item:hover img { opacity: 0.85; }\n    .media-item-video-badge { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 40px; height: 40px; background: rgba(0,0,0,0.6); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 16px; pointer-events: none; }\n    .lb { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 9999; align-items: center; justify-content: center; }\n    .lb.lb-open { display: flex; }\n    .lb-stage { position: relative; max-width: 90vw; max-height: 90vh; display: flex; align-items: center; justify-content: center; }\n    .lb-stage img, .lb-stage video { max-width: 90vw; max-height: 85vh; object-fit: contain; display: block; }\n    .lb-close { position: fixed; top: 20px; right: 28px; background: none; border: none; color: white; font-size: 32px; cursor: pointer; z-index: 10000; line-height: 1; opacity: 0.7; transition: opacity 0.15s; }\n    .lb-close:hover { opacity: 1; }\n    .lb-nav { position: fixed; top: 50%; transform: translateY(-50%); background: none; border: none; color: white; font-size: 40px; cursor: pointer; z-index: 10000; padding: 20px; opacity: 0.5; transition: opacity 0.15s; line-height: 1; }\n    .lb-nav:hover { opacity: 1; }\n    .lb-prev { left: 10px; }\n    .lb-next { right: 10px; }\n    .lb-counter { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.6); font-size: 13px; font-weight: 700; letter-spacing: 0.08em; z-index: 10000; }\n    @media (max-width: 600px) { .post-media-grid { grid-template-columns: repeat(2, 1fr); } }\n    .post-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 52px; padding-top: 28px; border-top: var(--rule); }\n    .post-tag-item { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; border: var(--rule); padding: 7px 16px; color: var(--fg); font-weight: 700; }\n    .post-annotations { position: sticky; top: 80px; }\n    .annotation { border-top: var(--rule); padding-top: 16px; margin-bottom: 36px; }\n    .annotation-marker { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-faint); margin-bottom: 10px; font-weight: 700; }\n    .annotation p { font-size: 14px; line-height: 1.8; color: var(--ink-mid); font-weight: 400; }\n    .post-nav-wrap { max-width: 1240px; margin: 80px auto 0; padding: 40px; border-top: var(--rule); display: flex; justify-content: space-between; gap: 40px; }\n    .post-nav-prev, .post-nav-next { text-decoration: none; color: inherit; }\n    .post-nav-label { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-faint); margin-bottom: 8px; font-weight: 700; }\n    .post-nav-title { display: block; font-size: 20px; font-weight: 700; color: var(--ink); line-height: 1.3; max-width: 320px; transition: color 0.2s; }\n    .post-nav-prev:hover .post-nav-title, .post-nav-next:hover .post-nav-title { color: var(--orange); }\n    .post-nav-next { text-align: right; }\n    .post-nav-next .post-nav-title { margin-left: auto; }\n    @media (max-width: 900px) {\n      .post-header-wrap { padding: 60px 20px 0; }\n      .article-wrap { padding: 40px 20px 0; }\n      .article-grid { grid-template-columns: 1fr; gap: 0; }\n      .post-annotations { position: static; border-top: var(--rule); padding-top: 40px; margin-top: 40px; }\n      .post-nav-wrap { padding: 40px 20px; flex-direction: column; gap: 32px; }\n      .post-nav-next { text-align: left; }\n    }\n  </style>\n</head>\n<body class="page-body">\n\n  <nav>\n    <a class="nav-brand" href="index.html">Poetics of Ordinary</a>\n    <ul class="nav-links">\n      <li><a href="about.html">About</a></li>\n    </ul>\n    <span class="nav-date" id="nav-date"></span>\n  </nav>\n\n  <div class="post-header-wrap">\n    <a class="post-back" href="index.html">\u2190 All Posts</a>\n    <span class="post-tag">' + category + '</span>\n    <h1 class="post-title">' + title + '</h1>\n    <div class="post-meta">\n      <span>' + author + '</span>\n      <span>' + date + '</span>\n    </div>\n  </div>\n\n  <div class="article-wrap">\n    <div class="article-grid">\n\n      <div class="post-content">\n\n' +
+        contentParts.join('\n\n') +
+        tagsHtml + '\n\n      </div>\n\n      <aside class="post-annotations">\n' +
+        (annHtml || '        <!-- No annotations -->') + '\n      </aside>\n\n    </div>\n  </div>\n\n  <div class="post-nav-wrap">\n' +
+        prevNav + '\n' + nextNav + '\n  </div>\n\n  <footer>\n    <div class="footer-inner">\n      <span class="footer-left">\u00a9 2026 Poetics of Ordinary \u2014 Pranshu Chaudhary &amp; Monalisa Thakur</span>\n      <span class="footer-right">Field notes from the attention practice</span>\n    </div>\n  </footer>\n\n  <script type="application/json" id="post-meta">' + metaJson + '<\/script>\n\n  <script>\n    (function () {\n      var el = document.getElementById(\'nav-date\');\n      if (el) el.textContent = new Date().toLocaleDateString(\'en-GB\', { year: \'numeric\', month: \'long\', day: \'numeric\' });\n    })();\n  <\/script>\n\n  <div class="lb" id="lb" role="dialog" aria-modal="true">\n    <button class="lb-close" id="lb-close" aria-label="Close">&#215;<\/button>\n    <button class="lb-nav lb-prev" id="lb-prev" aria-label="Previous">&#8249;<\/button>\n    <div class="lb-stage" id="lb-stage"><\/div>\n    <button class="lb-nav lb-next" id="lb-next" aria-label="Next">&#8250;<\/button>\n    <span class="lb-counter" id="lb-counter"><\/span>\n  <\/div>\n\n  <script>\n    (function () {\n      var lb = document.getElementById(\'lb\');\n      var stage = document.getElementById(\'lb-stage\');\n      var counter = document.getElementById(\'lb-counter\');\n      if (!lb) return;\n      var items = []; var cur = 0;\n      function openLb(group, idx) {\n        var els = Array.from(document.querySelectorAll(\'[data-lb="\' + group + \'"]\'));\n        items = els.map(function(el) { return { src: el.dataset.src, type: el.dataset.type || \'image\' }; });\n        cur = idx; showItem();\n        lb.classList.add(\'lb-open\');\n        document.body.style.overflow = \'hidden\';\n      }\n      function closeLb() {\n        var vid = stage.querySelector(\'video\');\n        if (vid) vid.pause();\n        lb.classList.remove(\'lb-open\');\n        document.body.style.overflow = \'\';\n        stage.innerHTML = \'\';\n      }\n      function showItem() {\n        var vid = stage.querySelector(\'video\');\n        if (vid) vid.pause();\n        stage.innerHTML = \'\';\n        var it = items[cur]; if (!it) return;\n        if (it.type === \'video\') {\n          var v = document.createElement(\'video\');\n          v.src = it.src; v.controls = true; v.autoplay = true;\n          stage.appendChild(v);\n        } else {\n          var img = document.createElement(\'img\'); img.src = it.src; stage.appendChild(img);\n        }\n        counter.textContent = (cur + 1) + \' / \' + items.length;\n      }\n      document.getElementById(\'lb-close\').addEventListener(\'click\', closeLb);\n      document.getElementById(\'lb-prev\').addEventListener(\'click\', function() { cur = (cur - 1 + items.length) % items.length; showItem(); });\n      document.getElementById(\'lb-next\').addEventListener(\'click\', function() { cur = (cur + 1) % items.length; showItem(); });\n      lb.addEventListener(\'click\', function(e) { if (e.target === lb) closeLb(); });\n      document.addEventListener(\'keydown\', function(e) {\n        if (!lb.classList.contains(\'lb-open\')) return;\n        if (e.key === \'Escape\') closeLb();\n        if (e.key === \'ArrowLeft\') { cur = (cur - 1 + items.length) % items.length; showItem(); }\n        if (e.key === \'ArrowRight\') { cur = (cur + 1) % items.length; showItem(); }\n      });\n      document.querySelectorAll(\'.media-item\').forEach(function(el) {\n        el.addEventListener(\'click\', function() { openLb(el.dataset.lb, parseInt(el.dataset.idx || 0)); });\n      });\n    })();\n  <\/script>\n<\/body>\n<\/html>';
+
+      return { filename: filename, html: html };
+    }
+
+    /* ─── POSTS REGISTRY (localStorage) ────────── */
+    var POSTS_KEY = 'poetics_posts_v1';
+
+    var POSTS_DEFAULTS = [
+      { number: '01', title: 'On Not-Knowing: Ostranenie, Exformation, and what different cultures figured out about the familiar', excerpt: 'There\u2019s a Russian word \u2014 ostranenie \u2014 that I keep coming back to. Viktor Shklovsky coined it in 1917. The idea is that art\u2019s only real job is to knock you out of the automatic. Turns out every culture has found their way to this same problem.', category: 'On Perception', author: 'Pranshu Chaudhary', date: 'April 2026', file: 'post-ostranenie.html' },
+      { number: '02', title: 'Archaeology of Time', excerpt: 'The time you are living in right now \u2014 this divided, always-running-out, perfectly measurable time \u2014 is about 250 years old. It was invented. Before that, time was a different material entirely.', category: 'On Time', author: 'Monalisa Thakur', date: 'April 2026', file: 'post-time.html' },
+      { number: '03', title: 'On the Simple Act of Trying to Catch the Sunlight in Our Palms', excerpt: 'A shaft of light comes through a gap \u2014 a curtain not quite closed, a keyhole, a crack in a shutter \u2014 and without thinking, you put your hand in it. You know you can\u2019t catch it. And you do it anyway.', category: 'On Light', author: 'Pranshu Chaudhary', date: 'April 2026', file: 'post-sunlight.html' },
+      { number: '04', title: 'Alternative Time', excerpt: 'You walk into a room. On the wall is a grid of 900 LEDs. Your image appears in it \u2014 but not immediately, and not completely. It builds. It takes seven visits for the image to fully resolve.', category: 'On Time', author: 'Pranshu Chaudhary', date: 'April 2026', file: 'post-alternative-time.html' }
+    ];
+
+    function getPosts() {
+      try {
+        var stored = localStorage.getItem(POSTS_KEY);
+        if (stored) return JSON.parse(stored);
+      } catch (e) {}
+      return POSTS_DEFAULTS.slice();
+    }
+
+    function savePosts(posts) {
+      try { localStorage.setItem(POSTS_KEY, JSON.stringify(posts)); } catch (e) {}
+    }
+
+    var DRAFT_PREFIX = 'poetics_draft_';
+
+    function saveDraft(filename, state) {
+      try { localStorage.setItem(DRAFT_PREFIX + filename, JSON.stringify(state)); } catch (e) {}
+    }
+
+    function loadDraft(filename) {
+      try {
+        var s = localStorage.getItem(DRAFT_PREFIX + filename);
+        if (s) return JSON.parse(s);
+      } catch (e) {}
+      return null;
+    }
+
+    function pad2(n) { return String(n || '').padStart(2, '0'); }
+
+    function generateIndexHtml(posts) {
+      /* Sort by post number */
+      var sorted = posts.slice().sort(function(a, b) {
+        return (parseInt(String(a.number).replace(/\D/g, '')) || 999) -
+               (parseInt(String(b.number).replace(/\D/g, '')) || 999);
+      });
+
+      var rows = sorted.map(function(p) {
+        var catParts = (p.category || '').split(' ');
+        var catHtml = catParts.length > 1 ? catParts[0] + '<br>' + catParts.slice(1).join(' ') : (p.category || '');
+        return '      <a class="post-row reveal" href="' + p.file + '">\n' +
+          '        <div class="post-row-num">' + pad2(p.number) + '</div>\n' +
+          '        <div class="post-row-category">' + catHtml + '</div>\n' +
+          '        <div class="post-row-content">\n' +
+          '          <h2 class="post-row-title">' + (p.title || '') + '</h2>\n' +
+          '          <p class="post-row-excerpt">' + (p.excerpt || '') + '</p>\n' +
+          '        </div>\n' +
+          '        <div class="post-row-meta">\n' +
+          '          <div class="post-row-author">' + (p.author || '') + '</div>\n' +
+          '          <span class="post-row-read">Read \u2192</span>\n' +
+          '        </div>\n' +
+          '      </a>';
+      }).join('\n\n');
+
+      return '<!DOCTYPE html>\n<html lang="en">\n<head>\n  <meta charset="UTF-8">\n  <meta name="viewport" content="width=device-width, initial-scale=1.0">\n  <title>Poetics of Ordinary</title>\n  <link rel="stylesheet" href="styles.css">\n  <style>\n    .hero { max-width: 1240px; margin: 0 auto; padding: 80px 40px 0; border-bottom: var(--rule); }\n    .hero-meta-bar { display: grid; grid-template-columns: 1fr 1fr 1fr; border: var(--rule); border-bottom: none; }\n    .hero-meta-cell { padding: 12px 18px; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); border-right: var(--rule); font-weight: 700; }\n    .hero-meta-cell:last-child { border-right: none; }\n    .hero-meta-cell span { color: var(--orange); }\n    .hero-title-block { border: var(--rule); padding: 52px 40px 44px; position: relative; }\n    .hero-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--orange); margin-bottom: 32px; display: flex; align-items: center; gap: 14px; font-weight: 700; }\n    .hero-label::after { content: \'\'; flex: 1; height: 2px; background: var(--fg); }\n    h1.hero-title { font-weight: 700; line-height: 0.92; margin-bottom: 0; }\n    .hero-title-main { display: block; font-size: clamp(56px, 10vw, 120px); letter-spacing: -0.03em; color: var(--fg); text-transform: uppercase; }\n    .hero-title-sub { display: block; font-size: clamp(26px, 4.5vw, 58px); font-weight: 700; color: var(--orange); margin-left: clamp(20px, 3vw, 56px); margin-top: 14px; letter-spacing: -0.01em; }\n    .hero-corner-tag { position: absolute; top: 16px; right: 20px; font-size: 12px; letter-spacing: 0.08em; color: var(--faint); text-transform: uppercase; font-weight: 700; }\n    .hero-bottom-grid { display: grid; grid-template-columns: 3fr 2fr; border: var(--rule); border-top: none; }\n    .hero-statement-cell { padding: 36px 40px; border-right: var(--rule); }\n    .hero-statement { font-size: 16px; font-weight: 400; line-height: 1.9; color: var(--mid); }\n    .hero-statement em { font-style: normal; font-weight: 700; color: var(--fg); }\n    .hero-axioms-cell { padding: 36px 32px; }\n    .hero-axioms-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--orange); margin-bottom: 20px; font-weight: 700; }\n    .hero-axiom { display: flex; gap: 14px; font-size: 14px; line-height: 1.7; color: var(--ink-mid); padding: 9px 0; border-bottom: var(--rule-light); font-weight: 400; }\n    .hero-axiom:last-child { border-bottom: none; }\n    .hero-axiom-num { color: var(--orange); flex-shrink: 0; font-weight: 700; }\n    .manifest-section { max-width: 1240px; margin: 0 auto; padding: 0 40px; }\n    .manifest-header { display: grid; grid-template-columns: 60px 90px 1fr 200px; padding: 14px 0; border-bottom: 3px solid var(--orange); margin-top: 56px; gap: 28px; }\n    .manifest-col-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--orange); font-weight: 700; }\n    a.post-row { display: grid; grid-template-columns: 60px 90px 1fr 200px; gap: 28px; padding: 40px 0; border-bottom: var(--rule); text-decoration: none; color: inherit; align-items: start; transition: background 0.15s; }\n    a.post-row:hover { background: var(--grid); padding-left: 20px; padding-right: 20px; margin: 0 -20px; }\n    .post-row-num { font-size: 24px; color: var(--orange); font-weight: 700; padding-top: 4px; }\n    .post-row-category { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-faint); padding-top: 8px; line-height: 1.65; font-weight: 700; }\n    .post-row-title { font-size: clamp(17px, 2vw, 23px); font-weight: 700; line-height: 1.25; letter-spacing: -0.01em; text-transform: uppercase; color: var(--fg); margin-bottom: 16px; transition: color 0.15s; }\n    a.post-row:hover .post-row-title { color: var(--orange); }\n    .post-row-excerpt { font-size: 14px; font-weight: 400; line-height: 1.85; color: var(--mid); }\n    .post-row-meta { padding-top: 6px; }\n    .post-row-author { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-faint); margin-bottom: 12px; font-weight: 700; }\n    .post-row-read { display: inline-block; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange); border: 2px solid var(--orange); padding: 8px 16px; text-decoration: none; transition: background 0.15s, color 0.15s; font-weight: 700; }\n    a.post-row:hover .post-row-read { background: var(--orange); color: white; }\n    .manifest-write-link { display: inline-block; margin-top: 40px; margin-bottom: 56px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--fg); text-decoration: none; border-bottom: 2px solid var(--fg); padding-bottom: 2px; transition: color 0.15s, border-color 0.15s; }\n    .manifest-write-link:hover { color: var(--orange); border-color: var(--orange); }\n    @media (max-width: 900px) {\n      .hero { padding: 72px 20px 0; }\n      .hero-meta-bar { grid-template-columns: 1fr; }\n      .hero-meta-cell { border-right: none; border-bottom: var(--rule); }\n      .hero-meta-cell:last-child { border-bottom: none; }\n      .hero-title-block { padding: 36px 20px 32px; }\n      .hero-bottom-grid { grid-template-columns: 1fr; }\n      .hero-statement-cell { border-right: none; border-bottom: var(--rule); padding: 28px 20px; }\n      .hero-axioms-cell { padding: 28px 20px; }\n      .manifest-section { padding: 0 20px; }\n      .manifest-header { display: none; }\n      a.post-row { grid-template-columns: 44px 1fr; grid-template-rows: auto auto auto; gap: 0 18px; }\n      a.post-row:hover { padding-left: 0; padding-right: 0; margin: 0; }\n      .post-row-num { grid-row: 1; font-size: 20px; }\n      .post-row-category { grid-column: 2; grid-row: 1; }\n      .post-row-content { grid-column: 1 / -1; margin-top: 14px; }\n      .post-row-meta { grid-column: 1 / -1; margin-top: 14px; }\n    }\n  </style>\n</head>\n<body class="page-body">\n\n  <nav>\n    <a class="nav-brand" href="index.html">Poetics of Ordinary</a>\n    <ul class="nav-links">\n      <li><a href="about.html">About</a></li>\n    </ul>\n    <span class="nav-date" id="nav-date"></span>\n  </nav>\n\n  <section class="hero reveal">\n    <div class="hero-meta-bar">\n      <div class="hero-meta-cell">Project / <span>Field Practice</span></div>\n      <div class="hero-meta-cell">Status / <span>Active</span></div>\n      <div class="hero-meta-cell">Authors / <span>Chaudhary + Thakur</span></div>\n    </div>\n    <div class="hero-title-block">\n      <div class="hero-label">A field practice in attention</div>\n      <h1 class="hero-title">\n        <span class="hero-title-main">POETICS</span>\n        <span class="hero-title-sub">of ordinary</span>\n      </h1>\n      <span class="hero-corner-tag">Vol. I \u2014 2026</span>\n    </div>\n    <div class="hero-bottom-grid">\n      <div class="hero-statement-cell">\n        <p class="hero-statement">Familiarity is not the same as attention. The things we live with every day \u2014 a room\u2019s particular light, a surface you pass a hundred times \u2014 stop being seen somewhere along the way. This is a record of looking again. <em>Not to find something hidden.</em> Just to notice <em>what is actually there.</em></p>\n      </div>\n      <div class="hero-axioms-cell">\n        <div class="hero-axioms-label">Working notes</div>\n        <div class="hero-axiom"><span class="hero-axiom-num">01</span><span>Attention before judgment</span></div>\n        <div class="hero-axiom"><span class="hero-axiom-num">02</span><span>Documentation before interpretation</span></div>\n        <div class="hero-axiom"><span class="hero-axiom-num">03</span><span>The specific over the general</span></div>\n        <div class="hero-axiom"><span class="hero-axiom-num">04</span><span>Curiosity without conclusion</span></div>\n        <div class="hero-axiom"><span class="hero-axiom-num">05</span><span>Return to what is already there</span></div>\n      </div>\n    </div>\n  </section>\n\n  <section id="posts">\n    <div class="manifest-section">\n      <div class="manifest-header">\n        <div class="manifest-col-label">No.</div>\n        <div class="manifest-col-label">Category</div>\n        <div class="manifest-col-label">Entry</div>\n        <div class="manifest-col-label">Meta</div>\n      </div>\n\n      <!-- POSTS:START -->\n\n' + rows + '\n\n      <!-- POSTS:END -->\n\n      <a class="manifest-write-link" href="write-post.html">Write new post \u2192</a>\n    </div>\n  </section>\n\n  <footer>\n    <div class="footer-inner">\n      <span class="footer-left">\u00a9 2026 Poetics of Ordinary \u2014 Pranshu Chaudhary &amp; Monalisa Thakur</span>\n      <span class="footer-right">Field notes from the attention practice</span>\n    </div>\n  </footer>\n\n  <script>\n    (function () {\n      var el = document.getElementById(\'nav-date\');\n      if (!el) return;\n      el.textContent = new Date().toLocaleDateString(\'en-GB\', { year: \'numeric\', month: \'long\', day: \'numeric\' });\n    })();\n    (function () {\n      var items = document.querySelectorAll(\'.reveal\');\n      var io = new IntersectionObserver(function (entries) {\n        entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add(\'visible\'); io.unobserve(e.target); } });\n      }, { threshold: 0.08 });\n      items.forEach(function (el) { io.observe(el); });\n    })();\n    document.addEventListener(\'DOMContentLoaded\', function () {\n      document.querySelectorAll(\'.hero.reveal\').forEach(function (el) { el.classList.add(\'visible\'); });\n    });\n  <\/script>\n<\/body>\n<\/html>';
+    }
+
+    /* ─── PUBLISH ────────────────────────────────── */
+    function publish() {
+      var title = document.getElementById('f-title').value.trim();
+      if (!title) {
+        alert('Please enter a post title before publishing.');
+        return;
+      }
+
+      var result = generatePost();
+
+      /* Collect metadata for the registry */
+      var newMeta = {
+        number:   document.getElementById('f-number').value.trim() || '00',
+        title:    title,
+        excerpt:  document.getElementById('f-excerpt').value.trim() || '',
+        category: document.getElementById('f-category').value.trim() || 'Uncategorised',
+        author:   document.getElementById('f-author').value.trim() || '',
+        date:     document.getElementById('f-date').value.trim() || '',
+        file:     result.filename
+      };
+
+      /* Update posts registry */
+      var posts = getPosts();
+      /* Replace if same file already exists, otherwise add */
+      var existing = posts.findIndex(function(p) { return p.file === result.filename; });
+      if (existing >= 0) posts[existing] = newMeta; else posts.push(newMeta);
+      savePosts(posts);
+
+      /* Save full draft state for edit mode */
+      saveDraft(result.filename, {
+        number: newMeta.number, title: newMeta.title, excerpt: newMeta.excerpt,
+        category: newMeta.category, author: newMeta.author, date: newMeta.date,
+        tags: document.getElementById('f-tags').value.trim(),
+        prevTitle: prevTitle, prevFile: prevFile, nextTitle: nextTitle, nextFile: nextFile,
+        blocks: blocks,
+        annotations: annotations
+      });
+
+      /* Download post HTML */
+      function dl(content, filename) {
+        var blob = new Blob([content], { type: 'text/html;charset=utf-8' });
+        var url  = URL.createObjectURL(blob);
+        var a    = document.createElement('a');
+        a.href = url; a.download = filename;
+        document.body.appendChild(a); a.click();
+        document.body.removeChild(a); URL.revokeObjectURL(url);
+      }
+
+      dl(result.html, result.filename);
+
+      /* Short delay then download updated index.html */
+      setTimeout(function() {
+        dl(generateIndexHtml(posts), 'index.html');
+        document.getElementById('publish-status').textContent =
+          '\u2193 ' + result.filename + ' + index.html \u2014 move both files into the site folder';
+      }, 400);
+    }
+
+    /* ─── EDIT MODE ─────────────────────────────── */
+    function loadEditMode(filename) {
+      var draft = loadDraft(filename);
+
+      if (draft) {
+        /* Restore metadata fields */
+        document.getElementById('f-number').value   = draft.number    || '';
+        document.getElementById('f-category').value = draft.category  || '';
+        document.getElementById('f-author').value   = draft.author    || '';
+        document.getElementById('f-date').value     = draft.date      || '';
+        document.getElementById('f-title').value    = draft.title     || '';
+        document.getElementById('f-excerpt').value  = draft.excerpt   || '';
+        document.getElementById('f-tags').value     = draft.tags      || '';
+        document.getElementById('f-prev-title').value = draft.prevTitle || '';
+        document.getElementById('f-prev-file').value  = draft.prevFile  || '';
+        document.getElementById('f-next-title').value = draft.nextTitle || '';
+        document.getElementById('f-next-file').value  = draft.nextFile  || '';
+
+        /* Restore blocks */
+        blocks = []; blockSeq = 0;
+        document.getElementById('blocks-list').innerHTML = '';
+        (draft.blocks || []).forEach(function(b) {
+          var num = parseInt((b.id || '').replace('b', '')) || 0;
+          if (num > blockSeq) blockSeq = num;
+          blocks.push(b);
+          renderBlockToDOM(b);
+        });
+
+        /* Restore annotations */
+        annotations = []; annSeq = 0;
+        document.getElementById('annotations-list').innerHTML = '';
+        (draft.annotations || []).forEach(function(a) {
+          var num = parseInt((a.id || '').replace('a', '')) || 0;
+          if (num > annSeq) annSeq = num;
+          annotations.push(a);
+          renderAnnotationToDOM(a);
+        });
+
+        document.getElementById('publish-status').textContent = 'Editing: ' + filename;
+      } else {
+        /* No draft saved — restore metadata only from registry */
+        var meta = getPosts().find(function(p) { return p.file === filename; });
+        if (meta) {
+          document.getElementById('f-number').value   = meta.number   || '';
+          document.getElementById('f-category').value = meta.category || '';
+          document.getElementById('f-author').value   = meta.author   || '';
+          document.getElementById('f-date').value     = meta.date     || '';
+          document.getElementById('f-title').value    = meta.title    || '';
+          document.getElementById('f-excerpt').value  = meta.excerpt  || '';
+        }
+        addBlock('lead');
+        addBlock('paragraph');
+        document.getElementById('publish-status').textContent =
+          'Edit mode — no saved draft for ' + filename + ', metadata restored only';
+      }
+
+      /* Update UI for edit mode */
+      document.querySelector('.editor-page-title').textContent = 'Edit Post';
+      document.querySelector('.publish-btn').textContent = 'Update Post →';
+    }
+
+    /* ─── INIT ───────────────────────────────────── */
+    (function () {
+      var el = document.getElementById('nav-date');
+      if (el) el.textContent = new Date().toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' });
+
+      var editFile = new URLSearchParams(location.search).get('edit');
+      if (editFile) {
+        loadEditMode(editFile);
+      } else {
+        /* Start with one lead paragraph */
+        addBlock('lead');
+        addBlock('paragraph');
+      }
+      updateStatus();
+    })();
+  </script>
+</body>
+</html>
