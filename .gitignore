@@ -1,0 +1,17 @@
+# Internal tools — not published
+write-post.html
+manage-posts.html
+
+# Markdown and docs
+*.md
+
+# PDF files
+*.pdf
+
+# macOS system files
+.DS_Store
+**/.DS_Store
+
+# Editor / IDE
+.vscode/
+.idea/

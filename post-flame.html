@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Time, Out of Phase — Poetics of Ordinary</title>
+  <meta name="description" content="A 25 × 36 LED grid that responds to presence over time — not instantly, not completely, but across seven visits. An installation by Pranshu Kumar Chaudhary and Monalisa Thakur at Flame University, Pune, 2026.">
+  <meta name="author" content="Pranshu Kumar Chaudhary, Monalisa Thakur">
+  <meta name="keywords" content="Time Out of Phase, LED installation, critical design, discursive design, Flame University, representations of time, Pranshu Kumar Chaudhary, Monalisa Thakur, interactive installation, design research">
+  <link rel="canonical" href="https://poeticsofordinary.com/post-flame.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Poetics of Ordinary">
+  <meta property="og:title" content="Time, Out of Phase — Poetics of Ordinary">
+  <meta property="og:description" content="A 25 × 36 LED grid that responds to presence over time — not instantly, not completely, but across seven visits. An installation at Flame University, Pune, 2026.">
+  <meta property="og:url" content="https://poeticsofordinary.com/post-flame.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Time, Out of Phase">
+  <meta name="twitter:description" content="A 25 × 36 LED grid that responds to presence over time — not instantly, not completely, but across seven visits. Flame University, Pune, 2026.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["Article", "CreativeWork"],
+        "@id": "https://poeticsofordinary.com/post-flame.html",
+        "headline": "Time, Out of Phase",
+        "name": "Time, Out of Phase",
+        "description": "A 25 × 36 LED installation that responds to presence over time. Each visit adds to a record the system keeps of your presence; on the seventh encounter, that record becomes visible.",
+        "url": "https://poeticsofordinary.com/post-flame.html",
+        "datePublished": "2026-04",
+        "inLanguage": "en",
+        "author": [
+          {"@type": "Person", "@id": "https://poeticsofordinary.com/#pranshu", "name": "Pranshu Kumar Chaudhary"},
+          {"@type": "Person", "@id": "https://poeticsofordinary.com/#monalisa", "name": "Monalisa Thakur"}
+        ],
+        "creator": [
+          {"@id": "https://poeticsofordinary.com/#pranshu"},
+          {"@id": "https://poeticsofordinary.com/#monalisa"}
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "Poetics of Ordinary",
+          "url": "https://poeticsofordinary.com"
+        },
+        "isPartOf": {"@id": "https://poeticsofordinary.com/#website"},
+        "locationCreated": {
+          "@type": "Place",
+          "name": "Flame University",
+          "address": {"@type": "PostalAddress", "addressLocality": "Pune", "addressCountry": "IN"}
+        },
+        "about": ["Representations of Time", "Interactive Installation", "LED", "Critical Design", "Discursive Design", "Face Recognition", "Accumulated Presence"],
+        "keywords": "LED installation, time, interactive design, critical design, Flame University, face recognition, accumulated presence, discursive design"
+      }
+    ]
+  }
+  </script>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .post-header-wrap {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 80px 40px 0;
+    }
+    .post-back { display: inline-block; font-size: 14px; font-weight: 700; color: var(--ink-faint); text-decoration: none; letter-spacing: 0.04em; margin-bottom: 36px; transition: color 0.2s; }
+    .post-back:hover { color: var(--ink); }
+    .post-tag { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-faint); margin-bottom: 20px; font-weight: 700; }
+    h1.post-title { font-size: clamp(36px, 5.5vw, 60px); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; max-width: 860px; margin-bottom: 32px; }
+    .post-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+      font-family: var(--sans);
+      font-size: 13px;
+      color: var(--ink-faint);
+      padding-bottom: 40px;
+      border-bottom: var(--rule);
+    }
+    .article-wrap {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 60px 40px 0;
+    }
+    .article-grid {
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .post-content p.lead { font-size: 22px; font-weight: 700; line-height: 1.55; color: var(--ink); margin-bottom: 40px; }
+    h2.post-section { font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-faint); font-weight: 700; padding-top: 48px; padding-bottom: 16px; border-top: var(--rule); margin-top: 8px; }
+    .post-content p { font-size: 18px; font-weight: 400; line-height: 1.8; color: var(--ink); margin-bottom: 28px; }
+    .pull-quote { border-left: 4px solid var(--orange); padding: 16px 28px; margin: 44px 0; }
+    .pull-quote p { font-size: 22px; font-weight: 700; line-height: 1.4; color: var(--ink); margin: 0; }
+    .field-note { background: var(--cream); border: 2px solid #DDDDDD; padding: 22px 26px; margin: 36px 0; }
+    .field-note-label { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--orange); margin-bottom: 10px; font-weight: 700; }
+    .field-note p { font-size: 15px; line-height: 1.8; color: var(--ink-mid); margin: 0; font-weight: 400; }
+    .summary-flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 16px; }
+    .summary-flow span { border: var(--rule-light); background: var(--bg); padding: 12px 10px; font-size: 12px; line-height: 1.35; color: var(--ink); font-weight: 700; text-align: center; text-transform: uppercase; letter-spacing: 0.06em; }
+    .post-diagram { margin: 44px 0; padding: 18px; border: var(--rule); background: #fff; }
+    .post-diagram img { width: 100%; height: auto; display: block; object-fit: contain; cursor: pointer; transition: opacity 0.15s; background: #fff; }
+    .post-diagram img:hover { opacity: 0.9; }
+    .post-image { margin: 44px 0; }
+    .post-image img { width: 100%; max-height: 500px; object-fit: cover; display: block; cursor: pointer; transition: opacity 0.15s; }
+    .post-image img:hover { opacity: 0.88; }
+    .post-image-caption,
+    .post-content .post-image-caption { font-size: 13px; color: var(--ink-faint); margin-top: 10px; line-height: 1.6; }
+
+
+
+    /* Landscape video — /format */
+    .post-video { margin: 44px auto; /*max-width: 500px;*/ }
+    .post-video-placeholder { background: var(--cream); border: var(--rule); width: 100%; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-faint); font-weight: 700; }
+    .post-video video, .post-video iframe { width: 100%; aspect-ratio: 16/9; display: block; border: none; }
+
+
+
+
+
+
+    /* Vertical video — portrait/phone format */
+    .post-video-vertical { margin: 44px auto; max-width: 360px; }
+    .post-video-vertical-placeholder { background: var(--cream); border: var(--rule); width: 100%; aspect-ratio: 9/16; display: flex; align-items: center; justify-content: center; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-faint); font-weight: 700; }
+    .post-video-vertical video, .post-video-vertical iframe { width: 100%; aspect-ratio: 9/16; display: block; border: none; }
+
+    /* Media album grid */
+    .post-media-album { margin: 64px 0 0; padding-top: 36px; border-top: var(--rule); }
+    .post-media-album-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-faint); font-weight: 700; margin-bottom: 20px; display: block; }
+    .post-media-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .media-item { position: relative; overflow: hidden; background: var(--cream); border: var(--rule); cursor: pointer; }
+    .media-item::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0); transition: background 0.2s; }
+    .media-item:hover::after { background: rgba(0,0,0,0.12); }
+    .media-item-placeholder { aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-faint); font-weight: 700; text-align: center; padding: 8px; }
+    .media-item img, .media-item video { width: 100%; aspect-ratio: 1/1; object-fit: cover; display: block; }
+    .media-item-video .media-item-placeholder { aspect-ratio: 1/1; }
+    .media-item-video-badge { position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.55); color: #fff; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; padding: 3px 7px; text-transform: uppercase; z-index: 1; }
+    @media (max-width: 900px) { .post-media-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 540px) { .post-media-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; } }
+
+    /* Lightbox */
+    .lb { position: fixed; inset: 0; background: rgba(0,0,0,0.93); z-index: 2000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
+    .lb.lb-open { opacity: 1; pointer-events: all; }
+    .lb-stage { display: flex; align-items: center; justify-content: center; max-width: 90vw; max-height: 88vh; }
+    .lb-stage img { max-width: 90vw; max-height: 88vh; object-fit: contain; display: block; user-select: none; }
+    .lb-stage video { max-width: 90vw; max-height: 88vh; display: block; }
+    .lb-placeholder-inner { width: min(480px, 80vw); height: min(320px, 60vh); background: #1a1a1a; display: flex; align-items: center; justify-content: center; color: #555; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; font-family: var(--sans); }
+    .lb-placeholder-inner.lb-ph-video { width: min(300px, 60vw); height: min(533px, 80vh); }
+    .lb-close { position: fixed; top: 20px; right: 28px; background: none; border: none; color: #fff; font-size: 28px; line-height: 1; cursor: pointer; opacity: 0.6; transition: opacity 0.15s; font-family: var(--sans); padding: 4px 8px; }
+    .lb-close:hover { opacity: 1; }
+    .lb-nav { position: fixed; top: 50%; transform: translateY(-50%); background: none; border: none; color: #fff; font-size: 20px; cursor: pointer; opacity: 0.5; transition: opacity 0.15s; padding: 20px 16px; font-family: var(--sans); letter-spacing: 0.04em; font-weight: 700; }
+    .lb-nav:hover { opacity: 1; }
+    .lb-prev { left: 8px; }
+    .lb-next { right: 8px; }
+    .lb-counter { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.4); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; font-family: var(--sans); white-space: nowrap; }
+
+    .post-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 52px; padding-top: 28px; border-top: var(--rule); }
+    .post-tag-item { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; border: var(--rule); padding: 7px 16px; color: var(--fg); font-weight: 700; }
+    .post-annotations { position: sticky; top: 80px; }
+    .annotation { border-top: var(--rule); padding-top: 16px; margin-bottom: 36px; }
+    .annotation-marker { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-faint); margin-bottom: 10px; font-weight: 700; }
+    .annotation p { font-size: 14px; line-height: 1.8; color: var(--ink-mid); font-weight: 400; }
+    .post-nav-wrap { max-width: 1240px; margin: 80px auto 0; padding: 40px; border-top: var(--rule); display: flex; justify-content: space-between; gap: 40px; }
+    .post-nav-prev, .post-nav-next { text-decoration: none; color: inherit; }
+    .post-nav-label { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-faint); margin-bottom: 8px; font-weight: 700; }
+    .post-nav-title { display: block; font-size: 20px; font-weight: 700; color: var(--ink); line-height: 1.3; max-width: 320px; transition: color 0.2s; }
+    .post-nav-prev:hover .post-nav-title, .post-nav-next:hover .post-nav-title { color: var(--orange); }
+    .post-nav-next { text-align: right; }
+    .post-nav-next .post-nav-title { margin-left: auto; }
+    @media (max-width: 900px) {
+      .post-header-wrap { padding: 60px 20px 0; }
+      .article-wrap { padding: 40px 20px 0; }
+      .article-grid { grid-template-columns: 1fr; gap: 0; }
+      .summary-flow { grid-template-columns: 1fr; }
+      .post-annotations { position: static; border-top: var(--rule); padding-top: 40px; margin-top: 40px; }
+      .post-nav-wrap { padding: 40px 20px; flex-direction: column; gap: 32px; }
+      .post-nav-next { text-align: left; }
+    }
+  </style>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-73CMMJESGL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-73CMMJESGL');
+</script>
+  
+</head>
+<body class="page-body">
+
+  <nav>
+    <a class="nav-brand" href="index.html">Poetics of Ordinary</a>
+    <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <span class="nav-date" id="nav-date"></span>
+  </nav>
+
+  <div class="post-header-wrap">
+    <a class="post-back" href="index.html">← All Posts</a>
+    <span class="post-tag">Flame Creators in Residence, 2026 — Installation</span>
+    <h1 class="post-title">Time, Out of Phase</h1>
+    <div class="post-meta">
+      <span>Pranshu Chaudhary &amp; Monalisa Thakur</span>
+      <span>April 2026</span>
+      <span>Flame University, Pune</span>
+    </div>
+  </div>
+
+  <div class="article-wrap">
+    <div class="article-grid">
+
+      <div class="post-content">
+
+        <p class="lead">The time that matters to us is not the uniform, interval-counting kind. It is the time shaped by what we return to, by how many times we have stood somewhere, by the slow accumulation of presence across days. Time, Out of Phase is an installation built around this version of time.</p>
+
+        <p>Built during a five-week residency at Flame University, Pune, by Pranshu Chaudhary and Monalisa Thakur and installed in April 2026, the work is a 25 × 36 LED grid mounted in a corridor in the Design Lab building, where students and faculty pass between classes. The grid responds to people who stand in front of it. Not instantly. Not completely. Each visit adds to a record the system keeps of your presence. On the seventh encounter, that record becomes visible.</p>
+
+        <p>The first time you stand in front of it, you see yourself: nine hundred pixels, low-resolution, slightly delayed. It looks like a mirror. It is not. A mirror gives you everything at once. This gives you more with each return.</p>
+
+        <p>The proposition behind the work is simple, but it changes the terms of interaction: time is not what passes, time is what returns. The installation does not try to represent time as a clock, a line, or a countdown. It makes time legible only after recurrence. A single encounter is deliberately incomplete. Meaning is withheld until the body comes back.</p>
+
+        <p>This is why the work needed to be installed in a corridor rather than in a sealed gallery room. Corridors are made of repetition. They are not destinations; they are the places where people pass through on the way to something else, often without noticing that they are repeating a route. Time, Out of Phase uses that ordinary repetition as its material. It turns the corridor into a memory device.</p>
+
+        <div class="field-note">
+          <span class="field-note-label">How the work unfolds</span>
+          <p>The encounter begins as a mirror, becomes a record through return, accumulates silently, reveals itself on the seventh visit, and then releases what it has gathered.</p>
+          <div class="summary-flow" aria-hidden="true">
+            <span>Mirror</span>
+            <span>Return</span>
+            <span>Accumulation</span>
+            <span>Seventh Visit</span>
+            <span>Reset</span>
+          </div>
+        </div>
+
+        <div class="post-image">
+          <img src="media/post-flame/1.jpg" alt="Installation in corridor, Flame Design Lab">
+        </div>
+
+      
+
+        <h2 class="post-section">The Object</h2>
+
+        <p>Before anyone approaches, the grid is already running. Five slow oscillations move through its pixels simultaneously, each at a frequency derived from irrational numbers: the golden ratio φ, π, and e. Their ratios share no common multiple, so the interference pattern they produce never exactly repeats. The grid is fully determined by its equations and yet practically non-repeating. It behaves the way lived time behaves: structured, continuous, never quite the same twice.</p>
+
+        <p>When the system recognises a face, the grid renders it at full brightness. Every pixel active, the face resolved in whatever colour the light and the moment produce. The camera behind the grid does not record what it sees. It generates mathematical embeddings, 512-dimensional numerical signatures, that allow it to recognise the same person across separate visits without retaining any image or video of them. The display runs at full brightness throughout. Low-brightness rendering was tested and dropped: the grid did not look right, and people did not engage with it. Full brightness stayed.</p>
+
+        <p>The face was chosen because it is the most immediate visual structure available to the viewer. The system does not show an abstract diagram of time. It shows you, reduced into a coarse field of light, close enough to recognise and incomplete enough to require interpretation. The low resolution matters. At 25 × 36 pixels, the face is never fully given. The viewer fills in the gaps, the way memory fills in what it cannot exactly retrieve.</p>
+
+        <p>The mirror illusion also matters. A mirror is an interface people already understand. It requires no onboarding. The first encounter can therefore feel complete: you stand, the object responds, your image appears. Only later does the piece reveal that the first encounter was not the whole event, but the beginning of a longer temporal structure.</p>
+
+        <div class="post-diagram">
+          <img src="media/post-flame/Temporal-layers-diagram.png" alt="Temporal layers diagram showing cycle time, visit time, interaction time, display time, and data time converging at the seventh visit">
+          <p class="post-image-caption">Temporal layers: milliseconds, seconds, minutes, days, and seven-visit cycles. Click to enlarge.</p>
+        </div>
+
+        <div class="post-video">
+          <video src="media/post-flame/2vid.mp4" controls autoplay loop muted playsinline alt="LED grid detail, ambient state"></video>
+        </div>
+
+        <h2 class="post-section">What It Does</h2>
+
+        <p>Underneath the live display, the system is counting. Each visit is tracked, with a minimum gap of 15 minutes between counted encounters — enough time to prevent a brief absence and return from registering as a new visit. During each encounter, one dominant colour is extracted from the live feed and stored alongside a recognition record of that person. The grid shows nothing of this. The accumulation is invisible.</p>
+
+        <p>On the seventh visit, the hidden record surfaces. The grid flashes at the moment of recognition, a distinct animation runs — expanding rings, a sweeping colour wave — and the live image is rendered using only the six colours collected from prior visits. The person sees themselves through the palette of their own returns, the face reconstructed from the history of six previous encounters.</p>
+
+        <p>This moment is temporary. Before an eighth visit can begin, all stored data is cleared. The cycle starts again. Every seventh encounter is a point of completion and release: what accumulated, let go.</p>
+
+        <p>The experience has four states. Encounter one is recognition: a delayed, pixelated version of the self appears and behaves almost like a mirror. Encounters two through six are accumulation: the system remembers, but refuses to perform that remembering visibly. Encounter seven is the threshold event: flash, colour wave, palette reconstruction. Reset is release: the stored record is cleared and the system returns to its ambient state.</p>
+
+        <p>That sequence creates temporal friction. Most interactive systems reward immediacy. They train the viewer to act, see a result, and optimise the action. This installation resists that rhythm. It can be played with in the moment, but it cannot be fully understood in the moment. It asks for return without guaranteeing spectacle every time.</p>
+
+        <div class="post-diagram">
+          <img src="media/post-flame/experience-time-arc-diagram.png" alt="Experience and time arc diagram mapping seven encounters from mirror-like first visit through invisible accumulation to seventh-visit recognition and reset">
+          <p class="post-image-caption">Experience arc: what the viewer feels, what the system stores, and what the display shows diverge until the seventh encounter. Click to enlarge.</p>
+        </div>
+
+        <div class="pull-quote">
+          <p>The time you invest in it accumulates invisibly, until the seventh visit makes it legible.</p>
+        </div>
+
+         <div class="post-video-vertical">
+          <video src="media/post-flame/3vid.mp4" controls autoplay loop muted playsinline alt="Grid displaying a face, full brightness"></video>
+        </div>
+
+        <h2 class="post-section">System Flow</h2>
+
+        <p>Technically, the installation is a closed loop. Presence triggers face detection. Face detection produces an embedding. The embedding is compared against prior embeddings using cosine similarity. If the person is new, a new record begins. If the person is recognised, the system checks whether enough time has passed since the last counted encounter. Only then does it increment the visit count and store one dominant colour from that moment.</p>
+
+        <p>The LED grid is controlled separately from the recognition pipeline. A Raspberry Pi 5 handles camera input, face detection, identity matching, colour extraction, storage, and state logic. An ESP32 receives display data over UDP on a closed WiFi network and drives the 900 NeoPixels. The split matters because the piece has to feel responsive even while the recognition logic is doing slower work in the background.</p>
+
+        <p>No image or video is saved. The system stores a numerical signature and a colour, not a photograph. It knows enough to recognise return, but not enough to replay the visual evidence of that return. This is part technical constraint and part conceptual decision: memory in the work is not archival, it is abstracted.</p>
+
+        <div class="field-note">
+          <span class="field-note-label">What is stored</span>
+          <p>No images or video. Each counted encounter stores a numerical face embedding, a visit count, a timestamp used for the 15-minute interval, and one dominant colour. The stored record exists to recognise return, not to preserve a visual archive.</p>
+        </div>
+
+        <div class="post-diagram">
+          <img src="media/post-flame/system-diagram.png" alt="System diagram showing the closed loop from person entering frame through face detection, embedding generation, identity matching, colour storage, seventh visit rendering, reset, and return to idle">
+          <p class="post-image-caption">System flow: presence becomes recognition, colour memory, threshold rendering, and reset. Click to enlarge.</p>
+        </div>
+
+        <h2 class="post-section">Colour as Memory</h2>
+
+        <p>Colour became the installation's way of remembering without keeping too much. Each counted encounter contributes a single dominant colour. The reduction is severe: a body, a room, a time of day, and a lighting condition collapse into one chromatic trace. By the seventh visit, the live face is rebuilt through those traces. The person is still present, but the image is constrained by their own past appearances.</p>
+
+        <p>This is not a realistic memory. It is closer to affective residue. A morning encounter might be cooler, an evening one warmer, a shadowed face might become purple or magenta because the grid has no dedicated shadow channel and must mix red and blue to hold tonal depth. The system remembers atmosphere before it remembers detail.</p>
+
+        <div class="post-diagram">
+          <img src="media/post-flame/colour-memory-diagram1.png" alt="Colour memory diagram explaining how dominant colours are extracted from visits and used to reconstruct a face on the seventh encounter without storing images">
+          <p class="post-image-caption">Colour memory: the system keeps fragments of presence as palette, not as image. Click to enlarge.</p>
+        </div>
+
+        <h2 class="post-section">The Concept, and How It Changed</h2>
+
+        <p>The installation was designed to hold three kinds of attention. For someone passing through the corridor, it was a pixelated mirror, low-resolution and responsive to movement. For someone who stayed and returned repeatedly, the accumulation logic slowly revealed itself, culminating in the seventh-visit event. For someone who wanted to interrogate the piece — to test its rules, question its framing, understand why it behaved as it did — there was enough to pull at.</p>
+
+        <p>This layering was a decision made partway through the residency. The early version of the installation was built around the same LED grid alongside a set of rotating kinetic discs. The discs were designed to move in and out of phase with the grid: when you first approached, they were asynchronous, drifting. The longer you stood there, the more they aligned. The concept was about synchrony as something produced by presence, attention as a force that brought a system into coherence.</p>
+
+        <p>During testing, very few people registered the relationship between their presence and the disc movement. The correlation was too subtle. The mechanism was also fragile: the motors overheated under the vertical load of the discs and had to be continuously managed. The kinetic elements were dropped.</p>
+
+        <p>Losing them simplified the installation and made it more robust. It also clarified the concept. What had been a visible metaphor became a hidden logic. The relationship between the viewer and the system no longer needed to be seen in real time. It could build, invisibly, across days.</p>
+
+        <p>In the final form, synchrony was no longer shown as mechanical alignment. It became behavioural and temporal. The viewer and the system fall into relation only through recurrence. You do not bring the object into coherence by standing still in front of it for longer; you enter its rhythm by leaving and returning.</p>
+
+        <div class="post-image">
+          <img src="media/post-flame/2.png" alt="Early sketches, kinetic disc concept">
+        </div>
+
+        <h2 class="post-section">Getting There</h2>
+
+        <p>Materials arrived in the third week of the five-week residency. The procurement agency had been slow, and the first two weeks of making happened with whatever we had brought in. When the materials came, peripheral items, fixings, finishing materials, nails and screws, were still missing and had to be sourced separately and locally.</p>
+
+        <p>In week four, the laser cutter in the Design Lab broke down. An unexpected mechanical error took it out of commission for the full week while Aditya worked on the repair. The work shifted to 3D printing, adapting designs that had been prepared for the laser cutter. Some parts printed cleanly. Others had to be redesigned for the different process. When the laser cutter was fixed, some components had already been produced via 3D print and were kept. Some were redone.</p>
+
+        <p>The spatial constraints of the site shaped the final form significantly. Flame University does not permit modifications to its walls. A freestanding panel and stand had to be designed and built. The grid could not face direct sunlight, which would overheat the LEDs and the processing unit, so viable positions in the corridor were limited. The final placement was chosen around an accessible power outlet, within shadow, in a section of corridor with enough foot traffic to ensure daily encounters.</p>
+
+        <p>These constraints did not only affect fabrication. They shaped the meaning of the work. The piece had to be freestanding, which made it visibly object-like rather than absorbed into the building. It had to sit in shadow, which gave it a particular relation to the corridor's changing light. It had to be close to power and traffic, which meant its temporality was tied to institutional infrastructure: outlets, class schedules, workshop availability, procurement timelines, and the amount of time a residency actually allows.</p>
+
+
+        <div class="post-video-vertical">
+          <video src="media/post-flame/4vid.mp4" controls autoplay loop muted playsinline alt="Panel construction, workshop"></video>
+        </div>
+
+        <h2 class="post-section">The Day It Broke</h2>
+
+        <p>On the morning of the inauguration, we were making a final update to the code via SSH. A test version was written to the same file as the production code and overwrote it. The installation would not run correctly. The inauguration was delayed while the code was reconstructed. It ran.</p>
+
+        <p>The day after installation, the mounting mechanism inside the back panel came away. It had been glued and the glue had not held under a full day of weight. On the following Sunday, we took the panel apart, remounted it with a better fastening system, and reassembled it. The repair took three hours. During it, Pathik and Aditya also laser etched the concept note onto the side of the panel. It had not been planned for the original installation, but it fit: the piece now carries its own explanation, always visible alongside it.</p>
+
+        <div class="field-note">
+          <span class="field-note-label">What the panel says</span>
+          <p>During the repair, we had the concept note laser etched onto the side of the panel, where it is permanently visible. The piece now carries its own explanation alongside it — not as a label, but as part of the object itself.</p>
+        </div>
+
+        <div class="post-image">
+          <img src="media/post-flame/6.png" alt="Laser etched concept note on panel side">
+        </div>
+
+        <h2 class="post-section">How People Responded</h2>
+
+        <p>The queue formed before the inauguration. Students and staff had been watching the panel go up in the corridor over the preceding days and wanted to know what it was.</p>
+
+        <p>The responses divided roughly by intent. Younger students called their friends to come see themselves rendered in pixels, standing in front of the grid and moving to watch the image follow. Some tried to trigger the seventh-visit animation by appearing in front of the piece in rapid succession, unaware of the 15-minute minimum gap between counted visits. The system did not respond to this and they could not work out why. A few understood eventually, from context or from asking, and became invested in the longer game.</p>
+
+        <p>Some faculty members found other uses for the piece than the ones we had planned. One used the grid's colour rendering to teach colour theory to students: the way the system represented shadow in purples and magentas, mixing the red and blue channels to carry tonal depth in a space where no dedicated shadow colour existed. The grid became a teaching tool for something adjacent to but not quite its intended subject.</p>
+
+        <p>Others asked about the camera. The hidden camera was a consistent source of curiosity and some unease once it was noticed. Questions about what was being stored, how recognition worked, whether faces were being recorded. The answer, that no images or video were retained, only mathematical embeddings, satisfied most people and interested others deeply enough to generate real conversation about what recognition means when the data is not visual.</p>
+
+        <p>Some questioned the staging of the piece directly: what it was claiming, whether the concept held, whether the space was the right one. These were useful conversations, the kind the piece was designed to invite for those who wanted them.</p>
+
+        <p>The camera questions became part of the work rather than a distraction from it. The system occupies a strange middle ground: it recognises without archiving an image, knows without being able to show what it knows, and remembers through colour rather than through a visual record. It is not transparent in the way a purely manual object would be, but it is also not extractive in the ordinary sense of surveillance. That ambiguity made the installation ethically charged in a useful way.</p>
+
+        <p>The different kinds of response confirmed the layered design. Some people met it as spectacle. Some met it as a game and tried to speed it up. Some met it as an object lesson in colour, perception, or computation. Some met it as an uneasy camera system. The piece did not need all of those readings to resolve into one explanation. It needed to hold them together long enough for conversation to happen.</p>
+
+        
+        <div class="post-video">
+          <video src="media/post-flame/3.mp4" controls autoplay loop muted playsinline alt="Students interacting with the installation"></video>
+        </div>
+
+
+
+
+        <h2 class="post-section">What It Was For, and What Was Missing</h2>
+
+        <p>Most people who encountered it first took it for an interactive LED mirror. That was not far from what we intended. We wanted the piece to become part of the daily rhythm of the corridor, something you pass seven times over days or weeks, until one day it does something you have not seen before. The seventh encounter was designed as an event: something to come back to, to bring others to, to encounter again from the beginning.</p>
+
+        <p>Whether the installation had been in place long enough for that rhythm to develop at the time of the inauguration was an open question. Most people who experienced the seventh-visit animation did so by accelerating through the count in a single session, finding another way to close the gap with the 15-minute minimum. The slow accumulation across days, which is the actual concept, required the piece to have been running longer than it had.</p>
+
+        <p>In retrospect, the inauguration needed a better-planned reveal. Something printed to take away, connecting the visual experience to the underlying logic. A reason to return, beyond curiosity. The installation itself does not explain what it does. For a semi-permanent piece in a corridor, that is probably correct. For a first encounter, on the day it opened, it left some people without a way in.</p>
+
+        <p>We would also have wanted more students involved in the making, not just the experiencing. The residency model brought us in as the makers and the students as the audience. Some collaboration happened through conversation and feedback. More sustained making together would have changed the piece, and probably changed us.</p>
+
+        <p>This revealed a gap between designed temporality and institutional time. The system was built for return across days or weeks, but the inauguration compressed attention into an event. People wanted to see what the work could do immediately, and the work was trying to withhold its real logic until later. Future versions would need a softer onboarding layer: enough explanation to invite return, but not so much that the threshold is reduced to an instruction.</p>
+
+        <h2 class="post-section">Staging</h2>
+
+        <p>The work also sits apart from several familiar categories. It is not exactly an interactive mirror, because the mirror response is only the first layer. It is not exactly surveillance art, because it does not expose a captured image or build an archive of faces. It is not a continuous generative system, because its change is discrete and threshold-based. The installation is about interaction stretched across time, where the important event is not the first response but the delayed consequence of having returned.</p>
+
+        <h2 class="post-section">What Remains</h2>
+
+        <p>The installation is designed to stay. It is semi-permanent, mounted on a panel that can be maintained and repaired. The system runs on boot. Data persists across power cycles. Between the seventh visit and the next cycle, the grid returns to its ambient state, running its non-repeating pattern, waiting.</p>
+
+        <p>The corridor at Flame keeps moving. Students pass through it between classes, in both directions, at different times of day. The grid keeps running. The ambient pattern keeps changing, determined by its equations, never quite repeating.</p>
+
+        <p>Every seventh encounter, the system reaches its threshold. The grid flashes. The animation runs. The person sees themselves through their own history of return. Then the data is cleared and the cycle begins again.</p>
+
+        <p>We don't know who will be the seventh visitor after we left, or what they will make of it.</p>
+
+        <p>That uncertainty is part of the work's afterlife. The installation is not complete at inauguration, or even at documentation. It is complete only in cycles, briefly, whenever return crosses the threshold and disappears again. What remains is not a stable archive of who came. What remains is the possibility that someone, passing through an ordinary corridor, will suddenly meet a version of themselves made from the colours of their own time.</p>
+
+        <div class="post-media-album">
+          <span class="post-media-album-label">Documentation</span>
+          <div class="post-media-grid">
+            <div class="media-item">
+              <img src="media/post-flame/8.png" alt="">
+            </div>
+            <div class="media-item">
+              <img src="media/post-flame/9.png" alt="">
+            </div>
+            <div class="media-item">
+              <img src="media/post-flame/10.png" alt="">
+            </div>
+            <div class="media-item">
+              <img src="media/post-flame/11.png" alt="">
+            </div>
+            <div class="media-item media-item-video">
+              <video src="media/post-flame/2.mp4"></video>
+              <span class="media-item-video-badge">Video</span>
+            </div>
+            <div class="media-item">
+              <img src="media/post-flame/12.jpg" alt="">
+            </div>
+            <div class="media-item media-item-video">
+              <video src="media/post-flame/3.mp4"></video>
+              <span class="media-item-video-badge">Video</span>
+            </div>
+            <div class="media-item">
+              <img src="media/post-flame/13.jpg" alt="">
+            </div>
+          </div>
+        </div>
+
+        <div class="post-tags">
+          <span class="post-tag-item">Installation</span>
+          <span class="post-tag-item">Time</span>
+          <span class="post-tag-item">LED</span>
+          <span class="post-tag-item">Flame University</span>
+          <span class="post-tag-item">Residency</span>
+          <span class="post-tag-item">Interaction</span>
+        </div>
+
+      </div>
+
+      <aside class="post-annotations">
+
+        <div class="annotation">
+          <span class="annotation-marker">Technical spec</span>
+          <p>25 × 36 NeoPixel LED matrix, 900 pixels, serpentine column wiring. Raspberry Pi 5. InsightFace AI, ArcFace embeddings, 512-dimensional, averaged over the first six seconds of each visit. Cosine similarity matching, threshold 0.42. ESP32 controller, UDP transmission, closed WiFi network. Python. Visit interval minimum: 15 minutes. One dominant colour stored per encounter.</p>
+        </div>
+
+        <div class="annotation">
+          <span class="annotation-marker">The idle animation</span>
+          <p>Five sine waves with irrational frequency ratios drawn from φ, π, and e. Because the ratios are incommensurable, the interference pattern never exactly repeats. The grid traces a quasi-periodic orbit: dense in possibility, never closing.</p>
+        </div>
+
+        <div class="annotation">
+          <span class="annotation-marker">Design Lab team</span>
+          <p>Pathik and Aditya, both part of Design Lab Flame University, handled material procurement, 3D modelling and printing, and installation work. Professor Swayamsidha Panigrahi managed logistics throughout the residency.</p>
+        </div>
+
+        <div class="annotation">
+          <span class="annotation-marker">Institutional support</span>
+          <p>Amit Kundal, Dean, and Shamit Srivastava, Head of Design Innovation lab, initiated and supported the project. Professors Tarinee Awasthi, Jayant Pande, Sherline, Soumitra, and Yamini Krishna contributed knowledge and research conversations that shaped the concept.</p>
+        </div>
+
+        <div class="annotation">
+          <span class="annotation-marker">The seventh visit</span>
+          <p>The animation on the seventh visit uses only the six colours stored from prior encounters. The face is rendered in a palette built entirely from the history of return. After the animation, all data is cleared. The system does not carry the record forward.</p>
+        </div>
+
+      </aside>
+
+    </div>
+  </div>
+
+  <div class="post-nav-wrap">
+    <a class="post-nav-prev" href="post-time.html">
+      <span class="post-nav-label">← Previous</span>
+      <span class="post-nav-title">Archaeology of Time</span>
+    </a>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-left">© 2026 Poetics of Ordinary — Pranshu Chaudhary &amp; Monalisa Thakur</span>
+      <span class="footer-right">Field notes from the attention practice</span>
+    </div>
+  </footer>
+
+  <!-- ═══ LIGHTBOX ═══ -->
+  <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Media viewer">
+    <button class="lb-close" id="lb-close" aria-label="Close">&#215;</button>
+    <button class="lb-nav lb-prev" id="lb-prev" aria-label="Previous">&#8592;</button>
+    <div class="lb-stage" id="lb-stage"></div>
+    <button class="lb-nav lb-next" id="lb-next" aria-label="Next">&#8594;</button>
+    <span class="lb-counter" id="lb-counter"></span>
+  </div>
+
+  <script type="application/json" id="post-meta">{"number":"05","title":"Time, Out of Phase","excerpt":"Time, Out of Phase opened at Flame University at the end of April 2026, five weeks after we arrived as creators-in-residence. A 25 × 36 LED grid, 900 pixels, responds to presence not instantly, not completely, but over time.","category":"Installation","author":"Pranshu Chaudhary & Monalisa Thakur","date":"April 2026","file":"post-flame.html"}</script>
+
+  <script>
+    (function () {
+      var el = document.getElementById('nav-date');
+      if (el) el.textContent = new Date().toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' });
+    })();
+
+    // Lightbox — unified pool: inline images + vertical video + grid items
+    (function () {
+      var lb      = document.getElementById('lb');
+      var stage   = document.getElementById('lb-stage');
+      var counter = document.getElementById('lb-counter');
+      var pool    = [];
+      var current = 0;
+
+      // Collect items in document order
+      document.querySelectorAll('.post-image img').forEach(function (img) {
+        pool.push({ type: 'image', src: img.src, trigger: img });
+      });
+      document.querySelectorAll('.post-diagram img').forEach(function (img) {
+        pool.push({ type: 'image', src: img.src, trigger: img });
+      });
+      var vertVid = document.querySelector('.post-video-vertical video');
+      if (vertVid) pool.push({ type: 'video', src: vertVid.src, trigger: vertVid });
+      document.querySelectorAll('.media-item').forEach(function (item) {
+        var img   = item.querySelector('img');
+        var video = item.querySelector('video');
+        var isVid = item.classList.contains('media-item-video');
+        pool.push({ type: isVid ? 'video' : 'image', src: isVid ? (video && video.src) : (img && img.src), trigger: item });
+      });
+
+      function render() {
+        var v = stage.querySelector('video');
+        if (v) v.pause();
+        stage.innerHTML = '';
+        var it = pool[current];
+        counter.textContent = (current + 1) + ' \u2013 ' + pool.length;
+        if (it.type === 'video') {
+          var el = document.createElement('video');
+          el.src = it.src; el.controls = true;
+          stage.appendChild(el);
+        } else {
+          var el = document.createElement('img');
+          el.src = it.src; el.alt = '';
+          stage.appendChild(el);
+        }
+      }
+
+      function open(i) {
+        current = i; render();
+        lb.classList.add('lb-open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function close() {
+        var v = stage.querySelector('video');
+        if (v) v.pause();
+        lb.classList.remove('lb-open');
+        document.body.style.overflow = '';
+        stage.innerHTML = '';
+      }
+
+      function prev() { current = (current - 1 + pool.length) % pool.length; render(); }
+      function next() { current = (current + 1) % pool.length; render(); }
+
+      pool.forEach(function (it, i) {
+        it.trigger.style.cursor = 'pointer';
+        it.trigger.addEventListener('click', function () { open(i); });
+      });
+
+      document.getElementById('lb-close').addEventListener('click', close);
+      document.getElementById('lb-prev').addEventListener('click', function (e) { e.stopPropagation(); prev(); });
+      document.getElementById('lb-next').addEventListener('click', function (e) { e.stopPropagation(); next(); });
+      lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
+      document.addEventListener('keydown', function (e) {
+        if (!lb.classList.contains('lb-open')) return;
+        if (e.key === 'Escape')     close();
+        if (e.key === 'ArrowLeft')  prev();
+        if (e.key === 'ArrowRight') next();
+      });
+    })();
+  </script>
+</body>
+</html>
