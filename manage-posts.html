@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
   <title>Post Registry — Poetics of Ordinary</title>
   <link rel="stylesheet" href="styles.css">
   <style>
@@ -44,7 +45,7 @@
     /* ── Registry table ── */
     .registry-header {
       display: grid;
-      grid-template-columns: 52px 1fr 180px 90px;
+      grid-template-columns: 52px 1fr 180px 160px;
       gap: 24px;
       padding: 10px 0;
       border-bottom: 2px solid var(--accent);
@@ -60,7 +61,7 @@
 
     .registry-row {
       display: grid;
-      grid-template-columns: 52px 1fr 180px 90px;
+      grid-template-columns: 52px 1fr 180px 160px;
       gap: 24px;
       padding: 28px 0;
       border-bottom: var(--rule);
@@ -111,6 +112,36 @@
 
     .registry-file a:hover {
       text-decoration: underline;
+    }
+
+    .registry-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .btn-edit {
+      background: none;
+      border: var(--rule);
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 8px 14px;
+      cursor: pointer;
+      color: var(--accent);
+      border-color: var(--accent);
+      transition: background 0.12s, color 0.12s;
+      white-space: nowrap;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+    }
+
+    .btn-edit:hover {
+      background: var(--accent);
+      color: white;
     }
 
     .btn-delete {
@@ -185,7 +216,7 @@
     @media (max-width: 700px) {
       .manager-page { padding: 72px 20px 120px; }
       .registry-header,
-      .registry-row { grid-template-columns: 44px 1fr 80px; }
+      .registry-row { grid-template-columns: 44px 1fr 120px; }
       .registry-col-label:nth-child(3),
       .registry-file { display: none; }
       .manager-bar { padding: 12px 20px; }
@@ -293,7 +324,10 @@
             '<div class="registry-sub">' + esc(p.category) + ' &middot; ' + esc(p.author) + ' &middot; ' + esc(p.date) + '</div>' +
           '</div>' +
           '<div class="registry-file"><a href="' + esc(p.file) + '" target="_blank">' + esc(p.file) + ' ↗</a></div>' +
-          '<div><button class="btn-delete" onclick="deletePost(' + JSON.stringify(p.file) + ')">Delete ×</button></div>';
+          '<div class="registry-actions">' +
+            '<a class="btn-edit" href="write-post.html?edit=' + encodeURIComponent(p.file) + '">Edit →</a>' +
+            '<button class="btn-delete" onclick="deletePost(' + JSON.stringify(p.file) + ')">Delete ×</button>' +
+          '</div>';
         list.appendChild(row);
       });
 

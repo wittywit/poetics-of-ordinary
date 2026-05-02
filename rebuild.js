@@ -63,18 +63,35 @@ function pad(n) {
   return String(n || '').padStart(2, '0');
 }
 
-const postsHtml = posts.map(p => `      <a class="post-row reveal" href="${p.file}">
+const geometryByFile = {
+  'post-ostranenie.html': 'orbit',
+  'post-time.html': 'rings',
+  'post-sunlight.html': 'ray',
+  'post-alternative-time.html': 'hourglass',
+  'post-flame.html': 'grid'
+};
+const fallbackGeometries = ['orbit', 'rings', 'ray', 'hourglass', 'grid'];
+
+const postsHtml = posts.map((p, i) => {
+  const geometry = geometryByFile[p.file] || fallbackGeometries[i % fallbackGeometries.length];
+  const type = p.category || 'Entry';
+  return `      <a class="post-row reveal" href="${p.file}">
         <div class="post-row-num">${pad(p.number)}</div>
         <div class="post-row-category">${(p.category || '').replace(' ', '<br>')}</div>
+        <div class="post-row-mark" aria-hidden="true">
+          <canvas class="post-geometry" width="96" height="64" data-geometry="${geometry}"></canvas>
+        </div>
         <div class="post-row-content">
           <h2 class="post-row-title">${p.title || ''}</h2>
           <p class="post-row-excerpt">${p.excerpt || ''}</p>
         </div>
         <div class="post-row-meta">
           <div class="post-row-author">${p.author || ''}</div>
-          <span class="post-row-read">Read →</span>
+          <span class="post-row-detail">${type}</span>
+          <span class="post-row-detail">${p.date || ''}</span>
         </div>
-      </a>`).join('\n\n');
+      </a>`;
+}).join('\n\n');
 
 // ── 5. Inject into index.html ───────────────────────────────────
 const indexPath   = path.join(dir, 'index.html');

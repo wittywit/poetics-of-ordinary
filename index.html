@@ -3,7 +3,75 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Poetics of Ordinary</title>
+  <title>Poetics of Ordinary — Field Notes on Perception, Time, and the Overlooked</title>
+  <meta name="description" content="Poetics of Ordinary is a field practice in attention by Pranshu Kumar Chaudhary and Monalisa Thakur — essays, installations, and field notes on perception, representations of time, and the overlooked.">
+  <meta name="author" content="Pranshu Kumar Chaudhary, Monalisa Thakur">
+  <meta name="keywords" content="critical design, discursive design, representations of time, design research, perception, attention, poetics of ordinary, Pranshu Kumar Chaudhary, Monalisa Thakur">
+  <link rel="canonical" href="https://poeticsofordinary.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Poetics of Ordinary">
+  <meta property="og:title" content="Poetics of Ordinary — Field Notes on Perception, Time, and the Overlooked">
+  <meta property="og:description" content="A field practice in attention by Pranshu Kumar Chaudhary and Monalisa Thakur — essays, installations, and field notes on perception, representations of time, and the overlooked.">
+  <meta property="og:url" content="https://poeticsofordinary.com/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Poetics of Ordinary">
+  <meta name="twitter:description" content="A field practice in attention — essays, installations, and field notes on perception, representations of time, and the overlooked.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://poeticsofordinary.com/#website",
+        "name": "Poetics of Ordinary",
+        "url": "https://poeticsofordinary.com",
+        "description": "A field practice in attention — essays, installations, and field notes on perception, representations of time, and the overlooked.",
+        "inLanguage": "en",
+        "publisher": {"@id": "https://poeticsofordinary.com/#org"}
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://poeticsofordinary.com/#org",
+        "name": "Poetics of Ordinary",
+        "url": "https://poeticsofordinary.com",
+        "founder": [
+          {"@id": "https://poeticsofordinary.com/#pranshu"},
+          {"@id": "https://poeticsofordinary.com/#monalisa"}
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://poeticsofordinary.com/#pranshu",
+        "name": "Pranshu Kumar Chaudhary",
+        "url": "https://wittywit.com",
+        "email": ["pranshu@poetics.studio", "pranshu_c@alumni.nid.edu", "kumarpranshu.work@gmail.com", "pkch101@gmail.com"],
+        "jobTitle": "Designer and Researcher",
+        "description": "Pranshu Kumar Chaudhary is a designer and researcher working in critical and discursive design, with a sustained focus on representations of time, material culture, and the poetics of everyday perception.",
+        "knowsAbout": ["Critical Design", "Discursive Design", "Design Research", "Representations of Time", "Interaction Design", "Philosophy of Time", "Phenomenology", "Material Culture", "Installation Art"],
+        "sameAs": [
+          "https://www.linkedin.com/in/pranshu101/",
+          "https://wittywit.com",
+          "https://poeticsofordinary.com/about.html"
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://poeticsofordinary.com/#monalisa",
+        "name": "Monalisa Thakur",
+        "url": "https://monalisathakur.com",
+        "email": ["monalisa@poetics.studio", "mona.work282@gmail.com"],
+        "jobTitle": "Designer and Researcher",
+        "description": "Monalisa Thakur is a designer and researcher working in critical and discursive design, with a sustained focus on representations of time, cultural anthropology, and practices of attention.",
+        "knowsAbout": ["Critical Design", "Discursive Design", "Design Research", "Representations of Time", "Cultural Anthropology", "Philosophy of Time", "Attention Studies", "Phenomenology"],
+        "sameAs": [
+          "https://www.linkedin.com/in/monalisa-thakur-71620056/",
+          "https://monalisathakur.com",
+          "https://poeticsofordinary.com/about.html"
+        ]
+      }
+    ]
+  }
+  </script>
   <link rel="stylesheet" href="styles.css">
   <style>
 
@@ -49,6 +117,21 @@
       position: relative;
     }
 
+    .hero-title-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(160px, 1fr);
+      gap: 36px;
+      align-items: center;
+    }
+
+    .hero-mark {
+      width: min(100%, 260px);
+      aspect-ratio: 1;
+      justify-self: end;
+      align-self: center;
+      display: block;
+    }
+
     .hero-label {
       font-family: var(--sans);
       font-size: 12px;
@@ -78,7 +161,7 @@
 
     .hero-title-main {
       display: block;
-      font-size: clamp(56px, 10vw, 120px);
+      font-size: clamp(48px, 7.4vw, 92px);
       letter-spacing: -0.03em;
       color: var(--fg);
       text-transform: uppercase;
@@ -86,7 +169,7 @@
 
     .hero-title-sub {
       display: block;
-      font-size: clamp(26px, 4.5vw, 58px);
+      font-size: clamp(24px, 3.8vw, 46px);
       font-style: normal;
       font-weight: 700;
       color: var(--orange);
@@ -180,7 +263,7 @@
 
     .manifest-header {
       display: grid;
-      grid-template-columns: 60px 90px 1fr 200px;
+      grid-template-columns: 60px 90px 96px 1fr 220px;
       padding: 14px 0;
       border-bottom: 3px solid var(--orange);
       margin-top: 56px;
@@ -198,14 +281,14 @@
 
     a.post-row {
       display: grid;
-      grid-template-columns: 60px 90px 1fr 200px;
+      grid-template-columns: 60px 90px 96px 1fr 220px;
       gap: 28px;
-      padding: 40px 0;
+      padding: 38px 0 42px;
       border-bottom: var(--rule);
       text-decoration: none;
       color: inherit;
       align-items: start;
-      transition: background 0.15s;
+      transition: background 0.15s, color 0.15s;
     }
 
     a.post-row:hover {
@@ -234,6 +317,18 @@
       font-weight: 700;
     }
 
+    .post-row-mark {
+      width: 96px;
+      height: 64px;
+      padding-top: 2px;
+    }
+
+    .post-geometry {
+      width: 96px;
+      height: 64px;
+      display: block;
+    }
+
     .post-row-title {
       font-family: var(--sans);
       font-size: clamp(17px, 2vw, 23px);
@@ -260,6 +355,8 @@
 
     .post-row-meta {
       padding-top: 6px;
+      border-left: 2px solid var(--orange);
+      padding-left: 18px;
     }
 
     .post-row-author {
@@ -272,23 +369,20 @@
       font-weight: 700;
     }
 
-    .post-row-read {
-      display: inline-block;
+    .post-row-detail {
+      display: block;
       font-family: var(--sans);
       font-size: 12px;
-      letter-spacing: 0.1em;
       text-transform: uppercase;
+      letter-spacing: 0.08em;
+      line-height: 1.7;
       color: var(--orange);
-      border: 2px solid var(--orange);
-      padding: 8px 16px;
-      text-decoration: none;
-      transition: background 0.15s, color 0.15s;
       font-weight: 700;
     }
 
-    a.post-row:hover .post-row-read {
-      background: var(--orange);
-      color: white;
+    .post-row-detail::after {
+      content: ' /';
+      color: var(--ink-faint);
     }
 
     .manifest-write-link {
@@ -337,6 +431,16 @@
         padding: 36px 20px 32px;
       }
 
+      .hero-title-layout {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .hero-mark {
+        width: 128px;
+        justify-self: start;
+      }
+
       .hero-bottom-grid {
         grid-template-columns: 1fr;
       }
@@ -361,7 +465,7 @@
 
       a.post-row {
         grid-template-columns: 44px 1fr;
-        grid-template-rows: auto auto auto;
+        grid-template-rows: auto auto auto auto;
         gap: 0 18px;
       }
 
@@ -386,12 +490,40 @@
         margin-top: 14px;
       }
 
+      .post-row-mark {
+        grid-column: 1 / -1;
+        width: 100%;
+        height: 42px;
+        margin-top: 16px;
+      }
+
+      .post-geometry {
+        width: min(160px, 100%);
+        height: 42px;
+      }
+
       .post-row-meta {
         grid-column: 1 / -1;
         margin-top: 14px;
+        border-left: none;
+        border-top: 2px solid var(--orange);
+        padding-left: 0;
+        padding-top: 14px;
       }
     }
   </style>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-73CMMJESGL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-73CMMJESGL');
+</script>
+
+  
 </head>
 <body class="page-body">
 
@@ -415,10 +547,13 @@
 
     <div class="hero-title-block">
       <div class="hero-label">A field practice in attention</div>
-      <h1 class="hero-title">
-        <span class="hero-title-main">POETICS</span>
-        <span class="hero-title-sub">of ordinary</span>
-      </h1>
+      <div class="hero-title-layout">
+        <h1 class="hero-title">
+          <span class="hero-title-main">POETICS</span>
+          <span class="hero-title-sub">of ordinary</span>
+        </h1>
+        <canvas class="hero-mark" id="hero-mark" width="180" height="180" aria-hidden="true"></canvas>
+      </div>
       <span class="hero-corner-tag">Vol. I — 2026</span>
     </div>
 
@@ -451,6 +586,7 @@
       <div class="manifest-header">
         <div class="manifest-col-label">No.</div>
         <div class="manifest-col-label">Category</div>
+        <div class="manifest-col-label">Form</div>
         <div class="manifest-col-label">Entry</div>
         <div class="manifest-col-label">Meta</div>
       </div>
@@ -460,58 +596,91 @@
       <a class="post-row reveal" href="post-ostranenie.html">
         <div class="post-row-num">01</div>
         <div class="post-row-category">On<br>Perception</div>
+        <div class="post-row-mark" aria-hidden="true">
+          <canvas class="post-geometry" width="96" height="64" data-geometry="orbit"></canvas>
+        </div>
         <div class="post-row-content">
           <h2 class="post-row-title">On Not-Knowing: Ostranenie, Exformation, and what different cultures figured out about the familiar</h2>
           <p class="post-row-excerpt">There's a Russian word — ostranenie — that I keep coming back to. Viktor Shklovsky coined it in 1917. The idea is that art's only real job is to knock you out of the automatic. Turns out every culture has found their way to this same problem.</p>
         </div>
         <div class="post-row-meta">
           <div class="post-row-author">Pranshu Chaudhary</div>
-          <span class="post-row-read">Read →</span>
+          <span class="post-row-detail">Essay</span>
+          <span class="post-row-detail">April 2026</span>
         </div>
       </a>
 
       <a class="post-row reveal" href="post-time.html">
         <div class="post-row-num">02</div>
         <div class="post-row-category">On<br>Time</div>
+        <div class="post-row-mark" aria-hidden="true">
+          <canvas class="post-geometry" width="96" height="64" data-geometry="rings"></canvas>
+        </div>
         <div class="post-row-content">
           <h2 class="post-row-title">Archaeology of Time</h2>
           <p class="post-row-excerpt">The time you are living in right now — this divided, always-running-out, perfectly measurable time — is about 250 years old. It was invented. Before that, time was a different material entirely.</p>
         </div>
         <div class="post-row-meta">
           <div class="post-row-author">Monalisa Thakur</div>
-          <span class="post-row-read">Read →</span>
+          <span class="post-row-detail">Essay</span>
+          <span class="post-row-detail">April 2026</span>
         </div>
       </a>
 
       <a class="post-row reveal" href="post-sunlight.html">
         <div class="post-row-num">03</div>
         <div class="post-row-category">On<br>Light</div>
+        <div class="post-row-mark" aria-hidden="true">
+          <canvas class="post-geometry" width="96" height="64" data-geometry="ray"></canvas>
+        </div>
         <div class="post-row-content">
           <h2 class="post-row-title">On the Simple Act of Trying to Catch the Sunlight in Our Palms</h2>
           <p class="post-row-excerpt">A shaft of light comes through a gap — a curtain not quite closed, a keyhole, a crack in a shutter — and without thinking, you put your hand in it. You know you can't catch it. And you do it anyway.</p>
         </div>
         <div class="post-row-meta">
           <div class="post-row-author">Pranshu Chaudhary</div>
-          <span class="post-row-read">Read →</span>
+          <span class="post-row-detail">Essay</span>
+          <span class="post-row-detail">April 2026</span>
         </div>
       </a>
 
       <a class="post-row reveal" href="post-alternative-time.html">
         <div class="post-row-num">04</div>
         <div class="post-row-category">On<br>Time</div>
+        <div class="post-row-mark" aria-hidden="true">
+          <canvas class="post-geometry" width="96" height="64" data-geometry="hourglass"></canvas>
+        </div>
         <div class="post-row-content">
           <h2 class="post-row-title">Alternative Time</h2>
           <p class="post-row-excerpt">You walk into a room. On the wall is a grid of 900 LEDs. Your image appears in it — but not immediately, and not completely. It builds. It takes seven visits for the image to fully resolve. Each visit needs to be long enough. Showing up doesn't count. You have to stay.</p>
         </div>
         <div class="post-row-meta">
           <div class="post-row-author">Pranshu Chaudhary</div>
-          <span class="post-row-read">Read →</span>
+          <span class="post-row-detail">Essay</span>
+          <span class="post-row-detail">April 2026</span>
         </div>
       </a>
 
-      <!-- POSTS:END 
+      <a class="post-row reveal" href="post-flame.html">
+        <div class="post-row-num">05</div>
+        <div class="post-row-category">Installation</div>
+        <div class="post-row-mark" aria-hidden="true">
+          <canvas class="post-geometry" width="96" height="64" data-geometry="grid"></canvas>
+        </div>
+        <div class="post-row-content">
+          <h2 class="post-row-title">Time, Out of Phase</h2>
+          <p class="post-row-excerpt">Time, Out of Phase opened at Flame University at the end of April 2026, five weeks after we arrived as creators-in-residence. A 25 × 36 LED grid, 900 pixels, responds to presence not instantly, not completely, but over time.</p>
+        </div>
+        <div class="post-row-meta">
+          <div class="post-row-author">Pranshu Chaudhary &amp; Monalisa Thakur</div>
+          <span class="post-row-detail">Installation</span>
+          <span class="post-row-detail">April 2026</span>
+        </div>
+      </a>
 
-      <a class="manifest-write-link" href="write-post.html">Write new post →</a> -->
+      <!-- POSTS:END -->
+
+      <a class="manifest-write-link" href="write-post.html">Write new post →</a>
 
     </div>
   </section>
@@ -562,6 +731,210 @@
         var heroEls = document.querySelectorAll('.hero.reveal');
         heroEls.forEach(function (el) { el.classList.add('visible'); });
       });
+    })();
+
+    /* ─── CANVAS GEOMETRIES ─────────────────────── */
+    (function () {
+      var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var blue = '#4A6FA5';
+      var t = 0;
+      var heroPointer = { x: 0.5, y: 0.5, active: false };
+      var canvases = Array.prototype.slice.call(document.querySelectorAll('.post-geometry'));
+      var hero = document.getElementById('hero-mark');
+      if (hero) canvases.push(hero);
+
+      function fit(canvas) {
+        var dpr = Math.min(window.devicePixelRatio || 1, 2);
+        var rect = canvas.getBoundingClientRect();
+        canvas.width = Math.max(1, Math.floor(rect.width * dpr));
+        canvas.height = Math.max(1, Math.floor(rect.height * dpr));
+        return dpr;
+      }
+
+      function setupCanvas(canvas) {
+        var dpr = fit(canvas);
+        var ctx = canvas.getContext('2d');
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        return ctx;
+      }
+
+      function stroke(ctx, alpha, width) {
+        ctx.strokeStyle = blue;
+        ctx.globalAlpha = alpha == null ? 1 : alpha;
+        ctx.lineWidth = width || 1.4;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+      }
+
+      function polygon(ctx, points) {
+        ctx.beginPath();
+        points.forEach(function (p, i) {
+          if (i === 0) ctx.moveTo(p[0], p[1]);
+          else ctx.lineTo(p[0], p[1]);
+        });
+        ctx.closePath();
+        ctx.stroke();
+      }
+
+      function drawOrbit(ctx, w, h, phase) {
+        stroke(ctx, 1, 1.3);
+        for (var i = 0; i < 3; i++) {
+          ctx.save();
+          ctx.translate(w * 0.48, h * 0.5);
+          ctx.rotate(phase * 0.01 + i * 0.72);
+          ctx.scale(1.16, 0.78);
+          ctx.beginPath();
+          ctx.arc(0, 0, Math.min(w, h) * 0.28, 0, Math.PI * 2);
+          ctx.stroke();
+          ctx.restore();
+        }
+      }
+
+      function drawRings(ctx, w, h, phase) {
+        stroke(ctx, 1, 1.25);
+        var cx = w * 0.5;
+        var cy = h * 0.5;
+        for (var i = 0; i < 5; i++) {
+          ctx.beginPath();
+          ctx.arc(cx, cy, 7 + i * 5.4 + Math.sin(phase * 0.02 + i) * 0.8, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+      }
+
+      function drawRay(ctx, w, h, phase) {
+        stroke(ctx, 1, 1.35);
+        var cx = w * 0.44;
+        var cy = h * 0.5;
+        for (var i = 0; i < 9; i++) {
+          var a = i * Math.PI / 4 + phase * 0.006;
+          var r1 = 8;
+          var r2 = 30;
+          ctx.beginPath();
+          ctx.moveTo(cx + Math.cos(a) * r1, cy + Math.sin(a) * r1);
+          ctx.lineTo(cx + Math.cos(a) * r2, cy + Math.sin(a) * r2);
+          ctx.stroke();
+        }
+        ctx.beginPath();
+        ctx.arc(cx, cy, 8, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+
+      function drawHourglass(ctx, w, h, phase) {
+        stroke(ctx, 1, 1.4);
+        var x1 = w * 0.28, x2 = w * 0.72, y1 = h * 0.2, y2 = h * 0.8;
+        polygon(ctx, [[x1, y1], [x2, y1], [x1, y2], [x2, y2]]);
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.moveTo(x2, y1);
+        ctx.lineTo(x1, y2);
+        ctx.stroke();
+        ctx.beginPath();
+        var py = h * (0.32 + (Math.sin(phase * 0.02) + 1) * 0.18);
+        ctx.arc(w * 0.5, py, 2.8, 0, Math.PI * 2);
+        ctx.fillStyle = blue;
+        ctx.fill();
+      }
+
+      function drawGrid(ctx, w, h, phase) {
+        stroke(ctx, 1, 1.2);
+        var cols = 5, rows = 4;
+        var sx = w * 0.24, sy = h * 0.22, gap = Math.min(w, h) * 0.14;
+        for (var y = 0; y < rows; y++) {
+          for (var x = 0; x < cols; x++) {
+            ctx.beginPath();
+            var pulse = Math.sin(phase * 0.035 + x * 0.6 + y * 0.9);
+            ctx.arc(sx + x * gap, sy + y * gap, 2.7 + pulse * 0.9, 0, Math.PI * 2);
+            ctx.stroke();
+          }
+        }
+      }
+
+      function drawHero(ctx, w, h, phase) {
+        var cols = 11;
+        var rows = 11;
+        var gap = Math.min(w, h) * 0.075;
+        var sx = w * 0.5 - gap * (cols - 1) / 2;
+        var sy = h * 0.5 - gap * (rows - 1) / 2;
+        ctx.fillStyle = blue;
+        ctx.strokeStyle = blue;
+        for (var y = 0; y < rows; y++) {
+          for (var x = 0; x < cols; x++) {
+            var px = sx + x * gap;
+            var py = sy + y * gap;
+            var nx = x - (cols - 1) / 2;
+            var ny = y - (rows - 1) / 2;
+            var mask = Math.sqrt(nx * nx + ny * ny) < 5.25 || (x > 6 && y < 4) || (x < 4 && y > 6);
+            if (!mask) continue;
+            var wave = Math.sin(phase * 0.018 + x * 0.55 + y * 0.35);
+            var size = 1.7 + (wave + 1) * 0.55;
+            var dx = px - heroPointer.x * w;
+            var dy = py - heroPointer.y * h;
+            var dist = Math.sqrt(dx * dx + dy * dy);
+            var local = heroPointer.active ? Math.max(0, 1 - dist / (gap * 2.8)) : 0;
+            var morph = local * 2;
+            ctx.globalAlpha = 0.38 + local * 0.62;
+            ctx.save();
+            ctx.translate(px, py);
+            ctx.rotate(phase * 0.01 + (x + y) * 0.12);
+            if (morph > 1.1) {
+              var tri = size * (2.8 + local);
+              ctx.beginPath();
+              ctx.moveTo(0, -tri);
+              ctx.lineTo(tri * 0.9, tri * 0.78);
+              ctx.lineTo(-tri * 0.9, tri * 0.78);
+              ctx.closePath();
+              ctx.stroke();
+            } else if (morph > 0.35) {
+              var sq = size * (2.4 + local);
+              ctx.strokeRect(-sq, -sq, sq * 2, sq * 2);
+            } else {
+              ctx.beginPath();
+              ctx.arc(0, 0, size, 0, Math.PI * 2);
+              ctx.fill();
+            }
+            ctx.restore();
+          }
+        }
+        ctx.globalAlpha = 1;
+      }
+
+      function drawCanvas(canvas, phase) {
+        var ctx = setupCanvas(canvas);
+        var rect = canvas.getBoundingClientRect();
+        var w = rect.width;
+        var h = rect.height;
+        ctx.clearRect(0, 0, w, h);
+        var geometry = canvas.getAttribute('data-geometry') || 'hero';
+        if (geometry === 'orbit') drawOrbit(ctx, w, h, phase);
+        else if (geometry === 'rings') drawRings(ctx, w, h, phase);
+        else if (geometry === 'ray') drawRay(ctx, w, h, phase);
+        else if (geometry === 'hourglass') drawHourglass(ctx, w, h, phase);
+        else if (geometry === 'grid') drawGrid(ctx, w, h, phase);
+        else drawHero(ctx, w, h, phase);
+        ctx.globalAlpha = 1;
+      }
+
+      function draw() {
+        canvases.forEach(function (canvas) { drawCanvas(canvas, t); });
+        t += 1;
+        if (!reduceMotion) requestAnimationFrame(draw);
+      }
+
+      if (hero) {
+        hero.addEventListener('pointermove', function (event) {
+          var rect = hero.getBoundingClientRect();
+          heroPointer.x = (event.clientX - rect.left) / rect.width;
+          heroPointer.y = (event.clientY - rect.top) / rect.height;
+          heroPointer.active = true;
+        });
+        hero.addEventListener('pointerleave', function () {
+          heroPointer.active = false;
+        });
+      }
+
+      window.addEventListener('resize', function () { canvases.forEach(function (canvas) { drawCanvas(canvas, t); }); });
+      draw();
     })();
   </script>
 </body>

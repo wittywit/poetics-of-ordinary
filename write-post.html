@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
   <title>Write Post — Poetics of Ordinary</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -168,11 +169,15 @@
       text-align: center;
     }
 
-    .block-type-label.type-lead     { color: var(--fg); }
-    .block-type-label.type-section  { color: var(--orange); }
-    .block-type-label.type-pullquote { color: var(--orange); }
-    .block-type-label.type-fieldnote { color: var(--fg); }
-    .block-type-label.type-image    { color: var(--fg); }
+    .block-type-label.type-lead          { color: var(--fg); }
+    .block-type-label.type-section       { color: var(--orange); }
+    .block-type-label.type-pullquote     { color: var(--orange); }
+    .block-type-label.type-fieldnote     { color: var(--fg); }
+    .block-type-label.type-image         { color: var(--fg); }
+    .block-type-label.type-video         { color: var(--fg); }
+    .block-type-label.type-video-vertical { color: var(--fg); }
+    .block-type-label.type-audio         { color: var(--orange); }
+    .block-type-label.type-media-grid    { color: var(--orange); }
 
     .block-move-btns {
       display: flex;
@@ -238,7 +243,7 @@
       resize: vertical;
       outline: none;
       background: white;
-      min-height: 80px;
+      min-height: 180px;
     }
 
     .block-textarea:focus {
@@ -264,7 +269,7 @@
       font-weight: 700;
       border-left: 4px solid var(--orange);
       margin-left: 0;
-      min-height: 80px;
+      min-height: 120px;
     }
 
     /* ── Rich text toolbar ── */
@@ -347,7 +352,9 @@
       padding: 14px 16px;
       outline: none;
       background: white;
-      min-height: 80px;
+      min-height: 180px;
+      overflow: auto;
+      resize: vertical;
     }
 
     .block-rich-input:focus {
@@ -369,7 +376,7 @@
       font-size: 20px;
       font-weight: 700;
       border-left: 4px solid var(--orange);
-      min-height: 80px;
+      min-height: 120px;
     }
 
     /* ── Field note block ── */
@@ -400,7 +407,7 @@
       font-weight: 400;
       line-height: 1.7;
       resize: vertical;
-      min-height: 80px;
+      min-height: 140px;
       outline: none;
       font-family: var(--sans);
       background: white;
@@ -699,6 +706,111 @@
       line-height: 1.6;
     }
 
+    /* ── Media path block (video / audio) ── */
+    .media-path-block {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .media-path-hint {
+      font-size: 11px;
+      color: var(--ink-faint);
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
+    .media-path-hint code {
+      font-family: monospace;
+      background: #EEEEEE;
+      padding: 1px 4px;
+    }
+
+    /* ── Media grid editor ── */
+    .media-grid-editor {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .media-grid-items {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .media-grid-item {
+      display: grid;
+      grid-template-columns: 60px 1fr 28px;
+      border: 1px solid #EEEEEE;
+    }
+
+    .media-grid-item-type {
+      border: none;
+      border-right: 1px solid #EEEEEE;
+      font-size: 11px;
+      font-weight: 700;
+      font-family: var(--sans);
+      background: var(--grid);
+      padding: 6px 4px;
+      outline: none;
+      cursor: pointer;
+      color: var(--fg);
+    }
+
+    .media-grid-item-src {
+      border: none;
+      padding: 7px 10px;
+      font-size: 13px;
+      font-family: var(--sans);
+      outline: none;
+      background: white;
+      color: var(--fg);
+    }
+
+    .media-grid-item-src:focus {
+      background: #FFFDF5;
+    }
+
+    .media-grid-item-remove {
+      border: none;
+      border-left: 1px solid #EEEEEE;
+      background: none;
+      cursor: pointer;
+      color: #CCCCCC;
+      font-size: 16px;
+      font-weight: 700;
+      text-align: center;
+      line-height: 1;
+      transition: color 0.1s;
+    }
+
+    .media-grid-item-remove:hover {
+      color: var(--orange);
+    }
+
+    .add-grid-item-btn {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: none;
+      border: 1px dashed #CCCCCC;
+      padding: 6px 12px;
+      cursor: pointer;
+      color: var(--ink-faint);
+      transition: border-color 0.12s, color 0.12s;
+      align-self: flex-start;
+    }
+
+    .add-grid-item-btn:hover {
+      border-color: var(--orange);
+      color: var(--orange);
+    }
+
     @media (max-width: 700px) {
       .editor-page { padding: 72px 20px 160px; }
       .meta-grid { grid-template-columns: 1fr 1fr; }
@@ -791,6 +903,10 @@
         <button class="add-block-btn accent" onclick="addBlock('pullquote')">+ Pull Quote</button>
         <button class="add-block-btn" onclick="addBlock('fieldnote')">+ Field Note</button>
         <button class="add-block-btn" onclick="addBlock('image')">+ Image</button>
+        <button class="add-block-btn" onclick="addBlock('video')">+ Video</button>
+        <button class="add-block-btn" onclick="addBlock('video-vertical')">+ Vertical Video</button>
+        <button class="add-block-btn accent" onclick="addBlock('audio')">+ Audio</button>
+        <button class="add-block-btn accent" onclick="addBlock('media-grid')">+ Media Grid</button>
       </div>
     </div>
 
@@ -929,12 +1045,16 @@
       section:   'H2',
       pullquote: 'Quote',
       fieldnote: 'Note',
-      image:     'Image'
+      image:          'Image',
+      video:          'Video',
+      'video-vertical': 'Vert.',
+      audio:          'Audio',
+      'media-grid':   'Grid'
     };
 
     function addBlock(type) {
       var id = 'b' + (++blockSeq);
-      var block = { id: id, type: type, content: '', label: 'Note', src: '', alt: '', caption: '' };
+      var block = { id: id, type: type, content: '', label: 'Note', src: '', alt: '', caption: '', items: [] };
       blocks.push(block);
       renderBlockToDOM(block);
       updateStatus();
@@ -976,6 +1096,40 @@
           '<input class="image-alt-input" placeholder="Describe the image" value="' + escAttr(block.alt) + '" oninput="setField(\'' + block.id + '\', \'alt\', this.value)">' +
           '<p class="image-input-label" style="margin-top:8px">Caption (optional)</p>' +
           '<input class="image-caption-input" placeholder="Caption shown below image" value="' + escAttr(block.caption) + '" oninput="setField(\'' + block.id + '\', \'caption\', this.value)">' +
+          '</div>';
+      } else if (block.type === 'video' || block.type === 'video-vertical') {
+        var isVert = block.type === 'video-vertical';
+        contentCol = '<div class="media-path-block">' +
+          '<p class="image-input-label">' + (isVert ? 'Vertical video path (9:16 aspect)' : 'Video path') + '</p>' +
+          '<input class="image-url-input" placeholder="media/post-name/video.mp4" value="' + escAttr(block.src) + '" oninput="setField(\'' + block.id + '\', \'src\', this.value)">' +
+          '<p class="image-input-label" style="margin-top:8px">Caption (optional)</p>' +
+          '<input class="image-caption-input" placeholder="Caption shown below video" value="' + escAttr(block.caption) + '" oninput="setField(\'' + block.id + '\', \'caption\', this.value)">' +
+          '<p class="media-path-hint">Reference files from the media/ folder — e.g. <code>media/post-flame/install-video.mp4</code></p>' +
+          '</div>';
+      } else if (block.type === 'audio') {
+        contentCol = '<div class="media-path-block">' +
+          '<p class="image-input-label">Audio path</p>' +
+          '<input class="image-url-input" placeholder="media/post-name/recording.mp3" value="' + escAttr(block.src) + '" oninput="setField(\'' + block.id + '\', \'src\', this.value)">' +
+          '<p class="image-input-label" style="margin-top:8px">Caption (optional)</p>' +
+          '<input class="image-caption-input" placeholder="Caption shown below audio" value="' + escAttr(block.caption) + '" oninput="setField(\'' + block.id + '\', \'caption\', this.value)">' +
+          '<p class="media-path-hint">Example: <code>media/post-flame/ambient-audio.mp3</code></p>' +
+          '</div>';
+      } else if (block.type === 'media-grid') {
+        var gridItemsHtml = (block.items || []).map(function(it, idx) {
+          return '<div class="media-grid-item">' +
+            '<select class="media-grid-item-type" onchange="setGridItemField(\'' + block.id + '\', ' + idx + ', \'type\', this.value)">' +
+            '<option value="image"' + (it.type !== 'video' ? ' selected' : '') + '>Image</option>' +
+            '<option value="video"' + (it.type === 'video' ? ' selected' : '') + '>Video</option>' +
+            '</select>' +
+            '<input class="media-grid-item-src" placeholder="media/post-name/file.jpg" value="' + escAttr(it.src) + '" oninput="setGridItemField(\'' + block.id + '\', ' + idx + ', \'src\', this.value)">' +
+            '<button class="media-grid-item-remove" onclick="removeGridItem(\'' + block.id + '\', ' + idx + ')">×</button>' +
+            '</div>';
+        }).join('');
+        contentCol = '<div class="media-grid-editor">' +
+          '<p class="image-input-label">Media Grid — items open in lightbox on click</p>' +
+          '<div class="media-grid-items" id="grid-items-' + block.id + '">' + gridItemsHtml + '</div>' +
+          '<button class="add-grid-item-btn" onclick="addGridItem(\'' + block.id + '\')">+ Add item</button>' +
+          '<p class="media-path-hint">Mix images and videos. Recommended 4+ items for a full row.</p>' +
           '</div>';
       } else {
         var placeholders = {
@@ -1054,6 +1208,30 @@
         }
       };
       reader.readAsDataURL(input.files[0]);
+    }
+
+    /* ─── MEDIA GRID HELPERS ───────────────────── */
+    function addGridItem(blockId) {
+      var block = blocks.find(function(b) { return b.id === blockId; });
+      if (!block) return;
+      if (!block.items) block.items = [];
+      block.items.push({ type: 'image', src: '' });
+      var li = document.querySelector('.block-item[data-id="' + blockId + '"]');
+      if (li) li.innerHTML = buildBlockHTML(block);
+    }
+
+    function removeGridItem(blockId, idx) {
+      var block = blocks.find(function(b) { return b.id === blockId; });
+      if (!block || !block.items) return;
+      block.items.splice(idx, 1);
+      var li = document.querySelector('.block-item[data-id="' + blockId + '"]');
+      if (li) li.innerHTML = buildBlockHTML(block);
+    }
+
+    function setGridItemField(blockId, idx, field, value) {
+      var block = blocks.find(function(b) { return b.id === blockId; });
+      if (!block || !block.items || !block.items[idx]) return;
+      block.items[idx][field] = value;
     }
 
     /* ─── ANNOTATIONS ───────────────────────────── */
@@ -1136,6 +1314,43 @@
             return '        <figure class="post-figure">\n          <img src="' + src + '" alt="' + alt + '" style="max-width:100%;height:auto;display:block;">\n' +
               (cap ? '          <figcaption class="post-figure-caption" style="font-size:13px;font-weight:400;color:#777;margin-top:8px;">' + cap + '</figcaption>\n' : '') +
               '        </figure>';
+          case 'video':
+            var src = block.src || '';
+            var cap = block.caption || '';
+            return '        <figure class="post-figure post-video-wrap">\n' +
+              '          <video src="' + src + '" controls style="max-width:100%;display:block;"></video>\n' +
+              (cap ? '          <figcaption style="font-size:13px;font-weight:400;color:#777;margin-top:8px;">' + cap + '</figcaption>\n' : '') +
+              '        </figure>';
+          case 'video-vertical':
+            var src = block.src || '';
+            var cap = block.caption || '';
+            return '        <div class="post-video-vertical">\n' +
+              '          <video src="' + src + '" controls playsinline style="width:100%;aspect-ratio:9/16;object-fit:cover;display:block;"></video>\n' +
+              (cap ? '          <p style="font-size:13px;font-weight:400;color:#777;margin-top:8px;text-align:center;">' + cap + '</p>\n' : '') +
+              '        </div>';
+          case 'audio':
+            var src = block.src || '';
+            var cap = block.caption || '';
+            return '        <figure class="post-figure post-audio-wrap">\n' +
+              '          <audio src="' + src + '" controls style="width:100%;display:block;"></audio>\n' +
+              (cap ? '          <figcaption style="font-size:13px;font-weight:400;color:#777;margin-top:8px;">' + cap + '</figcaption>\n' : '') +
+              '        </figure>';
+          case 'media-grid':
+            var gid = 'grid-' + block.id;
+            var itemsHtml = (block.items || []).map(function(it, idx) {
+              if (it.type === 'video') {
+                return '          <div class="media-item" data-lb="' + gid + '" data-src="' + escAttr(it.src) + '" data-type="video" data-idx="' + idx + '">\n' +
+                  '            <img src="" alt="" style="width:100%;height:100%;object-fit:cover;background:#222;">\n' +
+                  '            <span class="media-item-video-badge">&#9654;</span>\n' +
+                  '          </div>';
+              } else {
+                return '          <div class="media-item" data-lb="' + gid + '" data-src="' + escAttr(it.src) + '" data-type="image" data-idx="' + idx + '">\n' +
+                  '            <img src="' + escAttr(it.src) + '" alt="" loading="lazy">\n' +
+                  '          </div>';
+              }
+            }).join('\n');
+            return '        <div class="post-media-album">\n' +
+              '          <div class="post-media-grid" id="' + gid + '">\n' + itemsHtml + '\n          </div>\n        </div>';
           default:
             return '        <p>' + c + '</p>';
         }
@@ -1163,11 +1378,11 @@
       var metaObj = { number: number, title: title, excerpt: excerpt, category: category, author: author, date: date, file: filename };
       var metaJson = JSON.stringify(metaObj);
 
-      var html = '<!DOCTYPE html>\n<html lang="en">\n<head>\n  <meta charset="UTF-8">\n  <meta name="viewport" content="width=device-width, initial-scale=1.0">\n  <title>' + title + ' \u2014 Poetics of Ordinary</title>\n  <link rel="stylesheet" href="styles.css">\n' + devanagariLink + '  <style>\n    .post-header-wrap { max-width: 1240px; margin: 0 auto; padding: 80px 40px 0; }\n    .post-back { display: inline-block; font-size: 14px; font-weight: 700; color: var(--ink-faint); text-decoration: none; letter-spacing: 0.04em; margin-bottom: 36px; transition: color 0.2s; }\n    .post-back:hover { color: var(--ink); }\n    .post-tag { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-faint); margin-bottom: 20px; font-weight: 700; }\n    h1.post-title { font-size: clamp(36px, 5.5vw, 60px); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; max-width: 860px; margin-bottom: 32px; }\n    .post-meta { display: flex; flex-wrap: wrap; gap: 28px; font-size: 14px; color: var(--ink-faint); padding-bottom: 40px; border-bottom: var(--rule); font-weight: 400; }\n    .article-wrap { max-width: 1240px; margin: 0 auto; padding: 60px 40px 0; }\n    .article-grid { display: grid; grid-template-columns: 3fr 1fr; gap: 64px; align-items: start; }\n    .post-content p.lead { font-size: 22px; font-weight: 700; line-height: 1.55; color: var(--ink); margin-bottom: 40px; }\n    h2.post-section { font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-faint); font-weight: 700; padding-top: 48px; padding-bottom: 16px; border-top: var(--rule); margin-top: 8px; }\n    .post-content p { font-size: 18px; font-weight: 400; line-height: 1.8; color: var(--ink); margin-bottom: 28px; }\n    .pull-quote { border-left: 4px solid var(--orange); padding: 16px 28px; margin: 44px 0; }\n    .pull-quote p { font-size: 22px; font-weight: 700; line-height: 1.4; color: var(--ink); margin: 0; }\n    .field-note { background: var(--cream); border: 2px solid #DDDDDD; padding: 22px 26px; margin: 36px 0; }\n    .field-note-label { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--orange); margin-bottom: 10px; font-weight: 700; }\n    .field-note p { font-size: 15px; line-height: 1.8; color: var(--ink-mid); margin: 0; font-weight: 400; }\n    .post-figure { margin: 36px 0; }\n    .post-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 52px; padding-top: 28px; border-top: var(--rule); }\n    .post-tag-item { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; border: var(--rule); padding: 7px 16px; color: var(--fg); font-weight: 700; }\n    .post-annotations { position: sticky; top: 80px; }\n    .annotation { border-top: var(--rule); padding-top: 16px; margin-bottom: 36px; }\n    .annotation-marker { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-faint); margin-bottom: 10px; font-weight: 700; }\n    .annotation p { font-size: 14px; line-height: 1.8; color: var(--ink-mid); font-weight: 400; }\n    .post-nav-wrap { max-width: 1240px; margin: 80px auto 0; padding: 40px; border-top: var(--rule); display: flex; justify-content: space-between; gap: 40px; }\n    .post-nav-prev, .post-nav-next { text-decoration: none; color: inherit; }\n    .post-nav-label { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-faint); margin-bottom: 8px; font-weight: 700; }\n    .post-nav-title { display: block; font-size: 20px; font-weight: 700; color: var(--ink); line-height: 1.3; max-width: 320px; transition: color 0.2s; }\n    .post-nav-prev:hover .post-nav-title, .post-nav-next:hover .post-nav-title { color: var(--orange); }\n    .post-nav-next { text-align: right; }\n    .post-nav-next .post-nav-title { margin-left: auto; }\n    @media (max-width: 900px) {\n      .post-header-wrap { padding: 60px 20px 0; }\n      .article-wrap { padding: 40px 20px 0; }\n      .article-grid { grid-template-columns: 1fr; gap: 0; }\n      .post-annotations { position: static; border-top: var(--rule); padding-top: 40px; margin-top: 40px; }\n      .post-nav-wrap { padding: 40px 20px; flex-direction: column; gap: 32px; }\n      .post-nav-next { text-align: left; }\n    }\n  </style>\n</head>\n<body class="page-body">\n\n  <nav>\n    <a class="nav-brand" href="index.html">Poetics of Ordinary</a>\n    <ul class="nav-links">\n      <li><a href="about.html">About</a></li>\n    </ul>\n    <span class="nav-date" id="nav-date"></span>\n  </nav>\n\n  <div class="post-header-wrap">\n    <a class="post-back" href="index.html">\u2190 All Posts</a>\n    <span class="post-tag">' + category + '</span>\n    <h1 class="post-title">' + title + '</h1>\n    <div class="post-meta">\n      <span>' + author + '</span>\n      <span>' + date + '</span>\n    </div>\n  </div>\n\n  <div class="article-wrap">\n    <div class="article-grid">\n\n      <div class="post-content">\n\n' +
+      var html = '<!DOCTYPE html>\n<html lang="en">\n<head>\n  <meta charset="UTF-8">\n  <meta name="viewport" content="width=device-width, initial-scale=1.0">\n  <title>' + title + ' \u2014 Poetics of Ordinary</title>\n  <link rel="stylesheet" href="styles.css">\n' + devanagariLink + '  <style>\n    .post-header-wrap { max-width: 1240px; margin: 0 auto; padding: 80px 40px 0; }\n    .post-back { display: inline-block; font-size: 14px; font-weight: 700; color: var(--ink-faint); text-decoration: none; letter-spacing: 0.04em; margin-bottom: 36px; transition: color 0.2s; }\n    .post-back:hover { color: var(--ink); }\n    .post-tag { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-faint); margin-bottom: 20px; font-weight: 700; }\n    h1.post-title { font-size: clamp(36px, 5.5vw, 60px); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; max-width: 860px; margin-bottom: 32px; }\n    .post-meta { display: flex; flex-wrap: wrap; gap: 28px; font-size: 14px; color: var(--ink-faint); padding-bottom: 40px; border-bottom: var(--rule); font-weight: 400; }\n    .article-wrap { max-width: 1240px; margin: 0 auto; padding: 60px 40px 0; }\n    .article-grid { display: grid; grid-template-columns: 3fr 1fr; gap: 64px; align-items: start; }\n    .post-content p.lead { font-size: 22px; font-weight: 700; line-height: 1.55; color: var(--ink); margin-bottom: 40px; }\n    h2.post-section { font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-faint); font-weight: 700; padding-top: 48px; padding-bottom: 16px; border-top: var(--rule); margin-top: 8px; }\n    .post-content p { font-size: 18px; font-weight: 400; line-height: 1.8; color: var(--ink); margin-bottom: 28px; }\n    .pull-quote { border-left: 4px solid var(--orange); padding: 16px 28px; margin: 44px 0; }\n    .pull-quote p { font-size: 22px; font-weight: 700; line-height: 1.4; color: var(--ink); margin: 0; }\n    .field-note { background: var(--cream); border: 2px solid #DDDDDD; padding: 22px 26px; margin: 36px 0; }\n    .field-note-label { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--orange); margin-bottom: 10px; font-weight: 700; }\n    .field-note p { font-size: 15px; line-height: 1.8; color: var(--ink-mid); margin: 0; font-weight: 400; }\n    .post-figure { margin: 36px 0; }\n    .post-video-wrap { margin: 36px 0; }\n    .post-video-wrap video { max-width: 100%; display: block; }\n    .post-video-vertical { margin: 36px auto; max-width: 360px; }\n    .post-video-vertical video { width: 100%; aspect-ratio: 9/16; object-fit: cover; display: block; }\n    .post-audio-wrap { margin: 36px 0; }\n    .post-audio-wrap audio { width: 100%; display: block; }\n    .post-media-album { margin: 52px 0; }\n    .post-media-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }\n    .media-item { aspect-ratio: 1; overflow: hidden; cursor: pointer; position: relative; background: #111; }\n    .media-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity 0.2s; }\n    .media-item:hover img { opacity: 0.85; }\n    .media-item-video-badge { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 40px; height: 40px; background: rgba(0,0,0,0.6); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 16px; pointer-events: none; }\n    .lb { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 9999; align-items: center; justify-content: center; }\n    .lb.lb-open { display: flex; }\n    .lb-stage { position: relative; max-width: 90vw; max-height: 90vh; display: flex; align-items: center; justify-content: center; }\n    .lb-stage img, .lb-stage video { max-width: 90vw; max-height: 85vh; object-fit: contain; display: block; }\n    .lb-close { position: fixed; top: 20px; right: 28px; background: none; border: none; color: white; font-size: 32px; cursor: pointer; z-index: 10000; line-height: 1; opacity: 0.7; transition: opacity 0.15s; }\n    .lb-close:hover { opacity: 1; }\n    .lb-nav { position: fixed; top: 50%; transform: translateY(-50%); background: none; border: none; color: white; font-size: 40px; cursor: pointer; z-index: 10000; padding: 20px; opacity: 0.5; transition: opacity 0.15s; line-height: 1; }\n    .lb-nav:hover { opacity: 1; }\n    .lb-prev { left: 10px; }\n    .lb-next { right: 10px; }\n    .lb-counter { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.6); font-size: 13px; font-weight: 700; letter-spacing: 0.08em; z-index: 10000; }\n    @media (max-width: 600px) { .post-media-grid { grid-template-columns: repeat(2, 1fr); } }\n    .post-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 52px; padding-top: 28px; border-top: var(--rule); }\n    .post-tag-item { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; border: var(--rule); padding: 7px 16px; color: var(--fg); font-weight: 700; }\n    .post-annotations { position: sticky; top: 80px; }\n    .annotation { border-top: var(--rule); padding-top: 16px; margin-bottom: 36px; }\n    .annotation-marker { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-faint); margin-bottom: 10px; font-weight: 700; }\n    .annotation p { font-size: 14px; line-height: 1.8; color: var(--ink-mid); font-weight: 400; }\n    .post-nav-wrap { max-width: 1240px; margin: 80px auto 0; padding: 40px; border-top: var(--rule); display: flex; justify-content: space-between; gap: 40px; }\n    .post-nav-prev, .post-nav-next { text-decoration: none; color: inherit; }\n    .post-nav-label { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-faint); margin-bottom: 8px; font-weight: 700; }\n    .post-nav-title { display: block; font-size: 20px; font-weight: 700; color: var(--ink); line-height: 1.3; max-width: 320px; transition: color 0.2s; }\n    .post-nav-prev:hover .post-nav-title, .post-nav-next:hover .post-nav-title { color: var(--orange); }\n    .post-nav-next { text-align: right; }\n    .post-nav-next .post-nav-title { margin-left: auto; }\n    @media (max-width: 900px) {\n      .post-header-wrap { padding: 60px 20px 0; }\n      .article-wrap { padding: 40px 20px 0; }\n      .article-grid { grid-template-columns: 1fr; gap: 0; }\n      .post-annotations { position: static; border-top: var(--rule); padding-top: 40px; margin-top: 40px; }\n      .post-nav-wrap { padding: 40px 20px; flex-direction: column; gap: 32px; }\n      .post-nav-next { text-align: left; }\n    }\n  </style>\n</head>\n<body class="page-body">\n\n  <nav>\n    <a class="nav-brand" href="index.html">Poetics of Ordinary</a>\n    <ul class="nav-links">\n      <li><a href="about.html">About</a></li>\n    </ul>\n    <span class="nav-date" id="nav-date"></span>\n  </nav>\n\n  <div class="post-header-wrap">\n    <a class="post-back" href="index.html">\u2190 All Posts</a>\n    <span class="post-tag">' + category + '</span>\n    <h1 class="post-title">' + title + '</h1>\n    <div class="post-meta">\n      <span>' + author + '</span>\n      <span>' + date + '</span>\n    </div>\n  </div>\n\n  <div class="article-wrap">\n    <div class="article-grid">\n\n      <div class="post-content">\n\n' +
         contentParts.join('\n\n') +
         tagsHtml + '\n\n      </div>\n\n      <aside class="post-annotations">\n' +
         (annHtml || '        <!-- No annotations -->') + '\n      </aside>\n\n    </div>\n  </div>\n\n  <div class="post-nav-wrap">\n' +
-        prevNav + '\n' + nextNav + '\n  </div>\n\n  <footer>\n    <div class="footer-inner">\n      <span class="footer-left">\u00a9 2026 Poetics of Ordinary \u2014 Pranshu Chaudhary &amp; Monalisa Thakur</span>\n      <span class="footer-right">Field notes from the attention practice</span>\n    </div>\n  </footer>\n\n  <script type="application/json" id="post-meta">' + metaJson + '<\/script>\n\n  <script>\n    (function () {\n      var el = document.getElementById(\'nav-date\');\n      if (el) el.textContent = new Date().toLocaleDateString(\'en-GB\', { year: \'numeric\', month: \'long\', day: \'numeric\' });\n    })();\n  <\/script>\n<\/body>\n<\/html>';
+        prevNav + '\n' + nextNav + '\n  </div>\n\n  <footer>\n    <div class="footer-inner">\n      <span class="footer-left">\u00a9 2026 Poetics of Ordinary \u2014 Pranshu Chaudhary &amp; Monalisa Thakur</span>\n      <span class="footer-right">Field notes from the attention practice</span>\n    </div>\n  </footer>\n\n  <script type="application/json" id="post-meta">' + metaJson + '<\/script>\n\n  <script>\n    (function () {\n      var el = document.getElementById(\'nav-date\');\n      if (el) el.textContent = new Date().toLocaleDateString(\'en-GB\', { year: \'numeric\', month: \'long\', day: \'numeric\' });\n    })();\n  <\/script>\n\n  <div class="lb" id="lb" role="dialog" aria-modal="true">\n    <button class="lb-close" id="lb-close" aria-label="Close">&#215;<\/button>\n    <button class="lb-nav lb-prev" id="lb-prev" aria-label="Previous">&#8249;<\/button>\n    <div class="lb-stage" id="lb-stage"><\/div>\n    <button class="lb-nav lb-next" id="lb-next" aria-label="Next">&#8250;<\/button>\n    <span class="lb-counter" id="lb-counter"><\/span>\n  <\/div>\n\n  <script>\n    (function () {\n      var lb = document.getElementById(\'lb\');\n      var stage = document.getElementById(\'lb-stage\');\n      var counter = document.getElementById(\'lb-counter\');\n      if (!lb) return;\n      var items = []; var cur = 0;\n      function openLb(group, idx) {\n        var els = Array.from(document.querySelectorAll(\'[data-lb="\' + group + \'"]\'));\n        items = els.map(function(el) { return { src: el.dataset.src, type: el.dataset.type || \'image\' }; });\n        cur = idx; showItem();\n        lb.classList.add(\'lb-open\');\n        document.body.style.overflow = \'hidden\';\n      }\n      function closeLb() {\n        var vid = stage.querySelector(\'video\');\n        if (vid) vid.pause();\n        lb.classList.remove(\'lb-open\');\n        document.body.style.overflow = \'\';\n        stage.innerHTML = \'\';\n      }\n      function showItem() {\n        var vid = stage.querySelector(\'video\');\n        if (vid) vid.pause();\n        stage.innerHTML = \'\';\n        var it = items[cur]; if (!it) return;\n        if (it.type === \'video\') {\n          var v = document.createElement(\'video\');\n          v.src = it.src; v.controls = true; v.autoplay = true;\n          stage.appendChild(v);\n        } else {\n          var img = document.createElement(\'img\'); img.src = it.src; stage.appendChild(img);\n        }\n        counter.textContent = (cur + 1) + \' / \' + items.length;\n      }\n      document.getElementById(\'lb-close\').addEventListener(\'click\', closeLb);\n      document.getElementById(\'lb-prev\').addEventListener(\'click\', function() { cur = (cur - 1 + items.length) % items.length; showItem(); });\n      document.getElementById(\'lb-next\').addEventListener(\'click\', function() { cur = (cur + 1) % items.length; showItem(); });\n      lb.addEventListener(\'click\', function(e) { if (e.target === lb) closeLb(); });\n      document.addEventListener(\'keydown\', function(e) {\n        if (!lb.classList.contains(\'lb-open\')) return;\n        if (e.key === \'Escape\') closeLb();\n        if (e.key === \'ArrowLeft\') { cur = (cur - 1 + items.length) % items.length; showItem(); }\n        if (e.key === \'ArrowRight\') { cur = (cur + 1) % items.length; showItem(); }\n      });\n      document.querySelectorAll(\'.media-item\').forEach(function(el) {\n        el.addEventListener(\'click\', function() { openLb(el.dataset.lb, parseInt(el.dataset.idx || 0)); });\n      });\n    })();\n  <\/script>\n<\/body>\n<\/html>';
 
       return { filename: filename, html: html };
     }
@@ -1192,6 +1407,20 @@
 
     function savePosts(posts) {
       try { localStorage.setItem(POSTS_KEY, JSON.stringify(posts)); } catch (e) {}
+    }
+
+    var DRAFT_PREFIX = 'poetics_draft_';
+
+    function saveDraft(filename, state) {
+      try { localStorage.setItem(DRAFT_PREFIX + filename, JSON.stringify(state)); } catch (e) {}
+    }
+
+    function loadDraft(filename) {
+      try {
+        var s = localStorage.getItem(DRAFT_PREFIX + filename);
+        if (s) return JSON.parse(s);
+      } catch (e) {}
+      return null;
     }
 
     function pad2(n) { return String(n || '').padStart(2, '0'); }
@@ -1251,6 +1480,16 @@
       if (existing >= 0) posts[existing] = newMeta; else posts.push(newMeta);
       savePosts(posts);
 
+      /* Save full draft state for edit mode */
+      saveDraft(result.filename, {
+        number: newMeta.number, title: newMeta.title, excerpt: newMeta.excerpt,
+        category: newMeta.category, author: newMeta.author, date: newMeta.date,
+        tags: document.getElementById('f-tags').value.trim(),
+        prevTitle: prevTitle, prevFile: prevFile, nextTitle: nextTitle, nextFile: nextFile,
+        blocks: blocks,
+        annotations: annotations
+      });
+
       /* Download post HTML */
       function dl(content, filename) {
         var blob = new Blob([content], { type: 'text/html;charset=utf-8' });
@@ -1271,14 +1510,80 @@
       }, 400);
     }
 
+    /* ─── EDIT MODE ─────────────────────────────── */
+    function loadEditMode(filename) {
+      var draft = loadDraft(filename);
+
+      if (draft) {
+        /* Restore metadata fields */
+        document.getElementById('f-number').value   = draft.number    || '';
+        document.getElementById('f-category').value = draft.category  || '';
+        document.getElementById('f-author').value   = draft.author    || '';
+        document.getElementById('f-date').value     = draft.date      || '';
+        document.getElementById('f-title').value    = draft.title     || '';
+        document.getElementById('f-excerpt').value  = draft.excerpt   || '';
+        document.getElementById('f-tags').value     = draft.tags      || '';
+        document.getElementById('f-prev-title').value = draft.prevTitle || '';
+        document.getElementById('f-prev-file').value  = draft.prevFile  || '';
+        document.getElementById('f-next-title').value = draft.nextTitle || '';
+        document.getElementById('f-next-file').value  = draft.nextFile  || '';
+
+        /* Restore blocks */
+        blocks = []; blockSeq = 0;
+        document.getElementById('blocks-list').innerHTML = '';
+        (draft.blocks || []).forEach(function(b) {
+          var num = parseInt((b.id || '').replace('b', '')) || 0;
+          if (num > blockSeq) blockSeq = num;
+          blocks.push(b);
+          renderBlockToDOM(b);
+        });
+
+        /* Restore annotations */
+        annotations = []; annSeq = 0;
+        document.getElementById('annotations-list').innerHTML = '';
+        (draft.annotations || []).forEach(function(a) {
+          var num = parseInt((a.id || '').replace('a', '')) || 0;
+          if (num > annSeq) annSeq = num;
+          annotations.push(a);
+          renderAnnotationToDOM(a);
+        });
+
+        document.getElementById('publish-status').textContent = 'Editing: ' + filename;
+      } else {
+        /* No draft saved — restore metadata only from registry */
+        var meta = getPosts().find(function(p) { return p.file === filename; });
+        if (meta) {
+          document.getElementById('f-number').value   = meta.number   || '';
+          document.getElementById('f-category').value = meta.category || '';
+          document.getElementById('f-author').value   = meta.author   || '';
+          document.getElementById('f-date').value     = meta.date     || '';
+          document.getElementById('f-title').value    = meta.title    || '';
+          document.getElementById('f-excerpt').value  = meta.excerpt  || '';
+        }
+        addBlock('lead');
+        addBlock('paragraph');
+        document.getElementById('publish-status').textContent =
+          'Edit mode — no saved draft for ' + filename + ', metadata restored only';
+      }
+
+      /* Update UI for edit mode */
+      document.querySelector('.editor-page-title').textContent = 'Edit Post';
+      document.querySelector('.publish-btn').textContent = 'Update Post →';
+    }
+
     /* ─── INIT ───────────────────────────────────── */
     (function () {
       var el = document.getElementById('nav-date');
       if (el) el.textContent = new Date().toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' });
 
-      /* Start with one lead paragraph */
-      addBlock('lead');
-      addBlock('paragraph');
+      var editFile = new URLSearchParams(location.search).get('edit');
+      if (editFile) {
+        loadEditMode(editFile);
+      } else {
+        /* Start with one lead paragraph */
+        addBlock('lead');
+        addBlock('paragraph');
+      }
       updateStatus();
     })();
   </script>
